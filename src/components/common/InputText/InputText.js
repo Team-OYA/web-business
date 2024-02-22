@@ -1,12 +1,9 @@
-import { Form } from 'react-bootstrap';
+import {Form} from "react-bootstrap";
 
 function  InputText(props) {
     return (
-        <Form.Group className="row">
-            <label className="col-sm-3 col-form-label">{props.content}</label>
-            <div className="col-sm-9">
-                <Form.Control type="text" className="form-control" placeholder={props.placeholder} />
-            </div>
+        <Form.Group className="d-flex search-field">
+            <Form.Control type="email" placeholder={props.placeholder} size="lg" className="h-auto" />
         </Form.Group>
     )
 }
