@@ -3,7 +3,7 @@ import React from "react";
 const User = () => {
     return (
         <div className="user">
-            유저 
+            테스트
         </div>
     )
 }
