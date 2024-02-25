@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 
+/**
+ * DropdownItem 컴포넌트 생성
+ *
+ * @since 2024.02.25
+ * @author 이상민
+ */
 const DropdownItem = ({ name, itemList }) => {
     const [dropDownState, setDropDownState] = useState(false);
     const clickDropDown = () => {
