@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
+/**
+ * SidebarItem 컴포넌트 생성
+ *
+ * @since 2024.02.25
+ * @author 이상민
+ */
 const SidebarItem = ({ href, text }) => (
     <li>
         <a
