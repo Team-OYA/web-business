@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import React from "react";
+
 import './index.css';
 
 import Main from "./pages/main";
@@ -8,8 +10,8 @@ import Signup from "./pages/common/signup";
 import DashBoard from "./pages/business/dashboard";
 import User from "./pages/administrator/User";
 import Business from "./pages/administrator/Business";
-import React from "react";
 import Sidebar from "./components/common/Sidebar/Sidebar";
+import Home from "./pages/common/home";
 
 /**
  * @since 2024.02.25
@@ -27,6 +29,7 @@ function App() {
         <BrowserRouter>
             <Main>
                 <Routes>
+                    <Route path='/' element={<Home/>}/>
                     <Route path='/login' element={<Login />} />
                     <Route path='/signup' element={<Signup />} />
 
