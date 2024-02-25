@@ -8,8 +8,8 @@ import Main from "./pages/main";
 import Login from "./pages/common/login";
 import Signup from "./pages/common/signup";
 import DashBoard from "./pages/business/dashboard";
-import User from "./pages/administrator/User";
-import Business from "./pages/administrator/Business";
+import User from "./pages/administrator/user";
+import Business from "./pages/administrator/business";
 import Sidebar from "./components/common/Sidebar/Sidebar";
 import Home from "./pages/common/home";
 

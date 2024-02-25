@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Table from "../../components/common/Table/Table";
-import UserApi from "../../api/UserApi";
+import UserApi from "../../api/userApi";
 
 /**
  * Business 페이지 생성
