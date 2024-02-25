@@ -1,15 +1,13 @@
-import React from "react";
-import InputText from "../../components/common/InputText/InputText";
-import Button from "../../components/common/Button/Button";
 import OutlineCircleDisabledButton from "../../components/common/Button/OutlineCircleDisabledButton";
+import React from "react";
 
 /**
- * Login 페이지 제작
+ * Home 페이지 제작
  *
  * @since 2024.02.25
  * @author 김유빈
  */
-const Login = () => {
+const Home = () => {
     return (
         <div className="login">
             <section>
@@ -24,21 +22,14 @@ const Login = () => {
                                 현대에서 진행하는 팝업스토어를 관리해주는 플랫폼
                             </p>
                             {/*todo: 가운데로 배치*/}
+                            <OutlineCircleDisabledButton text="사업체 페이지"/>
                             <OutlineCircleDisabledButton text="관리자 페이지"/>
-                            <p className="text-center text-gray-text-color-600">
-                                관리자 페이지에서 유저 관리를 진행해 보세요.
-                            </p>
-                            <form className="space-y-4 md:space-y-6" action="#">
-                                <InputText placeholder="아이디"/>
-                                <InputText placeholder="비밀번호"/>
-                                <Button text="관리자 로그인"/>
-                            </form>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Home;
