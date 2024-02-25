@@ -10,6 +10,7 @@ import User from "./pages/administrator/user";
 import Test from "./pages/administrator/test";
 import React from "react";
 import Home from "./pages/common/home";
+import CreatePlan from "./pages/business/createPlan";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/signup' element={<Signup/>}/>
                     <Route path='/dashboard' element={<DashBoard/>}/>
+                    <Route path='/plan/create' element={<CreatePlan/>}/>
                     <Route path='/admin/users' element={<User/>}/>
                     <Route path='/test' element={<Test/>}/>
                 </Routes>
