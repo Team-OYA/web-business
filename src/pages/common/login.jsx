@@ -1,5 +1,5 @@
 import React from "react";
-import InputText from "../../components/common/InputText/InputText";
+import InputText from "../../components/common/Input/InputText";
 import Button from "../../components/common/Button/Button";
 import OutlineCircleDisabledButton from "../../components/common/Button/OutlineCircleDisabledButton";
 
