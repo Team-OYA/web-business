@@ -1,31 +1,34 @@
-import {Form} from "react-bootstrap";
 
+/**
+ * RadioGroup 컴포넌트 생성
+ *
+ * @since 2024.02.26
+ * @author 김유빈
+ */
 function RadioGroup(props) {
     return (
-        <div className="col-md-6">
-            <Form.Group className="row">
-                <label className="col-sm-3 col-form-label">{props.title}</label>
-                {
-                    props.radios.map((radio, index) => (
-                        <Radio key={index} content={radio.content} checked={radio.checked}/>
-                    ))
-                }
-            </Form.Group>
-        </div>
-    )
-}
-
-function Radio(props) {
-    return (
-        <div className="col-sm-4">
-            <div className="form-check">
-                <label className="form-check-label">
-                    <input type="radio" className="form-check-input" name="ExampleRadio4"
-                           id="membershipRadios1" checked={props.checked}/>{props.content}
-                    <i className="input-helper"></i>
+        <>
+            <div className="mb-6">
+                <label
+                       className="block mb-2 text-sm font-medium text-gray-900">
+                    {props.title}
                 </label>
+                <div className="flex">
+                    {
+                        props.content.map((text, index) => (
+                            <div className="flex-auto items-center mb-4">
+                                <input id={`default-radio-${index}`} type="radio" value="" name="default-radio"
+                                       className="w-4 h-4 text-main-color-600 bg-gray-100 border-gray-300 focus:ring-main-color-500 focus:ring-2"/>
+                                <label htmlFor={`default-radio-${index}`}
+                                       className="ms-2 text-sm font-medium text-gray-700">
+                                    {text}
+                                </label>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
