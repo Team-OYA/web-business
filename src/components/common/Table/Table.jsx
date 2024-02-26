@@ -9,10 +9,10 @@ import React from "react";
 const Table = ({ headerTitles, sampleData }) => {
     const renderTableHeader = () => {
       return (
-        <thead className="text-xs text-gray-700 bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-sm text-gray-text-color-700 bg-gray-100 text-center dark:bg-gray-700 dark:text-gray-400">
           <tr>
             {headerTitles.map((title, index) => (
-              <th key={index} scope="col" className="px-2 py-2">
+              <th key={index} scope="col" className="p-3">
                 {title}
               </th>
             ))}
@@ -23,9 +23,9 @@ const Table = ({ headerTitles, sampleData }) => {
     const renderTableRow = (rowData) => {
       if (rowData && rowData.length > 0) {
         return (
-          <tr className="text-xs bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <tr className="text-sm text-gray-text-color-700 bg-white border-b text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             {rowData.map((data, index) => (
-              <td key={index} className="px-2 py-2 bg-white">
+              <td key={index} className="p-4 bg-white">
                 {data}
               </td>
             ))}
@@ -43,7 +43,7 @@ const Table = ({ headerTitles, sampleData }) => {
     };
   
     return (
-        <div className="relative overflow-x-auto shadow-md table-container sm:rounded-lg">
+        <div className="relative overflow-x-auto table-container sm:rounded-sm">
           <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
             {renderTableHeader(headerTitles)}
             {renderTableBody(sampleData)}
