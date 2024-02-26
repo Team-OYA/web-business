@@ -1,10 +1,12 @@
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import InputText from "../../components/common/Input/InputText";
-import Table from "../../components/common/Table/Table";
 import RadioGroup from "../../components/common/Radio/RadioGroup";
 import Checkbox from "../../components/common/Checkbox/Checkbox";
 import PaymentButton from "../../components/common/Button/PaymentButton";
 import TossImage from "../../assets/icon/toss.png";
+import CheckedPostTable from "../../components/common/Table/CheckedPostTable";
+import React from "react";
+import Button from "../../components/common/Button/Button";
 
 /**
  * Ad 페이지 제작
@@ -13,7 +15,6 @@ import TossImage from "../../assets/icon/toss.png";
  * @author 김유빈
  */
 const Ad = () => {
-    // todo: check table 컴포넌트 생성
     return (
         <>
             <ContentBox
@@ -26,13 +27,7 @@ const Ad = () => {
                 }/>
             <ContentBox
                 title="게시글 선택"
-                content={
-                    <>
-                        <Table sampleData={
-                            [["‘더현대 서울’에서 만나는 가슴 뛰는 그 순간! ‘더 퍼스트 ...", "2024.02.01"]]
-                        }/>
-                    </>
-                }/>
+                content={<CheckedPostTable/>}/>
             <ContentBox
                 title="주문자 정보"
                 content={
@@ -53,7 +48,12 @@ const Ad = () => {
                 }/>
             <ContentBox
                 title="최종 결제금액"
-                content={<InputText title="총 결제금액" value="1,000,000원" disabled="true"/>}/>
+                content={
+                    <>
+                        <InputText title="총 결제금액" value="1,000,000원" disabled="true"/>
+                        <Button text="결제하기"/>
+                    </>
+                }/>
         </>
     )
 }
