@@ -6,13 +6,13 @@ import React from "react";
  * @since 2024.02.25
  * @author 이상민
  */
-const Table = ({ headerTitles, sampleData }) => {
+const Table = ({headerTitles, sampleData }) => {
     const renderTableHeader = () => {
       return (
-        <thead className="text-xs text-gray-700 bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+        <thead className="text-sm text-gray-700 bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             {headerTitles.map((title, index) => (
-              <th key={index} scope="col" className="px-2 py-2">
+              <th key={index} scope="col" className="px-2 py-3">
                 {title}
               </th>
             ))}
@@ -23,9 +23,9 @@ const Table = ({ headerTitles, sampleData }) => {
     const renderTableRow = (rowData) => {
       if (rowData && rowData.length > 0) {
         return (
-          <tr className="text-xs bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <tr className="text-sm bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             {rowData.map((data, index) => (
-              <td key={index} className="px-2 py-2 bg-white">
+              <td key={index} className="px-2 py-3 bg-white">
                 {data}
               </td>
             ))}
@@ -53,4 +53,3 @@ const Table = ({ headerTitles, sampleData }) => {
   };
   
   export default Table;
-  
