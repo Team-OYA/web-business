@@ -1,6 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import React from "react";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 
 import './index.css';
 
@@ -9,10 +7,11 @@ import Login from "./pages/common/login";
 import Signup from "./pages/common/signup";
 import DashBoard from "./pages/business/dashboard";
 import User from "./pages/administrator/user";
-import Business from "./pages/administrator/business";
 import Plan from "./pages/administrator/plan";
 import PlanDetail from "./pages/administrator/planDetail";
-import Community from "./pages/administrator/community"; 
+import Community from "./pages/administrator/community";
+import Sidebar from "./components/common/Sidebar/Sidebar";
+import Business from "./pages/administrator/business";
 import Sidebar from "./components/common/Sidebar/Sidebar";
 import Home from "./pages/common/home";
 

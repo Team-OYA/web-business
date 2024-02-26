@@ -38,6 +38,19 @@ const Sidebar = ({ color, sideBarList, content }) => {
                             </a>
                         </li>
                     </ul>
+                className={`fixed top-0 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full ${color}`}
+                aria-label="Sidebar"
+            >
+                <div className={`h-full px-3 py-4 overflow-y-auto ${color}`}>
+                    <ul className="space-y-2 font-medium">
+                        {sideBarList.map((item, index) => (
+                            Array.isArray(item[1]) ? (
+                                <DropdownItem key={index} name={item[0]} itemList={item[1]} />
+                            ) : (
+                                <SidebarItem key={index} href={item[1]} text={item[0]} />
+                            )
+                        ))}
+                    </ul>
                 </div>
             </aside>
             <div className="p-4 sm:ml-64">

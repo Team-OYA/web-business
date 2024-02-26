@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState, useEffect } from "react";
 
 import Table from "../../components/common/Table/Table";
 import UserApi from "../../api/userApi";
@@ -11,30 +11,31 @@ import UserApi from "../../api/userApi";
  */
 const Business = () => {
     const [userData, setUserData] = useState(null);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await UserApi.getBusiness();
-
-                const mappedData = response.data.data.map((user, index) => {
-                    return {
-                        businessRegistrationNumber: user.businessRegistrationNumber ? user.businessRegistrationNumber : "-",
-                        nameOfCompany: user.nameOfCompany ? user.nameOfCompany : "-",
-                        nameOfRepresentative: user.nameOfRepresentative ? user.nameOfRepresentative : "-",
-                        businessItem: user.businessItem ? user.businessItem : "-",
-                        dateOfBusinessCommencement: user.dateOfBusinessCommencement ? user.dateOfBusinessCommencement : "-",
-                        nickname: user.nickname ? user.nickname : "-",
-                        planCount: user.planCount ? user.planCount : 0,
-                        popupCount: user.popupCount ? user.popupCount : 0,
-                        communityCount: user.communityCount ? user.communityCount : 0,
-                        deleted: user.deleted ? "탈퇴" : "활동",
+                
+                const mappedData = response.data.data.map(user => {
+                    const mappedUser = {
+                        userId: user.userId || "-",
+                        nickname: user.nickname || "-",
+                        email: user.email || "-",
+                        birthDate: user.birthDate || "-",
+                        gender: user.gender || "-",
+                        registrationType: user.registrationType || "-",
+                        userType: user.userType || "-",
+                        usersCreatedDate: user.usersCreatedDate || "-",
+                        usersModifiedDate: user.usersModifiedDate || "-",
+                        deleted: user.deleted || false,
+                        communityCount: user.communityCount || 0,
                     };
+                    return mappedUser;
                 });
-
-                const userDataArray = mappedData.map((user, index) => [index + 1, ...Object.values(user)]); 
+                const headerTitles = Object.keys(mappedData[0]);
+                const userDataArray = mappedData.map(user => Object.values(user));
                 setUserData({
-                    headerTitles: ["순번", ...headerTitles], 
+                    headerTitles: headerTitles,
                     sampleData: userDataArray,
                 });
             } catch (error) {
@@ -44,12 +45,8 @@ const Business = () => {
         fetchData();
     }, []);
 
-    const headerTitles = ["사업자 등록번호", "상호명", "대표명", "사업종류", "개업일", "가입자", "사업계획서 수", "팝업 수", "게시글 수", "상태"];
-
     return (
         <div className="user">
-            <h4 class="text-xl font-extrabold dark:text-black">사업체 목록</h4>
-            <br/>
             {userData && userData.headerTitles ? (
                 <Table headerTitles={userData.headerTitles} sampleData={userData.sampleData || []} />
             ) : (
