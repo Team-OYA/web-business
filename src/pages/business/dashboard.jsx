@@ -1,6 +1,7 @@
 import React from "react";
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import Table from "../../components/common/Table/Table";
+import Dropdown from "../../components/common/Dropdown/Dropdown";
 
 /**
  * DashBoard 페이지 제작
@@ -20,7 +21,13 @@ const DashBoard = () => {
         <div className="dashBoard">
             <ContentBox
                 title="나의 사업계획서 목록"
-                content={<Table headerTitles={data.headerTitles} sampleData={data.sampleData}/>}/>
+                content={
+                <>
+                    <Dropdown title="카테고리" categories={["문구", "식품", "화장품", "K-POP"]}/>
+                    <Dropdown title="진행 단계" categories={["제안 요청", "제안 승인", "제안 거절", "제안 철회"]}/>
+                    <Table headerTitles={data.headerTitles} sampleData={data.sampleData}/>
+                </>
+            }/>
         </div>
     )
 }
