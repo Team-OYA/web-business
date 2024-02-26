@@ -15,6 +15,7 @@ import Button from "../../components/common/Button/Button";
  * @author 김유빈
  */
 const Ad = () => {
+    // todo: 결제 방법 선택 시 색상 변경
     return (
         <>
             <div className="flex">
@@ -24,7 +25,7 @@ const Ad = () => {
                         content={
                             <>
                                 <RadioGroup title="광고 분류" content={["팝업스토어 게시글", "커뮤니티 게시글"]}/>
-                                <InputText title="광고 금액"/>
+                                <InputText title="광고 금액" value="1,000,000원" disabled="true"/>
                             </>
                         }/>
                     <ContentBox
