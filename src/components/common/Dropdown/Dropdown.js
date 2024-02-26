@@ -7,7 +7,7 @@
 function Dropdown(props) {
     return (
         <>
-            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+            <button id={props.buttonId} data-dropdown-toggle={props.dropdownId} data-dropdown-trigger="hover"
                     className="text-white bg-main-color-600 hover:bg-main-color-800 focus:ring-4 focus:outline-none
                     focus:ring-main-color-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex
                     items-center mb-6 mr-4"
@@ -20,9 +20,9 @@ function Dropdown(props) {
                       d="m1 1 4 4 4-4"/>
             </svg>
             </button>
-            <div id="dropdownHover"
+            <div id={props.dropdownId}
                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+                <ul className="py-2 text-sm text-gray-700" aria-labelledby={props.buttonId}>
                     <li>
                         <a href="#"
                            className="block px-4 py-2 hover:bg-gray-100">전체 조회</a>

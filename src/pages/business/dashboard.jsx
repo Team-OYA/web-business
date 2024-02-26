@@ -25,8 +25,8 @@ const DashBoard = () => {
                 title="나의 사업계획서 목록"
                 content={
                 <>
-                    <Dropdown title="카테고리" categories={["문구", "식품", "화장품", "K-POP"]}/>
-                    <Dropdown title="진행 단계" categories={["제안 요청", "제안 승인", "제안 거절", "제안 철회"]}/>
+                    <Dropdown dropdownId="categoryButton" buttonId="categories" title="카테고리" categories={["문구", "식품", "화장품", "K-POP"]}/>
+                    <Dropdown dropdownId="progressButton" buttonId="progresses" title="진행 단계" categories={["제안 요청", "제안 승인", "제안 거절", "제안 철회"]}/>
                     <Table headerTitles={data.headerTitles} sampleData={data.sampleData}/>
                     <Pagination total="500" limit="10" page={page} setPage={setPage}/>
                 </>
