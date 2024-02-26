@@ -24,7 +24,7 @@ function App() {
     const businessColor = "bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
     const adminColor = "bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
 
-    const businessSideBarList = [['대시보드', '/dashboard'], ['팝업 스토어 제안', '#'], ['광고 신청', '#']];
+    const businessSideBarList = [['대시보드', '/dashboard'], ['팝업 스토어 제안', '/plan'], ['광고 신청', '/plan/create']];
     const adminSideBarList = [['사용자 관리', [['일반 사용자 관리', '/admin/users'], ['사업체 관리', '/admin/business']]], ['팝업 관리', '#'], ['게시글 관리', '#']];
 
     return (
