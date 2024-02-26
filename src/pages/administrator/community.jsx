@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Table from "../../components/common/Table/Table";
 import CommunityApi from "../../api/communityApi";
 import Pagination from "../../components/common/Pagination/Pagination";
+import ContentBox from "../../components/common/ContentBox/ContentBox";
 
 /**
  * Community 페이지 생성
@@ -16,7 +17,7 @@ const Community = () => {
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(null);
 
-    const headerTitles = ["카테고리", "작성자", "제목", "게시글 종류", "생성일", "수정일", "사용자유형", "상태"];
+    const headerTitles = ["순번", "카테고리", "작성자", "제목", "게시글 종류", "생성일", "수정일", "사용자유형", "상태"];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,7 +27,11 @@ const Community = () => {
                 const mappedData = response.data.data.communityDetailResponseList.map((community, index) => {
                     const communityType =
                         community.communityType === "vote" ? "투표" : community.communityType === "basic" ? "일반" : "-";
+
+                    // 페이징 처리를 고려한 순번 계산
+                    const sequenceNumber = index + 1 + (page - 1) * limit;
                     return {
+                        sequenceNumber,
                         categoryDescription: community.categoryDescription ? community.categoryDescription : "-",
                         nickname: community.nickname ? community.nickname : "-",
                         title: community.title ? community.title : "-",
@@ -35,14 +40,12 @@ const Community = () => {
                         modifiedDate: community.modifiedDate ? community.modifiedDate : "-",
                         userType: community.userType ? community.userType : "-",
                         deleted: community.deleted ? "Deleted" : "Not Deleted",
-                        // 순번 추가
-                        sequenceNumber: index + 1 + (page - 1) * limit,
                     };
                 });
 
                 setData({
-                    headerTitles: ["순번", ...headerTitles],
-                    sampleData: mappedData.map((user) => [user.sequenceNumber, ...Object.values(user)]),
+                    headerTitles,
+                    sampleData: mappedData.map((user) => [...Object.values(user)]),
                 });
                 setSize(response.data.data.listSize);
             } catch (error) {
@@ -54,19 +57,25 @@ const Community = () => {
 
     return (
         <div className="community">
-            <h4 className="text-xl font-extrabold dark:text-black">커뮤니티 목록</h4>
-            <br />
-            {data && data.headerTitles && data.sampleData ? (
-                <>
-                    <Table headerTitles={data.headerTitles} sampleData={data.sampleData} />
-                    <br />
-                    <footer>
-                        <Pagination total={size} limit={limit} page={page} setPage={setPage} />
-                    </footer>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
+            <ContentBox
+                title="커뮤니티 목록"
+                content={
+                    <>
+                        {data && data.headerTitles && data.sampleData ? (
+                            <>
+                                <Table headerTitles={data.headerTitles} sampleData={data.sampleData} />
+                                <br />
+                                <footer>
+                                    <Pagination total={size} limit={limit} page={page} setPage={setPage} />
+                                </footer>
+                            </>
+                        ) : (
+                            <p>Loading...</p>
+                        )}
+                    </>
+                }
+            >
+            </ContentBox>
         </div>
     );
 };

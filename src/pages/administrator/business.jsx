@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Table from "../../components/common/Table/Table";
 import UserApi from "../../api/userApi";
+import ContentBox from "../../components/common/ContentBox/ContentBox";
 
 /**
  * Business 페이지 생성
@@ -47,11 +48,19 @@ const Business = () => {
 
     return (
         <div className="user">
-            {userData && userData.headerTitles ? (
-                <Table headerTitles={userData.headerTitles} sampleData={userData.sampleData || []} />
-            ) : (
-                <p>Loading...</p>
-            )}
+            <ContentBox
+                title="사업체 목록"
+                content={
+                    <>
+                        {userData && userData.headerTitles ? (
+                            <Table headerTitles={userData.headerTitles} sampleData={userData.sampleData || []} />
+                        ) : (
+                            <p>Loading...</p>
+                        )}
+                    </>
+                }
+            >
+            </ContentBox>
         </div>
     );
 };

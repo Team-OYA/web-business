@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import Table from "../../components/common/Table/Table";
 import UserApi from "../../api/userApi";
+import ContentBox from "../../components/common/ContentBox/ContentBox";
 
 /**
  * User 페이지 생성
@@ -42,13 +43,19 @@ const User = () => {
     const headerTitles = ["닉네임", "이메일", "생년월일", "성별", "가입유형", "상태", "게시글 수"];
     return (
         <div className="user">
-            <h4 class="text-xl font-extrabold dark:text-black">일반사용자 목록</h4>
-            <br/>
-            {userData && userData.headerTitles ? (
-                <Table headerTitles={userData.headerTitles} sampleData={userData.sampleData || []} />
-            ) : (
-                <p>Loading...</p>
-            )}
+            <ContentBox
+                title="일반사용자 목록"
+                content={
+                    <>
+                        {userData && userData.headerTitles ? (
+                            <Table headerTitles={userData.headerTitles} sampleData={userData.sampleData || []} />
+                        ) : (
+                            <p>Loading...</p>
+                        )}
+                    </>
+                }
+            >
+            </ContentBox>
         </div>
     );
 };

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+/**
+ * Pagination 컴포넌트 생성
+ *
+ * @since 2024.02.26
+ * @author 이상민
+ */
 function Pagination({ total, limit, page, setPage }) {
     const [numPages, setNumPages] = useState(1);
 

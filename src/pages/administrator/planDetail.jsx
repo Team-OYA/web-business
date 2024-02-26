@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import Table from "../../components/common/Table/Table";
+import ContentBox from "../../components/common/ContentBox/ContentBox";
 
 /**
  * PlanDetail 페이지 생성
@@ -24,9 +25,14 @@ const PlanDetail = () => {
 
     return(
         <div className="planDetail">
-            <h4 class="text-xl font-extrabold dark:text-black">사업계획서</h4>
-            <br/>
-
+            <ContentBox
+                title="사업계획서"
+                content={
+                    <>
+                    </>
+                }
+            >
+            </ContentBox>
         </div>
     );
 };
