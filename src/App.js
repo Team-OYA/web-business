@@ -12,7 +12,6 @@ import PlanDetail from "./pages/administrator/planDetail";
 import Community from "./pages/administrator/community";
 import Sidebar from "./components/common/Sidebar/Sidebar";
 import Business from "./pages/administrator/business";
-import Sidebar from "./components/common/Sidebar/Sidebar";
 import Home from "./pages/common/home";
 
 /**
@@ -22,7 +21,7 @@ import Home from "./pages/common/home";
 function App() {
 
     const businessColor = "bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
-    const adminColor = "bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700";
+    const adminColor = "bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
 
     const businessSideBarList = [['대시보드', '/dashboard'], ['팝업 스토어 제안', '#'], ['광고 신청', '#']];
     const adminSideBarList = [['사용자 관리', [['일반 사용자 관리', '/admin/users'], ['사업체 관리', '/admin/business']]], ['사업계획서 관리', '/admin/plan'], ['커뮤니티 관리', '/admin/community']];
