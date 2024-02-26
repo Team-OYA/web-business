@@ -8,7 +8,7 @@ import React from "react";
  */
 const CustomNavibar = ({color}) => {
     return (
-        <nav className={`fixed top-0 z-50 w-full ${color}`}>
+        <nav className={`fixed top-0 z-50 w-full border-b ${color}`}>
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center justify-start rtl:justify-end">
