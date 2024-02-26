@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Table from "../../components/common/Table/Table";
 import CommunityApi from "../../api/communityApi";
-import Pagination from "../../components/common/Pagination";
+import Pagination from "../../components/common/Pagination/Pagination";
 
 /**
  * Community 페이지 생성
