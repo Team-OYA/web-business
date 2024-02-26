@@ -16,20 +16,17 @@ const Community = () => {
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(null);
 
-    // 1. headerTitles 선언 위치 변경
-    const headerTitles = ["ID", "카테고리", "작성자", "제목", "게시글 종류", "생성일", "수정일", "사용자유형", "상태"];
+    const headerTitles = ["카테고리", "작성자", "제목", "게시글 종류", "생성일", "수정일", "사용자유형", "상태"];
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 2. limit 값을 사용할 수 있도록 수정
-                const response = await CommunityApi.getCommunities(page-1, limit);
+                const response = await CommunityApi.getCommunities(page - 1, limit);
 
                 const mappedData = response.data.data.communityDetailResponseList.map((community, index) => {
                     const communityType =
                         community.communityType === "vote" ? "투표" : community.communityType === "basic" ? "일반" : "-";
                     return {
-                        communityId: community.communityId ? community.communityId : "-",
                         categoryDescription: community.categoryDescription ? community.categoryDescription : "-",
                         nickname: community.nickname ? community.nickname : "-",
                         title: community.title ? community.title : "-",
@@ -38,12 +35,14 @@ const Community = () => {
                         modifiedDate: community.modifiedDate ? community.modifiedDate : "-",
                         userType: community.userType ? community.userType : "-",
                         deleted: community.deleted ? "Deleted" : "Not Deleted",
+                        // 순번 추가
+                        sequenceNumber: index + 1 + (page - 1) * limit,
                     };
                 });
-                const dataArray = mappedData.map((user, index) => [index + 1, ...Object.values(user)]);
+
                 setData({
                     headerTitles: ["순번", ...headerTitles],
-                    sampleData: dataArray,
+                    sampleData: mappedData.map((user) => [user.sequenceNumber, ...Object.values(user)]),
                 });
                 setSize(response.data.data.listSize);
             } catch (error) {

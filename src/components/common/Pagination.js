@@ -8,7 +8,7 @@ function Pagination({ total, limit, page, setPage }) {
         setNumPages(Math.ceil(total / limit));
     }, [total, limit]);
 
-    const PAGES_AROUND_CURRENT = 2;
+    const PAGES_AROUND_CURRENT = 9;
 
     const getPageNumbers = () => {
         const pageNumbers = [];
