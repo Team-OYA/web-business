@@ -23,10 +23,6 @@ function Dropdown(props) {
             <div id={props.dropdownId}
                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                 <ul className="py-2 text-sm text-gray-700" aria-labelledby={props.buttonId}>
-                    <li>
-                        <a href="#"
-                           className="block px-4 py-2 hover:bg-gray-100">전체 조회</a>
-                    </li>
                     {
                         props.categories.map((category, index) => (
                             <li key={index}>
