@@ -8,6 +8,12 @@ import styled from "styled-components";
  * @author 이상민
  */
 function Pagination({ total, limit, page, setPage }) {
+    /*
+    total: 모든 게시글 수 (화면에 띄울 페이지 숫자 목록을 위해 필요)
+    limit: 한 페이지에 띄우는 글 개수
+    page: 현재 페이지 (0부터 시작)
+    setPage: page 상태값을 변경시키는 함수
+     */
     const [numPages, setNumPages] = useState(1);
 
     useEffect(() => {
@@ -68,33 +74,31 @@ const Nav = styled.nav`
 `;
 
 const Button = styled.button`
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    margin: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin: 0;
+  background: white;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(227, 227, 227, 0.54);
+  }
+
+  &:disabled {
+    color: rgba(190, 189, 189, 0.54);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &[aria-current] {
     background: white;
-    color: black;
-    font-size: 1rem;
-    cursor: pointer;
-
-    &:hover {
-        background: rgba(190, 189, 189, 0.54);
-        transform: translateY(-2px);
-    }
-
-    &:disabled {
-        color: rgba(190, 189, 189, 0.54);
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    &[aria-current] {
-        background: white;
-        background: rgba(190, 189, 189, 0.54);
-        font-weight: bold;
-        cursor: not-allowed;
-        transform: none;
-    }
+    background: rgba(227, 227, 227, 0.54);
+    cursor: not-allowed;
+    transform: none;
+  }
 `;
 
 export default Pagination;

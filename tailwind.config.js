@@ -64,6 +64,10 @@ module.exports = {
           '900': '#3d3d3d',
           '950': '#1e1e1e', // default
         },
+        'updated-button-text-color': '#29597A',
+        'updated-button-color': '#CFE1EC',
+        'withdrawn-button-text-color': '#A3292B',
+        'withdrawn-button-color': '#FEDED9',
       },
     },
   },
