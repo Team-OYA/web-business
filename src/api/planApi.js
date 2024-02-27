@@ -30,6 +30,22 @@ const PlanApi = {
     getFloors: async () => {
         return await axios.get(`/api/v1/plans/floors`)
     },
+
+    /**
+     * 사업계획서 제안
+     *
+     * @since 2024.02.27
+     * @author 김유빈
+     */
+    save: async (data) => {
+        const formData = new FormData()
+        formData.append("data",  new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }))
+        return await axios.post(`/api/v1/plans`, formData, {
+            "Content-Type": `multipart/form-data`,
+        })
+    },
 }
 
 export default PlanApi;
