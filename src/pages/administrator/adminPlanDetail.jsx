@@ -16,10 +16,63 @@ import {useParams} from "react-router-dom";
  * @author 이상민
  */
 const AdminPlainDetail = () => {
+
     const { planId } = useParams();
+
+    const handleApproval = async () => {
+        try {
+            // const response = await PlanApi.approvePlan(planId);
+            // console.log('Plan approved:', response.data);
+        } catch (error) {
+            // Handle error (show an error message)
+            console.error('Error approving plan:', error);
+        }
+    };
+
+    const handleRejection = async () => {
+        try {
+            // const response = await PlanApi.rejectPlan(planId);
+            // console.log('Plan rejected:', response.data);
+        } catch (error) {
+            // Handle error (show an error message)
+            console.error('Error rejecting plan:', error);
+        }
+    };
+
     return(
         <div className="adminPlainDetail">
-            <ContentBox title="사업계획서 정보" content={<PlanDetail planId={planId} />}/>
+            <ContentBox
+                title="사업계획서 정보"
+                content={
+                    <>
+                        <PlanDetail planId={planId}/>
+                        <div style={{textAlign: 'center', marginTop: '20px'}}>
+                            <button
+                                style={{
+                                    marginRight: '10px',
+                                    padding: '10px 20px',
+                                    backgroundColor: 'green',
+                                    color: 'white',
+                                    borderRadius: '5px',
+                                }}
+                                onClick={handleApproval}
+                            >
+                                입점 승인
+                            </button>
+                            <button
+                                style={{
+                                    padding: '10px 20px',
+                                    backgroundColor: 'red',
+                                    color: 'white',
+                                    borderRadius: '5px',
+                                }}
+                                onClick={handleRejection}
+                            >
+                                입점 거절
+                            </button>
+                        </div>
+                    </>
+                }/>
         </div>
     );
 };

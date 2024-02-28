@@ -4,6 +4,7 @@ import TwoInput from "../common/Input/TwoInput";
 import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
 import FileUpload from "../common/Input/FileUpload";
+import Button from "../common/Button/Button";
 
 /**
  * PlanDetail 컴포넌트 생성
