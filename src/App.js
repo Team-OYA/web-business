@@ -16,6 +16,7 @@ import Sidebar from "./components/common/Sidebar/Sidebar";
 import Home from "./pages/common/home";
 import CreatePlan from "./pages/business/createPlan";
 import Ad from "./pages/business/ad";
+import Plans from "./pages/business/plans";
 
 /**
  * @since 2024.02.25
@@ -26,8 +27,13 @@ function App() {
     const businessColor = "bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
     const adminColor = "bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
 
-    const businessSideBarList = [['대시보드', '/dashboard'], ['팝업 스토어 제안', '/plan/create'], ['광고 신청', '/ad/create']];
-    const adminSideBarList = [['사용자 관리', [['일반 사용자 관리', '/admin/users'], ['사업체 관리', '/admin/business']]], ['사업계획서 관리', '/admin/plan'], ['커뮤니티 관리', '/admin/community']];
+    const businessSideBarList = [
+        ['대시보드', '/dashboard'], ['나의 사업계획서 목록', '/plans'], ['팝업 스토어 제안', '/plan/create'], ['광고 신청', '/ad/create']
+    ];
+    const adminSideBarList = [
+        ['사용자 관리', [['일반 사용자 관리', '/admin/users'], ['사업체 관리', '/admin/business']]],
+        ['사업계획서 관리', '/admin/plan'], ['커뮤니티 관리', '/admin/community']
+    ];
 
     return (
         <BrowserRouter>
@@ -38,6 +44,7 @@ function App() {
                     <Route path='/signup' element={<Signup />} />
 
                     {generateRoute(businessColor, businessSideBarList, "/dashboard", DashBoard)}
+                    {generateRoute(businessColor, businessSideBarList, "/plans", Plans)}
                     {generateRoute(businessColor, businessSideBarList, "/plan/create", CreatePlan)}
                     {generateRoute(businessColor, businessSideBarList, "/ad/create", Ad)}
 

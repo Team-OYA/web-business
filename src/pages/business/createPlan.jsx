@@ -3,6 +3,11 @@ import FileUpload from "../../components/common/Input/FileUpload";
 import InputDate from "../../components/common/Input/InputDate";
 import TwoInput from "../../components/common/Input/TwoInput";
 import InputText from "../../components/common/Input/InputText";
+import DepartmentDropdown from "../../components/business/DepartmentDropdown/DepartmentDropdown";
+import FloorDropdown from "../../components/business/FloorDropdown/FloorDropdown";
+import Button from "../../components/common/Button/Button";
+import PlanApi from "../../api/planApi";
+import {useRef, useState} from "react";
 
 /**
  * CreatePlan 페이지 제작
@@ -11,68 +16,59 @@ import InputText from "../../components/common/Input/InputText";
  * @author 김유빈
  */
 const CreatePlan = () => {
-    const data1 = [
-        ["더현대", "현대백화점", "현대아울렛"],
-        ["더현대 서울", "더현대 대구"]
-    ]
-    const data2 = [
-        ["식품", "화장품", "의류", "리빙", "문구", "K-POP"],
-        ["1층", "3층"]
-    ]
+    const [phoneNumber, setPhoneNumber] = useState('1')
+    const phoneNumberRef = useRef('2')
+    const handleButtonClick = async () => {
+        try {
+            if (phoneNumberRef !== null) {
+                console.log(phoneNumberRef.current)
+                setPhoneNumber(phoneNumberRef.current)
+                console.log(phoneNumber)
+            } else {
+                console.log("노노")
+            }
+            // todo: input 에서 항목을 가져와 수정
+            // todo: file 추가 (없으면 에러남)
+            const data = {
+                "office": "B00140000", // 더현대 서울
+                "floor": "DF000002", // 1층
+                "openDate": "20240116",
+                "closeDate": "20240130",
+                "contactInformation": "010-1234-5678",
+                "category": "CG000003" // 문구
+            }
+            const response = await PlanApi.save(data);
+            console.log("Save response:", response.data);
+        } catch (error) {
+            console.error("저장 중 에러 발생: ", error);
+        }
+    };
     return (
         <div className="createPlan">
             <ContentBox
                 title="팝업스토어 위치 선정"
                 content={
                 <div className="flex">
-                    <MultipleDropdown title="현대백화점 지점 선택" data={data1}/>
-                    <MultipleDropdown title="팝업스토어 위치 선정" data={data2}/>
+                    <DepartmentDropdown/>
+                    <FloorDropdown/>
                 </div>
             }/>
-            <ContentBox title="사업계획서 작성" content={<PlanContentBox/>}/>
+            <ContentBox title="사업계획서 작성" content={<PlanContentBox phoneNumberRef={phoneNumberRef}/>}/>
+            <div className="w-80 m-auto mt-14">
+                <Button text="제안하기" onClick={handleButtonClick}/>
+            </div>
         </div>
     )
 }
 
-const PlanContentBox = () => {
+const PlanContentBox = ({phoneNumberRef}) => {
     return (
         <div>
             <TwoInput
                 firstInput={<InputDate title="오픈 일정"/>}
-                secondInput={<InputText title="연락처"/>}/>
+                secondInput={<InputText ref={phoneNumberRef} title="연락처"/>}/>
             <FileUpload title="사업계획서" />
         </div>
-    )
-}
-
-const MultipleDropdown = ({title, data}) => {
-    // todo: title 이 data 위로 위치
-    return (
-        <>
-            <label htmlFor="default-input"
-                   className="block mb-2 text-sm font-medium text-gray-900">
-                {title}
-            </label>
-            <div id="default-input" className="flex shadow mr-auto">
-                {
-                    data.map((column, index) => (
-                        <div id="test"
-                             className="z-10 bg-white divide-y divide-gray-100 rounded-lg w-44 h-44 overflow-y-scroll">
-                            <ul className="py-2 text-sm text-gray-700" aria-labelledby="test">
-                                {
-                                    column.map((category, index) => (
-                                        <li key={index}>
-                                            <button
-                                                className="block px-4 py-2 hover:bg-gray-100 w-full text-left">{category}</button>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                    ))
-                }
-            </div>
-        </>
     )
 }
 
