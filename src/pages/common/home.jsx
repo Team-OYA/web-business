@@ -21,9 +21,10 @@ const Home = () => {
                             <p className="text-center text-main-color-600">
                                 현대에서 진행하는 팝업스토어를 관리해주는 플랫폼
                             </p>
-                            {/*todo: 가운데로 배치*/}
-                            <OutlineCircleDisabledButton text="사업체 페이지"/>
-                            <OutlineCircleDisabledButton text="관리자 페이지"/>
+                            <div className="flex flex-col items-center justify-center md-8">
+                                <OutlineCircleDisabledButton text="사업체 페이지"/>
+                                <OutlineCircleDisabledButton text="관리자 페이지"/>
+                            </div>
                         </div>
                     </div>
                 </div>
