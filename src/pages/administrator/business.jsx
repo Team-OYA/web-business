@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
 import Table from "../../components/common/Table/Table";
 import UserApi from "../../api/userApi";
@@ -17,9 +17,11 @@ const Business = () => {
             try {
                 const response = await UserApi.getBusiness();
                 
-                const mappedData = response.data.data.map(user => {
-                    const mappedUser = {
-                        userId: user.userId || "-",
+                const mappedData = response.data.data.map((user,index) => {
+                    const sequenceNumber = index + 1
+                    return {
+                        pkId: user.userId || "-",
+                        sequenceNumber,
                         nickname: user.nickname || "-",
                         email: user.email || "-",
                         birthDate: user.birthDate || "-",
@@ -31,7 +33,6 @@ const Business = () => {
                         deleted: user.deleted || false,
                         communityCount: user.communityCount || 0,
                     };
-                    return mappedUser;
                 });
                 const headerTitles = Object.keys(mappedData[0]);
                 const userDataArray = mappedData.map(user => Object.values(user));

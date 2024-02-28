@@ -19,16 +19,16 @@ function MyPlanTable() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await CategoryApi.getMyPlans("", "", page, limit)
+                const response = await CategoryApi.getAllPlan("CG000003", "approval", page, limit)
                 const data = response.data.data.plans.map((plan, index) => {
                     const sequenceNumber = index + 1 + page * limit
                     const { id, office, floor, openDate, closeDate, entranceStatus, category, writtenPopup, createdDate } = plan
+                    const pkId = id
                     const officeInfo = `${office} ${floor}`
                     const dateRange = `${openDate} ~ ${closeDate}`
                     const writtenStatus = writtenPopup ? '작성' : '미작성'
-                    const pkId = id;
                     return {
-                        pkId: id,
+                        pkId : id,
                         id: sequenceNumber,
                         office: officeInfo,
                         openDate: dateRange,

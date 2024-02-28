@@ -18,7 +18,10 @@ const User = () => {
                 const response = await UserApi.getUsers();
                 
                 const mappedData = response.data.data.map((user, index) => {
+                    const sequenceNumber = index + 1
                     return {
+                        pkId: user.userId || "-",
+                        sequenceNumber,
                         nickname: user.nickname || "-",
                         email: user.email || "-",
                         birthDate: user.birthDate || "-",
@@ -28,7 +31,7 @@ const User = () => {
                         communityCount: user.communityCount || 0,
                     };
                 });
-                const userDataArray = mappedData.map((user, index) => [index + 1, ...Object.values(user)]); 
+                const userDataArray = mappedData.map((user, index) => [...Object.values(user)]);
                 setUserData({
                     headerTitles: ["순번", ...headerTitles], 
                     sampleData: userDataArray,

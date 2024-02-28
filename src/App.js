@@ -17,6 +17,7 @@ import Home from "./pages/common/home";
 import CreatePlan from "./pages/business/createPlan";
 import Ad from "./pages/business/ad";
 import Plans from "./pages/business/plans";
+import PlanDetail from "./pages/administrator/planDetail";
 
 /**
  * @since 2024.02.25
@@ -26,6 +27,7 @@ function App() {
 
     const businessColor = "bg-main-color-600 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
     const businessSideBarColor = "bg-main-color-600 text-white dark:bg-blue-600";
+
     const adminColor = "bg-main-blue-600 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
     const adminSideBarColor = "bg-main-blue-600 text-white dark:bg-blue-600";
 
@@ -53,11 +55,11 @@ function App() {
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/users', User)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/business', Business)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan', Plan)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan/:planId', PlanDetail)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/community', Community)}
                 </Routes>
             </Main>
         </BrowserRouter>
-
     );
 }
 

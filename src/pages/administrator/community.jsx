@@ -31,6 +31,7 @@ const Community = () => {
                     // 페이징 처리를 고려한 순번 계산
                     const sequenceNumber = index + 1 + (page - 1) * limit;
                     return {
+                        pkId: community.communityId || "-",
                         sequenceNumber,
                         categoryDescription: community.categoryDescription ? community.categoryDescription : "-",
                         nickname: community.nickname ? community.nickname : "-",
