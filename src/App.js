@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
 
 import React from "react";
 
@@ -17,7 +17,8 @@ import Home from "./pages/common/home";
 import CreatePlan from "./pages/business/createPlan";
 import Ad from "./pages/business/ad";
 import Plans from "./pages/business/plans";
-import PlanDetail from "./pages/administrator/planDetail";
+import BusinessPlanDetail from "./pages/business/plan";
+import AdminPlainDetail from "./pages/administrator/adminPlanDetail";
 
 /**
  * @since 2024.02.25
@@ -51,13 +52,14 @@ function App() {
 
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/dashboard", DashBoard)}
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plans", Plans)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plans/:planId", BusinessPlanDetail)}
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plan/create", CreatePlan)}
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/ad/create", Ad)}
 
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/users', User)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/business', Business)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan', Plan)}
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan/:planId', PlanDetail)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan/:planId', AdminPlainDetail)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/community', Community)}
                 </Routes>
             </Main>
@@ -74,5 +76,12 @@ const generateRoute = (color, sideBarColor, sideBarList, path, Component) => (
         ]}
     />
 );
+
+
+// const ComponentWithPlanId = () => {
+//     const { planId } = useParams();
+//     // planId를 이용한 로직 처리
+//     return <PlanDetail planId={planId} />;
+// }
 
 export default App;

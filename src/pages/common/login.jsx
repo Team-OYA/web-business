@@ -4,6 +4,7 @@ import Button from "../../components/common/Button/Button";
 import OutlineCircleDisabledButton from "../../components/common/Button/OutlineCircleDisabledButton";
 
 import { useLocation } from 'react-router-dom';
+import LoginForm from "../../components/common/LoginForm";
 
 /**
  * Login 페이지 제작
@@ -34,6 +35,7 @@ const Login = () => {
                             </div>
                             <p className="text-center text-gray-text-color-600">
                             </p>
+                            {/*<LoginForm />*/}
                             <form className="space-y-4 md:space-y-6" action="#">
                                 <InputText placeholder="아이디"/>
                                 <InputText placeholder="비밀번호"/>

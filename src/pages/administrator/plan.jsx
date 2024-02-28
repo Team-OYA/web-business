@@ -2,19 +2,11 @@ import React, {useEffect, useState} from "react";
 
 import Table from "../../components/common/Table/Table";
 import ContentBox from "../../components/common/ContentBox/ContentBox";
-import PlanDetail from "./planDetail";
+import PlanDetail from "./adminPlanDetail";
 import PlanApi from "../../api/planApi";
 import CategoryDropdown from "../../components/business/CategoryDropdown/CategoryDropdown";
 import EntranceStatusDropdown from "../../components/business/EntranceStatusDropdown/EntranceStatusDropdown";
 import AdminPlanTable from "../../components/administrator/Plan/AdminPlanTable";
-
-function PopupDetail() {
-    return null;
-}
-
-function PopupExtraDetail() {
-    return null;
-}
 
 /**
  * Plan 페이지 생성
