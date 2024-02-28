@@ -6,7 +6,7 @@ import React, { useState } from "react";
  * @since 2024.02.25
  * @author 이상민
  */
-const DropdownItem = ({ name, itemList }) => {
+const DropdownItem = ({ name, itemList, isActive }) => {
     const [dropDownState, setDropDownState] = useState(false);
     const clickDropDown = () => {
         setDropDownState(!dropDownState);
@@ -15,7 +15,7 @@ const DropdownItem = ({ name, itemList }) => {
         <li>
             <button
                 type="button"
-                className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                className="flex items-center w-full p-3 text-base text-gray-900 transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
                 id="dropdownBottomButton"
@@ -50,7 +50,7 @@ const DropdownItem = ({ name, itemList }) => {
                     <li key={index}>
                         <a
                             href={item[1]}
-                            className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            className="flex items-center w-full p-3 text-gray-900 transition duration-75 pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         >
                             {item[0]}
                         </a>
