@@ -17,10 +17,10 @@ const Sidebar = ({ color, sideBarList, content }) => {
             <CustomNavibar color={color}/>
             <aside
                 id="sidebar-multi-level-sidebar"
-                className={`fixed top-0 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full ${color}`}
+                className={`fixed top-0 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
                 aria-label="Sidebar"
             >
-                <div className={`h-full px-3 py-4 overflow-y-auto ${color}`}>
+                <div className={`h-full px-3 py-4 overflow-y-auto bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}>
                     <ul className="space-y-2 font-medium">
                         {sideBarList.map((item, index) => (
                             Array.isArray(item[1]) ? (
