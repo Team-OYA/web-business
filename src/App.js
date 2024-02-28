@@ -44,7 +44,9 @@ function App() {
             <Main>
                 <Routes>
                     <Route path='/' element={<Home/>}/>
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/login/business' element={<Login />} />
+                    <Route path='/login/admin' element={<Login />} />
+
                     <Route path='/signup' element={<Signup />} />
 
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/dashboard", DashBoard)}
