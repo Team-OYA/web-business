@@ -35,7 +35,7 @@ const User = () => {
                         gender: user.gender || "-",
                         registrationType: user.registrationType || "-",
                         usersCreatedDate: user.usersCreatedDate || "-",
-                        deleted: user.deleted || false,
+                        deleted: user.deleted ? "탈퇴" : "활동",
                         communityCount: user.communityCount || 0,
                     };
                 });
