@@ -17,9 +17,8 @@ const UserApi = {
      * @since 2024.02.25
      * @author 이상민
      */
-    getUsers: async () => {
-        const response = await axios.get(`/api/v1/admin/users?type=user`);
-        return response;
+    getUsers: async (pageNo = 0, amount = 10) => {
+        return await axios.get(`/api/v1/admin/users?type=user&pageNo=${pageNo}&amount=${amount}`);
     },
     /**
      * 사업체 리스트 불러오기
@@ -27,9 +26,17 @@ const UserApi = {
      * @since 2024.02.25
      * @author 이상민
      */
-    getBusiness: async () => {
-        const response = await axios.get(`/api/v1/admin/users?type=business`);
-        return response;
+    getBusiness: async (pageNo = 0, amount = 10) => {
+        return await axios.get(`/api/v1/admin/users?type=business&pageNo=${pageNo}&amount=${amount}`);
+    },
+    /**
+     * 로그인
+     *
+     * @since 2024.02.29
+     * @author 이상민
+     */
+    login: async () => {
+        return await axios.get(`/api/v1/login`);
     },
 };
 
