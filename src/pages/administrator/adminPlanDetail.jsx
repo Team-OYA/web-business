@@ -1,14 +1,8 @@
 import ContentBox from "../../components/common/ContentBox/ContentBox";
-import TwoInput from "../../components/common/Input/TwoInput";
-import InputDate from "../../components/common/Input/InputDate";
-import InputText from "../../components/common/Input/InputText";
-import FileUpload from "../../components/common/Input/FileUpload";
-import MarkDownEditor from "../../components/common/Input/MarkDownEditor";
 import {useEffect, useRef, useState} from "react";
 import PlanApi from "../../api/planApi";
 import PlanDetail from "../../components/Plan/PlanDetail";
 import {useParams, useNavigate} from "react-router-dom";
-import AlertInfo from "../../components/common/Alert/AlertInfo";
 
 /**
  * PlanDetail 페이지 생성
@@ -62,7 +56,6 @@ const AdminPlainDetail = () => {
             console.error('Error rejecting plan:', error);
         }
     };
-
 
     console.log(planDetailStatus)
 
