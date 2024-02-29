@@ -8,6 +8,7 @@ import {useEffect, useRef, useState} from "react";
 import PlanApi from "../../api/planApi";
 import PlanDetail from "../../components/Plan/PlanDetail";
 import {useParams, useNavigate} from "react-router-dom";
+import AlertInfo from "../../components/common/Alert/AlertInfo";
 
 /**
  * PlanDetail 페이지 생성
@@ -23,9 +24,13 @@ const AdminPlainDetail = () => {
     const longPlanId = parseInt(planId, 10); // 10진수로 파싱
     const navigate = useNavigate(); // useNavigate를 import
 
+    const [showAlert, setShowAlert] = useState(true);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    };
+
     const handleWait = async () => {
         console.log(longPlanId);
-
         try {
             alert("정말 입정 대기 시키실 건가요?")
             await PlanApi.postWait(longPlanId);
