@@ -7,7 +7,7 @@ import MarkDownEditor from "../../components/common/Input/MarkDownEditor";
 import {useEffect, useRef, useState} from "react";
 import PlanApi from "../../api/planApi";
 import PlanDetail from "../../components/Plan/PlanDetail";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 
 /**
  * PlanDetail 페이지 생성
@@ -17,27 +17,49 @@ import {useParams} from "react-router-dom";
  */
 const AdminPlainDetail = () => {
 
+    const [planDetailStatus, setPlanDetailStatus] = useState('');
+
     const { planId } = useParams();
+    const longPlanId = parseInt(planId, 10); // 10진수로 파싱
+    const navigate = useNavigate(); // useNavigate를 import
+
+    const handleWait = async () => {
+        console.log(longPlanId);
+
+        try {
+            alert("정말 입정 대기 시키실 건가요?")
+            await PlanApi.postWait(longPlanId);
+            alert("입정 대기 완료되었습니다.")
+            navigate("/admin/plan"); // 페이지 이동
+        } catch (error) {
+            console.error('Error approving plan:', error);
+        }
+    };
 
     const handleApproval = async () => {
         try {
-            // const response = await PlanApi.approvePlan(planId);
-            // console.log('Plan approved:', response.data);
+            alert("정말 입정 승인 시키실 건가요?")
+            const response = await PlanApi.postApprove(longPlanId);
+            alert('입점이 승인되었습니다.');
+            navigate('/admin/plan'); // 페이지 이동
         } catch (error) {
-            // Handle error (show an error message)
             console.error('Error approving plan:', error);
         }
     };
 
     const handleRejection = async () => {
         try {
-            // const response = await PlanApi.rejectPlan(planId);
-            // console.log('Plan rejected:', response.data);
+            alert("정말 입정 거절 시키실 건가요?")
+            const response = await PlanApi.postDeny(longPlanId);
+            alert('입점이 거절되었습니다.');
+            navigate('/admin/plan'); // 페이지 이동
         } catch (error) {
-            // Handle error (show an error message)
             console.error('Error rejecting plan:', error);
         }
     };
+
+
+    console.log(planDetailStatus)
 
     return(
         <div className="adminPlainDetail">
@@ -45,31 +67,60 @@ const AdminPlainDetail = () => {
                 title="사업계획서 정보"
                 content={
                     <>
-                        <PlanDetail planId={planId}/>
-                        <div style={{textAlign: 'center', marginTop: '20px'}}>
-                            <button
-                                style={{
-                                    marginRight: '10px',
-                                    padding: '10px 20px',
-                                    backgroundColor: 'green',
-                                    color: 'white',
-                                    borderRadius: '5px',
-                                }}
-                                onClick={handleApproval}
-                            >
-                                입점 승인
-                            </button>
-                            <button
-                                style={{
-                                    padding: '10px 20px',
-                                    backgroundColor: 'red',
-                                    color: 'white',
-                                    borderRadius: '5px',
-                                }}
-                                onClick={handleRejection}
-                            >
-                                입점 거절
-                            </button>
+                        <PlanDetail planId={planId} onChangeStatus={setPlanDetailStatus} />
+
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <div style={{ display: 'flex', marginTop: '20px' }}>
+                                {planDetailStatus === '입점 요청' ? (
+                                    <button
+                                        style={{
+                                            padding: '10px 20px',
+                                            backgroundColor: 'LightSkyBlue',
+                                            color: 'white',
+                                            borderRadius: '5px',
+                                            margin: '0 5px',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={handleWait}
+                                        disabled={false} // The button is always enabled when visible
+                                    >
+                                        입점 대기
+                                    </button>
+                                ) : null}
+
+                                {planDetailStatus === '입점 대기' ? (
+                                    <button
+                                        style={{
+                                            padding: '10px 20px',
+                                            backgroundColor: 'MediumSeaGreen',
+                                            color: 'white',
+                                            borderRadius: '5px',
+                                            margin: '0 5px',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={handleApproval}
+                                        disabled={false} // The button is always enabled when visible
+                                    >
+                                        입점 승인
+                                    </button>
+                                ) : null}
+                                {planDetailStatus === '입점 요청' || planDetailStatus === '입점 대기' ? (
+                                    <button
+                                        style={{
+                                            padding: '10px 20px',
+                                            backgroundColor: 'LightCoral',
+                                            color: 'white',
+                                            borderRadius: '5px',
+                                            margin: '0 5px',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={handleRejection}
+                                        disabled={false}  // The button is always enabled when visible
+                                    >
+                                        입점 거절
+                                    </button>
+                                ) : null}
+                            </div>
                         </div>
                     </>
                 }/>

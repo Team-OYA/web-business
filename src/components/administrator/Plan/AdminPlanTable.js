@@ -9,19 +9,6 @@ import Pagination from "../../common/Pagination/Pagination";
  * @since 2024.02.29
  * @author 아상민
  */
-
-const PRODUCT_DATA = [
-    { id: null, value: '상품을 선택하세요.' },
-    { id: '0001', value: '딸기 100g' },
-    { id: '0002', value: '포도 100g' },
-    { id: '0003', value: '방울토마토 100g' },
-    { id: '0004', value: '블루베리 100g' },
-    { id: '0005', value: '홍시 100g' },
-    { id: '0006', value: '귤 100g' },
-    { id: '0007', value: '금귤 100g' },
-    { id: '0008', value: '라즈베리 100g' },
-];
-
 function AdminPlanTable({ entranceStatuses }) {
 
     const headers = ["번호", "오픈 지점", "오픈 일정", "진행 단계", "카테고리", "게시글 작성 여부", "작성일"]

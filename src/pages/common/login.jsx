@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import InputText from "../../components/common/Input/InputText";
 import Button from "../../components/common/Button/Button";
 import OutlineCircleDisabledButton from "../../components/common/Button/OutlineCircleDisabledButton";
 
 import { useLocation } from 'react-router-dom';
 import LoginForm from "../../components/common/LoginForm";
+import UserApi from "../../api/userApi";
 
 /**
  * Login 페이지 제작
@@ -16,6 +17,16 @@ const Login = () => {
 
     const location = useLocation();
     const buttonText = location.state?.buttonText || 'Default Text';
+
+    useEffect(()=>{
+        const fetchData = async () => {
+            const response = await UserApi.login()
+            return{
+
+            };
+        };
+        fetchData();
+    }, []);
 
     return (
         <div className="login">

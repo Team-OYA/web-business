@@ -12,7 +12,7 @@ import Button from "../common/Button/Button";
  * @since 2024.02.25
  * @author 김유빈
  */
-const PlanDetail = ( {planId}) => {
+const PlanDetail = ( {planId, onChangeStatus}) => {
     /**
      * PlanDetail 컴포넌트 Plan으로 분리 및 API 연결
      *
@@ -20,12 +20,15 @@ const PlanDetail = ( {planId}) => {
      * @author 이상민
      */
     const [planData, setPlanData] = useState(null);
+    const [planDetailStatus, setPlanDetailStatus] = useState('');
     useEffect(() => {
         const fetchPlanData = async () => {
             try {
                 const response = await PlanApi.getPlan(planId);
                 console.log(response);
                 setPlanData(response.data.data);
+
+                setPlanDetailStatus(response.data.data.entranceStatus);
             } catch (error) {
                 console.error('Error fetching plan data:', error);
             }
@@ -36,6 +39,8 @@ const PlanDetail = ( {planId}) => {
     if (!planData) {
         return <p>Loading...</p>;
     }
+
+    onChangeStatus(planDetailStatus);
 
     return (
         <>
