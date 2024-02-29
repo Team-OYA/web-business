@@ -17,7 +17,7 @@ const User = () => {
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(null);
 
-    const headerTitles = ["순번", "닉네임", "이메일", "생년월일", "성별", "가입유형", "상태", "게시글 수"];
+    const headerTitles = ["순번", "닉네임", "이메일", "생년월일", "성별", "가입유형", "가입일","상태", "게시글 수"];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,9 +34,7 @@ const User = () => {
                         birthDate: user.birthDate || "-",
                         gender: user.gender || "-",
                         registrationType: user.registrationType || "-",
-                        userType: user.userType || "-",
                         usersCreatedDate: user.usersCreatedDate || "-",
-                        usersModifiedDate: user.usersModifiedDate || "-",
                         deleted: user.deleted || false,
                         communityCount: user.communityCount || 0,
                     };
