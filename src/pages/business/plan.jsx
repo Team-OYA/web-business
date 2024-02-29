@@ -6,6 +6,7 @@ import FileUpload from "../../components/common/Input/FileUpload";
 import MarkDownEditor from "../../components/common/Input/MarkDownEditor";
 import PlanDetail from "../../components/Plan/PlanDetail";
 import {useParams} from "react-router-dom";
+import {useState} from "react";
 
 /**
  * Plan 페이지 제작
@@ -14,10 +15,15 @@ import {useParams} from "react-router-dom";
  * @author 김유빈
  */
 const Plan = () => {
+
+    const [planDetailStatus, setPlanDetailStatus] = useState('');
+
     const { planId } = useParams();
+
     return (
         <div className="plan">
-            <ContentBox title="사업계획서 정보" content={<PlanDetail planId={planId}/>}/>
+            <ContentBox title="사업계획서 정보"
+                        content={<PlanDetail planId={planId} onChangeStatus={setPlanDetailStatus}/>}/>
             <ContentBox title="팝업스토어 게시글 정보" content={<PopupDetail />}/>
             <ContentBox title="팝업스토어 게시글 부가 정보" content={<PopupExtraDetail />}/>
         </div>
