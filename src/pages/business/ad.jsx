@@ -15,7 +15,9 @@ import Button from "../../components/common/Button/Button";
  * @author 김유빈
  */
 const Ad = () => {
-    // todo: 결제 방법 선택 시 색상 변경
+    const handleClickTossPaymentButton = () => {
+        console.log("Button clicked!");
+    };
     return (
         <>
             <div className="flex">
@@ -47,8 +49,7 @@ const Ad = () => {
                         title="결제 방법"
                         content={
                             <>
-                                <PaymentButton text="토스페이" url={TossImage}/>
-                                <Checkbox text="주문 내용을 확인했으며, 아래 내용에 모두 동의합니다."/>
+                                <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
                             </>
                         }/>
                     <ContentBox
