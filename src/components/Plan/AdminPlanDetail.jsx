@@ -5,6 +5,7 @@ import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
 import FileUpload from "../common/Input/FileUpload";
 import Button from "../common/Button/Button";
+import AdminPlanApi from "../../api/administrator/adminPlanApi";
 
 /**
  * PlanDetail 컴포넌트 생성
@@ -12,7 +13,7 @@ import Button from "../common/Button/Button";
  * @since 2024.02.25
  * @author 김유빈
  */
-const PlanDetail = ( {planId, onChangeStatus}) => {
+const AdminPlanDetail = ( {planId, onChangeStatus}) => {
     /**
      * PlanDetail 컴포넌트 Plan으로 분리 및 API 연결
      *
@@ -24,7 +25,7 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
     useEffect(() => {
         const fetchPlanData = async () => {
             try {
-                const response = await PlanApi.getPlan(planId);
+                const response = await AdminPlanApi.getPlan(planId);
                 console.log(response);
                 setPlanData(response.data.data);
 
@@ -87,4 +88,4 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
     )
 }
 
-export default PlanDetail;
+export default AdminPlanDetail;

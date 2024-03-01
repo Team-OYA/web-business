@@ -1,7 +1,8 @@
 import axios from "axios";
 
-import Token from "./token"
+import GetTokenFromLocalStorage from "../Common/token";
 
+const Token = GetTokenFromLocalStorage('admin')
 if (Token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
 }
@@ -10,7 +11,7 @@ if (Token) {
  * @since 2024.02.25
  * @author 이상민
  */
-const CommunityApi = {
+const AdminCommunityApi = {
     /**
      * Community 리스트 불러오기
      *
@@ -21,9 +22,8 @@ const CommunityApi = {
      * @author 이상민
      */
     getCommunities: async (pageNo = 0, amount = 10) => {
-        const response = await axios.get(`/api/v1/communities?type=all&pageNo=${pageNo}&amount=${amount}`);
-        return response;
+        return await axios.get(`/api/v1/communities?type=all&pageNo=${pageNo}&amount=${amount}`);
     },
 };
 
-export default CommunityApi;
+export default AdminCommunityApi;

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 import Table from "../../components/common/Table/Table";
-import UserApi from "../../api/userApi";
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import Pagination from "../../components/common/Pagination/Pagination";
+import AdminUserApi from "../../api/administrator/adminUserApi";
 
 /**
  * Business 페이지 생성
@@ -22,7 +22,7 @@ const Business = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await UserApi.getBusiness();
+                const response = await AdminUserApi.getBusiness();
                 
                 const mappedData = response.data.data.userList.map((user,index) => {
                     const sequenceNumber = index + 1

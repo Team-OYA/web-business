@@ -1,8 +1,8 @@
 import ContentBox from "../../components/common/ContentBox/ContentBox";
-import {useEffect, useRef, useState} from "react";
-import PlanApi from "../../api/planApi";
-import PlanDetail from "../../components/Plan/PlanDetail";
+import {useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
+import AdminPlanApi from "../../api/administrator/adminPlanApi";
+import AdminPlanDetail from "../../components/Plan/AdminPlanDetail";
 
 /**
  * PlanDetail 페이지 생성
@@ -27,7 +27,7 @@ const AdminPlainDetail = () => {
         console.log(longPlanId);
         try {
             alert("정말 입정 대기 시키실 건가요?")
-            await PlanApi.postWait(longPlanId);
+            await AdminPlanApi.postWait(longPlanId);
             alert("입정 대기 완료되었습니다.")
             navigate("/admin/plan"); // 페이지 이동
         } catch (error) {
@@ -38,7 +38,7 @@ const AdminPlainDetail = () => {
     const handleApproval = async () => {
         try {
             alert("정말 입정 승인 시키실 건가요?")
-            const response = await PlanApi.postApprove(longPlanId);
+            const response = await AdminPlanApi.postApprove(longPlanId);
             alert('입점이 승인되었습니다.');
             navigate('/admin/plan'); // 페이지 이동
         } catch (error) {
@@ -49,7 +49,7 @@ const AdminPlainDetail = () => {
     const handleRejection = async () => {
         try {
             alert("정말 입정 거절 시키실 건가요?")
-            const response = await PlanApi.postDeny(longPlanId);
+            const response = await AdminPlanApi.postDeny(longPlanId);
             alert('입점이 거절되었습니다.');
             navigate('/admin/plan'); // 페이지 이동
         } catch (error) {
@@ -65,7 +65,7 @@ const AdminPlainDetail = () => {
                 title="사업계획서 정보"
                 content={
                     <>
-                        <PlanDetail planId={planId} onChangeStatus={setPlanDetailStatus} />
+                        <AdminPlanDetail planId={planId} onChangeStatus={setPlanDetailStatus} />
 
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <div style={{ display: 'flex', marginTop: '20px' }}>

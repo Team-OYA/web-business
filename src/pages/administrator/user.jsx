@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 import Table from "../../components/common/Table/Table";
-import UserApi from "../../api/userApi";
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import Pagination from "../../components/common/Pagination/Pagination";
+import AdminUserApi from "../../api/administrator/adminUserApi";
 
 /**
  * User 페이지 생성
@@ -22,7 +22,7 @@ const User = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await UserApi.getUsers(page-1, limit);
+                const response = await AdminUserApi.getUsers(page-1, limit);
                 
                 const mappedData = response.data.data.userList.map((user, index) => {
                     const sequenceNumber = index + 1 + (page - 1) * limit;
