@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes, useParams} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 
 import React from "react";
 
@@ -19,6 +19,7 @@ import Ad from "./pages/business/ad";
 import Plans from "./pages/business/plans";
 import BusinessPlanDetail from "./pages/business/plan";
 import AdminPlainDetail from "./pages/administrator/adminPlanDetail";
+import GetTokenFromLocalStorage from "./api/Common/token";
 
 /**
  * @since 2024.02.25
@@ -47,7 +48,6 @@ function App() {
                     <Route path='/' element={<Home/>}/>
                     <Route path='/login/business' element={<Login />} />
                     <Route path='/login/admin' element={<Login />} />
-
                     <Route path='/signup' element={<Signup />} />
 
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/dashboard", DashBoard)}
@@ -76,11 +76,5 @@ const generateRoute = (color, sideBarColor, sideBarList, path, Component) => (
         ]}
     />
 );
-
-// const ComponentWithPlanId = () => {
-//     const { planId } = useParams();
-//     // planId를 이용한 로직 처리
-//     return <PlanDetail planId={planId} />;
-// }
 
 export default App;
