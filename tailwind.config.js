@@ -41,6 +41,7 @@ module.exports = {
         'gray-text-color': {
           '50': '#f6f6f6',
           '100': '#e7e7e7',
+          '150': '#ECECEC',
           '200': '#d1d1d1',
           '300': '#b0b0b0',
           '400': '#888888',
