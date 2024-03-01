@@ -77,7 +77,6 @@ const generateRoute = (color, sideBarColor, sideBarList, path, Component) => (
     />
 );
 
-
 // const ComponentWithPlanId = () => {
 //     const { planId } = useParams();
 //     // planId를 이용한 로직 처리

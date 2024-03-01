@@ -1,6 +1,7 @@
 import axios from "axios";
-import Token from "./token";
+import GetTokenFromLocalStorage from "./Common/token";
 
+const Token = GetTokenFromLocalStorage('user')
 if (Token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
 }
