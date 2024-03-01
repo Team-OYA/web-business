@@ -15,20 +15,20 @@ import PopupPostList from "../../components/business/DashBoard/PopupPostList";
 const DashBoard = () => {
     return (
         <div className="createPlan">
-            <div className="first-bar flex gap-8 justify-between items-stretch mx-4">
-                <div className="flex-grow h-full" style={{ flex: "2" }}>
+            <div className="first-bar h-fit my-6 items-stretch flex gap-8 justify-between mx-4">
+                <div className="flex-grow" style={{ flex: "2" }}>
                         <ContentBoxFull title="팝업스토어 현황" content={<PopupCurrent/>}/>
                 </div>
-                <div className="flex-grow h-full" style={{ flex: "1" }}>
+                <div className="flex-grow"style={{ flex: "1" }}>
                     <ContentBoxFull title="팝업스토어 순위" content={<PopupRanking/>}/>
                 </div>
             </div>
 
-            <div className="second-bar flex gap-8 justify-between items-stretch mx-4">
-                <div className="flex-grow h-full" style={{ flex: "1" }}>
+            <div className="second-bar h-fit my-6 items-stretch flex gap-8 justify-between mx-4">
+                <div className="flex-grow" style={{ flex: "1" }}>
                 <   ContentBoxFull title="카테고리 별 커뮤니티 게시글 수 통계" content={<PopupStatistics/>}/>
                 </div>
-                <div className="flex-grow h-full" style={{ flex: "1" }}>
+                <div className="flex-grow" style={{ flex: "1" }}>
                     <ContentBoxFull title="나의 팝업스토어 게시글 목록" content={<PopupPostList/>}/>
                 </div>
             </div>
