@@ -20,6 +20,19 @@ const PopupApi = {
     findByPlanId: async (planId = 0) => {
         return await axios.get(`/api/v1/plans/${planId}/popup`)
     },
+    /**
+     * 나의 사업계획서에 따른 팝업 조회
+     *
+     * @since 2024.02.29
+     * @author 이상민
+     */
+    savePopup: async (popupData) => {
+        console.log(popupData)
+        const formData = new FormData();
+        formData.append('data', new Blob([JSON.stringify(popupData)], { type: 'application/json' }));
+        const response = await axios.post(`/api/v1/popups`, formData);
+        return response.data;
+    },
 }
 
 export default PopupApi;
