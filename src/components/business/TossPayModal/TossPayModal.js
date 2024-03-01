@@ -54,22 +54,17 @@ export function TossPayModal() {
                                 try {
                                     const orderId = nanoid()
                                     await confirmTossPay(orderId)
-                                    try {
-                                        await paymentWidget?.requestPayment({
-                                            orderId: orderId,
-                                            orderName: "토스 티셔츠 외 2건",
-                                            customerName: "김토스",
-                                            customerEmail: "customer123@gmail.com",
-                                            customerMobilePhone: "01012341234",
-                                            successUrl: `http://localhost:8084/api/v1/payments/toss/success`,
-                                            failUrl: `http://localhost:8084/api/v1/payments/toss/fail`
-                                        })
-                                    } catch (error) {
-                                        // todo: 에러 모달창 추가 (예. 필수 항목 동의 체크)
-                                        // 에러 처리하기
-                                        console.error(error)
-                                    }
+                                    await paymentWidget?.requestPayment({
+                                        orderId: orderId,
+                                        orderName: "토스 티셔츠 외 2건",
+                                        customerName: "김토스",
+                                        customerEmail: "customer123@gmail.com",
+                                        customerMobilePhone: "01012341234",
+                                        successUrl: `http://localhost:8084/api/v1/payments/toss/success`,
+                                        failUrl: `http://localhost:8084/api/v1/payments/toss/fail`
+                                    })
                                 } catch (error) {
+                                    // todo: 에러 모달창 추가 (예. 필수 항목 동의 체크)
                                     console.error(error)
                                 }
                             }}/>
@@ -99,11 +94,6 @@ function usePaymentWidget(clientKey, customerKey) {
         };
 
         fetchData();
-
-        // Cleanup function
-        return () => {
-            // Perform any cleanup if needed
-        };
     }, [clientKey, customerKey]);
 
     return { data, isLoading, error };
