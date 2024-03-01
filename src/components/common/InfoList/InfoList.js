@@ -14,7 +14,7 @@ function InfoList(props) {
             </div>
             <div className="ml-4">
                 {props.data.map((data) => (
-                    <div key={data.id} className="flex justify-between mb-4">
+                    <div key={data.id} className="flex justify-between mb-6">
                         <div className="mr-2 text-sm">{data.title}</div>
                         <div className="flex">
                             <div className="font-bold text-sm">{data.content}</div>
