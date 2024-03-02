@@ -1,6 +1,7 @@
-import Token from "./token";
 import axios from "axios";
+import GetTokenFromLocalStorage from "./Common/token";
 
+const Token = GetTokenFromLocalStorage('user')
 if (Token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
 }
@@ -10,7 +11,6 @@ if (Token) {
  * @author 김유빈
  */
 const PlanApi = {
-
     /**
      * 현대백화점 지점 목록 조회
      *

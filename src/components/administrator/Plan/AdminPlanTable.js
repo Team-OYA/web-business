@@ -2,14 +2,16 @@ import {useEffect, useState} from "react";
 import CategoryApi from "../../../api/categoryApi";
 import Table from "../../common/Table/Table";
 import Pagination from "../../common/Pagination/Pagination";
+import AdminCategoryApi from "../../../api/administrator/adminCategoryApi";
 
 /**
  * MyPlanTable 컴포넌트 제작
  *
- * @since 2024.02.27
- * @author 김유빈
+ * @since 2024.02.29
+ * @author 아상민
  */
-function MyPlanTable() {
+function AdminPlanTable({ entranceStatuses }) {
+
     const headers = ["번호", "오픈 지점", "오픈 일정", "진행 단계", "카테고리", "게시글 작성 여부", "작성일"]
     const [page, setPage] = useState(0)
     const [limit, setLimit] = useState(10)
@@ -19,16 +21,16 @@ function MyPlanTable() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await CategoryApi.getMyPlans("", "", page, limit)
+                const response = await AdminCategoryApi.getAllPlan("CG000003", "", page, limit)
                 const data = response.data.data.plans.map((plan, index) => {
                     const sequenceNumber = index + 1 + page * limit
                     const { id, office, floor, openDate, closeDate, entranceStatus, category, writtenPopup, createdDate } = plan
+                    const pkId = id
                     const officeInfo = `${office} ${floor}`
                     const dateRange = `${openDate} ~ ${closeDate}`
                     const writtenStatus = writtenPopup ? '작성' : '미작성'
-                    const pkId = id;
                     return {
-                        pkId: id,
+                        pkId : id,
                         id: sequenceNumber,
                         office: officeInfo,
                         openDate: dateRange,
@@ -57,4 +59,4 @@ function MyPlanTable() {
     )
 }
 
-export default MyPlanTable;
+export default AdminPlanTable;

@@ -4,6 +4,9 @@ import InputDate from "../../components/common/Input/InputDate";
 import InputText from "../../components/common/Input/InputText";
 import FileUpload from "../../components/common/Input/FileUpload";
 import MarkDownEditor from "../../components/common/Input/MarkDownEditor";
+import PlanDetail from "../../components/Plan/PlanDetail";
+import {useParams} from "react-router-dom";
+import {useState} from "react";
 
 /**
  * Plan 페이지 제작
@@ -12,29 +15,18 @@ import MarkDownEditor from "../../components/common/Input/MarkDownEditor";
  * @author 김유빈
  */
 const Plan = () => {
+
+    const [planDetailStatus, setPlanDetailStatus] = useState('');
+
+    const { planId } = useParams();
+
     return (
         <div className="plan">
-            <ContentBox title="사업계획서 정보" content={<PlanDetail />}/>
+            <ContentBox title="사업계획서 정보"
+                        content={<PlanDetail planId={planId} onChangeStatus={setPlanDetailStatus}/>}/>
             <ContentBox title="팝업스토어 게시글 정보" content={<PopupDetail />}/>
             <ContentBox title="팝업스토어 게시글 부가 정보" content={<PopupExtraDetail />}/>
         </div>
-    )
-}
-
-const PlanDetail = () => {
-    return (
-        <>
-            <TwoInput
-                firstInput={<InputDate title="오픈 일정"/>}
-                secondInput={<InputText title="진행단계" value="제안 요청"/>}/>
-            <TwoInput
-                firstInput={<InputText title="오픈 지점" value="더현대 서울 1층"/>}
-                secondInput={<InputText title="카테고리" value="문구"/>}/>
-            <TwoInput
-                firstInput={<InputText title="연락처" value="010-1234-5678"/>}
-                secondInput={<InputText title="작성일" value="2024.02.01"/>}/>
-            <FileUpload title="사업계획서" />
-        </>
     )
 }
 
