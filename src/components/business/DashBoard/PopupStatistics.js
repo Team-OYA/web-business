@@ -37,43 +37,53 @@ const PopupStatistics = () => {
     },
   };
 
-  useEffect(() => {
+useEffect(() => {
     const fetchStatistics = async () => {
-      try {
-        const response = await UserStatisticsApi.categoryStatistics();
-        console.log('response:', response.data.data.statisticsDetails);
-        const statisticsDetails = response.data.data.statisticsDetails;
-        if (statisticsDetails[0].categoryName === "전체 조회") {
-          statisticsDetails.shift();
-        }
-        const labels = statisticsDetails.map((item) => item.categoryName);
-        const counts = statisticsDetails.map((item) => item.count);
-        setChartData({
-          labels,
-          datasets: [
-            {
-              label: '통계',
-              data: counts,
-              borderColor: '#43A47A',
-              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        let labels = [];
+        let counts = [];
+        try {
+            const response = await UserStatisticsApi.categoryStatistics();
+            const statisticsDetails = response.data.data.statisticsDetails;
+            if (statisticsDetails[0].categoryName === "전체 조회") {
+            statisticsDetails.shift();
             }
-          ],
-        });
-        console.log('labels:', labels);
-        console.log('data:', chartData);
-      } catch (error) {
-        console.error('통계 오류:', error);
-      }
-    };
+            labels = statisticsDetails.map((item) => item.categoryName);
+            counts = statisticsDetails.map((item) => item.count);
+            setChartData({
+                labels,
+                datasets: [
+                    {
+                    label: '통계',
+                    data: counts,
+                    borderColor: '#43A47A',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    }
+                ],
+            });
+        } catch (error) {
+            setChartData({
+                labels : ['통계 오류'],
+                datasets: [
+                    {
+                    label: '통계',
+                    data: counts,
+                    borderColor: '#43A47A',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    }
+                ],
+            });
+            console.error('통계 오류:', error);
+        }
+        };
 
-    fetchStatistics();
-  }, []);
+        fetchStatistics();
+    }, []);
 
-  return (
-    <div className="popup-current flex justify-between px-3 py-4">
-      <Line options={options} data={chartData} />
-    </div>
-  );
+    return (
+        <div className="popup-current flex justify-between px-3 py-4">
+        <Line options={options} data={chartData} />
+        </div>
+    );
 };
 
 export default PopupStatistics;

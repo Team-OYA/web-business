@@ -8,12 +8,11 @@ import userInstance from "../../userBaseApi";
      */
 
 const UserStatisticsApi = {
-    categoryStatistics: async (startDate, endDate, category) => {
+    categoryStatistics: async () => {
         try {
             return await userInstance.get('communities/statistics')
         } catch (error) {
             console.error('카테고리 분석 통계 오류:', error);
-            throw error;
         }
     },
 }
