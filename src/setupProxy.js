@@ -13,4 +13,12 @@ module.exports = function (app) {
             changeOrigin: true,
         })
     );
+
+    app.use(
+        "/api/v1",
+        createProxyMiddleware({
+            target: "http://15.164.236.13:8080",
+            changeOrigin: true,
+        })
+    );
 };
