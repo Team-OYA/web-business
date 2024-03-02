@@ -11,7 +11,7 @@ function SelectedAdPost({posts}) {
         <>
             <ContentBox
                 title="게시글 선택"
-                content={<CheckedPostTable count="0" posts={posts}/>}/>
+                content={<CheckedPostTable posts={posts}/>}/>
         </>
     )
 }

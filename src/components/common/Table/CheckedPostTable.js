@@ -1,5 +1,6 @@
 import CoinImage from "../../../assets/icon/coin.png"
 import Pagination from "../Pagination/Pagination";
+import {useState} from "react";
 
 /**
  * CheckedPostTable 컴포넌트 생성
@@ -7,19 +8,32 @@ import Pagination from "../Pagination/Pagination";
  * @since 2024.02.26
  * @author 김유빈
  */
-function CheckedPostTable({count, posts}) {
-    // todo: check 메인 컬러로 색상 변경
+function CheckedPostTable({posts}) {
+    const [selectedPostIndexes, setSelectedPostIndexes] = useState([]);
+    const handleCheckboxChange = (index) => {
+        let updatedIndexes = [];
+        if (selectedPostIndexes.includes(index)) {
+            updatedIndexes = selectedPostIndexes.filter((i) => i !== index);
+        } else {
+            updatedIndexes = [index];
+        }
+        setSelectedPostIndexes(updatedIndexes);
+    };
+
     return (
         <>
             <div className="relative overflow-x-auto">
-                <p className="mb-4 text-sm">선택 {count} / 1</p>
+                <p className="mb-4 text-sm">선택 {selectedPostIndexes.length} / 1</p>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <tbody>
                     {
                         posts.map((row, index) => (
                             <tr className="bg-white border-b text-gray-text-color-700">
                                 <td>
-                                    <input type="checkbox"/>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedPostIndexes.includes(index)}
+                                        onChange={() => handleCheckboxChange(index)}/>
                                 </td>
                                 <td className="px-6 py-4">
                                     {row.title}
