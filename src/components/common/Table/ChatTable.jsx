@@ -12,7 +12,7 @@ import TableRow from "./TableRow";
 const ChatTable = ({ headerTitles, sampleData }) => {
 
     const handleRowClick = (id) => {
-        window.open(`http://localhost:8080/chat/room/${id}`, '_blank');
+        window.open(`http://15.164.236.13:8080/chat/room/${id}`, '_blank');
     };
 
     const renderTableBody = (sampleData) => (

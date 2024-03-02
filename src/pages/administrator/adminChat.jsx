@@ -16,4 +16,5 @@ const AdminChat = () => {
         />
     );
 };
+
 export default AdminChat;
