@@ -3,11 +3,11 @@ import InputText from "../../components/common/Input/InputText";
 import RadioGroup from "../../components/common/Radio/RadioGroup";
 import PaymentButton from "../../components/common/Button/PaymentButton";
 import TossImage from "../../assets/icon/toss.png";
-import CheckedPostTable from "../../components/common/Table/CheckedPostTable";
 import React, {useState} from "react";
 import Button from "../../components/common/Button/Button";
 import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
 import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerContentBox";
+import SelectedAdPost from "../../components/business/SelectedAdPost/SelectedAdPost";
 
 /**
  * Ad 페이지 제작
@@ -45,9 +45,7 @@ const Ad = () => {
                                 <InputText title="광고 금액" value={`${price} 원`} disabled="true"/>
                             </>
                         }/>
-                    <ContentBox
-                        title="게시글 선택"
-                        content={<CheckedPostTable/>}/>
+                    <SelectedAdPost/>
                 </div>
                 <div className="flex-auto">
                     <BuyerContentBox/>

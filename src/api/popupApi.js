@@ -11,6 +11,7 @@ if (Token) {
  * @author 이상민
  */
 const PopupApi = {
+
     /**
      * 나의 사업계획서에 따른 팝업 조회
      *
@@ -20,6 +21,7 @@ const PopupApi = {
     findByPlanId: async (planId = 0) => {
         return await axios.get(`/api/v1/plans/${planId}/popup`)
     },
+
     /**
      * 나의 사업계획서에 따른 팝업 조회
      *
@@ -32,6 +34,16 @@ const PopupApi = {
         formData.append('data', new Blob([JSON.stringify(popupData)], { type: 'application/json' }));
         const response = await axios.post(`/api/v1/popups`, formData);
         return response.data;
+    },
+
+    /**
+     * 나의 팝업스토어 게시글 리스트 조회
+     *
+     * @since 2024.03.03
+     * @author 김유빈
+     */
+    getMyPopups: async (sort, pageNo = 0, amount = 5) => {
+        return await axios.get(`/api/v1/popups?sort=${sort}&pageNo=${pageNo}&amount=${amount}`)
     },
 }
 
