@@ -1,12 +1,12 @@
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import InputText from "../../components/common/Input/InputText";
 import RadioGroup from "../../components/common/Radio/RadioGroup";
-import Checkbox from "../../components/common/Checkbox/Checkbox";
 import PaymentButton from "../../components/common/Button/PaymentButton";
 import TossImage from "../../assets/icon/toss.png";
 import CheckedPostTable from "../../components/common/Table/CheckedPostTable";
-import React from "react";
+import React, {useState} from "react";
 import Button from "../../components/common/Button/Button";
+import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
 
 /**
  * Ad 페이지 제작
@@ -15,8 +15,9 @@ import Button from "../../components/common/Button/Button";
  * @author 김유빈
  */
 const Ad = () => {
+    const [isOpen, setOpen] = useState(false);
     const handleClickTossPaymentButton = () => {
-        console.log("Button clicked!");
+        setOpen(true);
     };
     return (
         <>
@@ -50,6 +51,9 @@ const Ad = () => {
                         content={
                             <>
                                 <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
+                                { isOpen && (
+                                    <TossPayModal isOpen={isOpen}/>
+                                )}
                             </>
                         }/>
                     <ContentBox

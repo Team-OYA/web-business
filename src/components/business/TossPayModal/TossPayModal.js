@@ -4,15 +4,14 @@ import { nanoid } from "nanoid"
 import Button from "../../common/Button/Button";
 import PaymentApi from "../../../api/paymentApi";
 
-const selector = "#payment-widget"
 const customerKey = nanoid()
 
 /**
  * @since 2024.02.29
  * @author 김유빈
  */
-export function TossPayModal() {
-    const { data: paymentWidget } = usePaymentWidget(clientKey, customerKey)
+function TossPayModal() {
+    const { data: paymentWidget } = usePaymentWidget(process.env.REACT_APP_TOSS_PAY_CLIENT_KEY, customerKey)
     const paymentMethodsWidgetRef = useRef(null)
     const [price, setPrice] = useState(50_000)
 
@@ -21,7 +20,7 @@ export function TossPayModal() {
             return
         }
         const paymentMethodsWidget = paymentWidget.renderPaymentMethods(
-            selector,
+            "#payment-widget",
             { value: price },
             { variantKey: "DEFAULT" }
         )
@@ -43,8 +42,8 @@ export function TossPayModal() {
 
     // todo: 메인광고 이미지 추가
     return (
-        <div className="wrapper">
-            <div className="box_section">
+        <div className="wrapper fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
+            <div className="box_section w-1/2">
                 <div id="payment-widget"/>
                 <div id="agreement"/>
                 <div className="result wrapper">
@@ -83,8 +82,6 @@ function usePaymentWidget(clientKey, customerKey) {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                // ------  결제위젯 초기화 ------
-                // @docs https://docs.tosspayments.com/reference/widget-sdk#sdk-설치-및-초기화
                 const result = await loadPaymentWidget(clientKey, customerKey);
                 setData(result);
             } catch (error) {
@@ -98,3 +95,5 @@ function usePaymentWidget(clientKey, customerKey) {
 
     return { data, isLoading, error };
 }
+
+export default TossPayModal;
