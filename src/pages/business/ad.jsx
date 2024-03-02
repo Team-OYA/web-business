@@ -7,6 +7,7 @@ import CheckedPostTable from "../../components/common/Table/CheckedPostTable";
 import React, {useState} from "react";
 import Button from "../../components/common/Button/Button";
 import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
+import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerContentBox";
 
 /**
  * Ad 페이지 제작
@@ -36,23 +37,14 @@ const Ad = () => {
                         content={<CheckedPostTable/>}/>
                 </div>
                 <div className="flex-auto">
-                    <ContentBox
-                        title="주문자 정보"
-                        content={
-                            <>
-                                <InputText title="주문자" value="김유빈" disabled="true"/>
-                                <InputText title="연락처" value="010-1234-5678" disabled="true"/>
-                                <InputText title="이메일" value="hansalchai789@gmail.com" disabled="true"/>
-                                <InputText title="사업자 등록번호" value="109-81-72945" disabled="true"/>
-                            </>
-                        }/>
+                    <BuyerContentBox/>
                     <ContentBox
                         title="결제 방법"
                         content={
                             <>
                                 <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
                                 { isOpen && (
-                                    <TossPayModal isOpen={isOpen}/>
+                                    <TossPayModal/>
                                 )}
                             </>
                         }/>
