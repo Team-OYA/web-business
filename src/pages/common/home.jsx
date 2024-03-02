@@ -1,8 +1,6 @@
 import OutlineCircleDisabledButton from "../../components/common/Button/OutlineCircleDisabledButton";
 import React from "react";
 
-import { useNavigate } from 'react-router-dom';
-
 /**
  * Home 페이지 제작
  *

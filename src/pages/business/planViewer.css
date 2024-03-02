@@ -1,0 +1,8 @@
+.viewer-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    max-height: 400px;
+    overflow-y: auto;
+}
