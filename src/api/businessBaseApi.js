@@ -1,4 +1,5 @@
 import axios from "axios";
+import GetTokenFromLocalStorage from "./Common/token";
 
 const instance = axios.create({
     baseURL: "http://15.164.236.13:8080/api/v1",
@@ -6,7 +7,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("token");
+        const token = GetTokenFromLocalStorage('admin');
         if (token) {
             config.headers["Authorization"] = `Bearer ${token}`;
         }
