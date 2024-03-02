@@ -16,10 +16,15 @@ import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerCont
  * @author 김유빈
  */
 const Ad = () => {
-    const [isOpen, setOpen] = useState(false);
+    const [price, setPrice] = useState(0)
+    const [isOpen, setOpen] = useState(false)
+
+    const handleAdCategoryChange = (value) => {
+        setPrice(value)
+    }
     const handleClickTossPaymentButton = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
     return (
         <>
             <div className="flex">
@@ -28,8 +33,16 @@ const Ad = () => {
                         title="광고 금액 선정"
                         content={
                             <>
-                                <RadioGroup title="광고 분류" content={["팝업스토어 게시글", "커뮤니티 게시글"]}/>
-                                <InputText title="광고 금액" value="1,000,000원" disabled="true"/>
+                                <RadioGroup
+                                    title="광고 분류"
+                                    content={
+                                        [
+                                            {title: "팝업스토어 게시글", value: 1_000_000},
+                                            {title: "커뮤니티 게시글", value: 50_000}
+                                        ]
+                                    }
+                                    onRadioChange={handleAdCategoryChange}/>
+                                <InputText title="광고 금액" value={`${price} 원`} disabled="true"/>
                             </>
                         }/>
                     <ContentBox
@@ -52,7 +65,7 @@ const Ad = () => {
                         title="최종 결제금액"
                         content={
                             <>
-                                <InputText title="총 결제금액" value="1,000,000원" disabled="true"/>
+                                <InputText title="총 결제금액" value={`${price} 원`} disabled="true"/>
                                 <Button text="결제하기"/>
                             </>
                         }/>
