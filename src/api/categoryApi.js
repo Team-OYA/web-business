@@ -41,6 +41,7 @@ const CategoryApi = {
     getMyPlans: async (category = "", entranceStatus = "", pageNo = 0, amount = 10) => {
         return await axios.get(`/api/v1/plans/me?category=${category}&entranceStatus=${entranceStatus}&pageNo=${pageNo}&amount=${amount}`)
     },
+
     /**
      * 관리자사업계획서 리스트 조회
      *

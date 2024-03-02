@@ -1,18 +1,18 @@
 import React from "react";
+
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
 /**
- * Table 컴포넌트 생성
+ * Chat Table 컴포넌트 생성
  *
  * @since 2024.02.25
  * @author 이상민
  */
-const Table = ({ headerTitles, sampleData }) => {
+const ChatTable = ({ headerTitles, sampleData }) => {
 
     const handleRowClick = (id) => {
-        const currentUrl = window.location.pathname;
-        window.location.href = `${currentUrl}/${id}`;
+        window.open(`http://15.164.236.13:8080/chat/room/${id}`, '_blank');
     };
 
     const renderTableBody = (sampleData) => (
@@ -22,16 +22,15 @@ const Table = ({ headerTitles, sampleData }) => {
         ))}
         </tbody>
     );
-  
+
     return (
         <div className="relative overflow-x-auto table-container sm:rounded-sm">
-          <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
-              <TableHeader headerTitles = {headerTitles}/>
-            {renderTableBody(sampleData)}
-          </table>
+            <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                <TableHeader headerTitles = {headerTitles}/>
+                {renderTableBody(sampleData)}
+            </table>
         </div>
-      );
-  };
-  
-  export default Table;
-  
+    );
+};
+
+export default ChatTable;

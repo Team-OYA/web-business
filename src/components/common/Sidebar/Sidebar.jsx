@@ -11,6 +11,16 @@ const Sidebar = ({ color, sideBarColor, sideBarList, content }) => {
         setActiveItem(item);
     };
 
+    /**
+     * 로그아웃
+     *
+     * @since 2024.02.29
+     * @author 이상민
+     */
+    const handleLogout = () => {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('userToken');
+    }
     return (
         <>
             <CustomNavibar color={color}/>
@@ -31,9 +41,9 @@ const Sidebar = ({ color, sideBarColor, sideBarList, content }) => {
                     </ul>
                     <ul className="pt-2 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <li>
-                            <a href="#"
+                            <a href="/"
                                className="flex items-center p-3 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
-                               onClick={() => handleItemClick('logout')}>
+                               onClick={() => handleLogout()}>
                                 <span className="ms-3">로그아웃</span>
                             </a>
                         </li>
