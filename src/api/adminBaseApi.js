@@ -1,11 +1,18 @@
 import axios from "axios";
 import GetTokenFromLocalStorage from "./Common/token";
 
-const instance = axios.create({
+/**
+     * adminBaseApi 생성
+     *
+     * @since 2024.03.02
+     * @author 이승민
+     */
+
+const adminInstance = axios.create({
     baseURL: "http://15.164.236.13:8080/api/v1",
 });
 
-instance.interceptors.request.use(
+adminInstance.interceptors.request.use(
     (config) => {
         const token = GetTokenFromLocalStorage('admin');
         if (token) {
@@ -18,4 +25,4 @@ instance.interceptors.request.use(
     }
 );
 
-export default instance;
+export default adminInstance;

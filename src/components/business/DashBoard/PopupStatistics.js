@@ -1,75 +1,79 @@
-import React from 'react';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import UserStatisticsApi from '../../../api/business/dashBoard/userStatisticsApi';
 
-/**
- * PopupCurrent 컴포넌트 생성
- *
- * @since 2024.03.01
- * @author 이승민
- */
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+const PopupStatistics = () => {
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: '통계',
+        data: [],
+        borderColor: '#43A47A',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ],
+  });
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']; //x축 기준
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: '분류 1',
-      data: [5, 15, 20, 15, 10, 15, 20],
-      borderColor: '#43A47A',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    }
-  ],
-};
-
-export const options = {
+  const options = {
     responsive: true,
     plugins: {
-            legend: {
-                    display: false,
-            },
+      legend: {
+        display: false,
+      },
     },
     scales: {
-            x: {
-                    beginAtZero: true,
-                    offset: true,
-            },
-            y: {
-                    min: 0,
-                    max: data.datasets[0].data.reduce((a, b) => Math.max(a, b)) + Math.min(...data.datasets[0].data),
-            },
+      x: {
+        beginAtZero: true,
+        offset: true,
+      },
+      y: {
+        min: 0,
+        max: Math.max(...chartData.datasets[0].data) + Math.min(...chartData.datasets[0].data),
+      },
     },
+  };
+
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const response = await UserStatisticsApi.categoryStatistics();
+        console.log('response:', response.data.data.statisticsDetails);
+        const statisticsDetails = response.data.data.statisticsDetails;
+        if (statisticsDetails[0].categoryName === "전체 조회") {
+          statisticsDetails.shift();
+        }
+        const labels = statisticsDetails.map((item) => item.categoryName);
+        const counts = statisticsDetails.map((item) => item.count);
+        setChartData({
+          labels,
+          datasets: [
+            {
+              label: '통계',
+              data: counts,
+              borderColor: '#43A47A',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
+          ],
+        });
+        console.log('labels:', labels);
+        console.log('data:', chartData);
+      } catch (error) {
+        console.error('통계 오류:', error);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
+
+  return (
+    <div className="popup-current flex justify-between px-3 py-4">
+      <Line options={options} data={chartData} />
+    </div>
+  );
 };
-  
-
-
-function PopupStatistics() {
-
-    return (
-        <div className="popup-current flex justify-between px-3 py-4">
-            <Line options={options} data={data} />
-        </div>
-    );
-}
 
 export default PopupStatistics;
