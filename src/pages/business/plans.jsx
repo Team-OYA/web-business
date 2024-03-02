@@ -2,6 +2,7 @@ import ContentBox from "../../components/common/ContentBox/ContentBox";
 import CategoryDropdown from "../../components/business/CategoryDropdown/CategoryDropdown";
 import EntranceStatusDropdown from "../../components/business/EntranceStatusDropdown/EntranceStatusDropdown";
 import MyPlanTable from "../../components/business/MyPlanTable/MyPlanTable";
+import Button from "../../components/common/Button/Button";
 
 /**
  * Plans 페이지 제작

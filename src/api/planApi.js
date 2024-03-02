@@ -46,6 +46,15 @@ const PlanApi = {
             "Content-Type": `multipart/form-data`,
         })
     },
+    /**
+     * 나의 사업계획서 조회
+     *
+     * @since 2024.02.29
+     * @author 이상민
+     */
+    getPlan: async (planId = 0) => {
+        return await axios.get(`/api/v1/plans/${planId}`)
+    },
 }
 
 export default PlanApi;
