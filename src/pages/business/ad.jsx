@@ -8,6 +8,8 @@ import Button from "../../components/common/Button/Button";
 import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
 import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerContentBox";
 import SelectedAdPost from "../../components/business/SelectedAdPost/SelectedAdPost";
+import PopupApi from "../../api/popupApi";
+import CommunityApi from "../../api/communityApi";
 
 /**
  * Ad 페이지 제작
@@ -18,13 +20,38 @@ import SelectedAdPost from "../../components/business/SelectedAdPost/SelectedAdP
 const Ad = () => {
     const [price, setPrice] = useState(0)
     const [isOpen, setOpen] = useState(false)
+    const [posts, setPosts] = useState([])
 
-    const handleAdCategoryChange = (value) => {
-        setPrice(value)
+    const handleAdCategoryChange = async (value) => {
+        if (value === "popup") {
+            setPrice(1_000_000)
+            const response = await PopupApi.getMyPopups(0, 5)
+            const data = response.data.data.popups.map(popup => {
+                const createdDate = popup.pulledDate.split(" ")[0];
+                return {
+                    title: popup.title,
+                    date: createdDate,
+                }
+            })
+            setPosts(data)
+        } else if (value === "community") {
+            setPrice(50_000)
+            const response = await CommunityApi.getMyCommunities(0, 5)
+            const data = response.data.data.communityDetailResponseList.map(community => {
+                return {
+                    title: community.title,
+                    date: community.createdDate,
+                }
+            })
+            setPosts(data)
+        }
     }
+
     const handleClickTossPaymentButton = () => {
         setOpen(true)
     }
+
+    // todo: 메인 광고 이미지 추가
     return (
         <>
             <div className="flex">
@@ -37,15 +64,15 @@ const Ad = () => {
                                     title="광고 분류"
                                     content={
                                         [
-                                            {title: "팝업스토어 게시글", value: 1_000_000},
-                                            {title: "커뮤니티 게시글", value: 50_000}
+                                            {title: "팝업스토어 게시글", value: "popup"},
+                                            {title: "커뮤니티 게시글", value: "community"}
                                         ]
                                     }
                                     onRadioChange={handleAdCategoryChange}/>
                                 <InputText title="광고 금액" value={`${price} 원`} disabled="true"/>
                             </>
                         }/>
-                    <SelectedAdPost/>
+                    <SelectedAdPost posts={posts}/>
                 </div>
                 <div className="flex-auto">
                     <BuyerContentBox/>

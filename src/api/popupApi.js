@@ -1,5 +1,6 @@
 import GetTokenFromLocalStorage from "./Common/token";
 import axios from "axios";
+import userInstance from "./userBaseApi";
 
 const Token = GetTokenFromLocalStorage('user')
 if (Token) {
@@ -42,8 +43,8 @@ const PopupApi = {
      * @since 2024.03.03
      * @author 김유빈
      */
-    getMyPopups: async (sort, pageNo = 0, amount = 5) => {
-        return await axios.get(`/api/v1/popups?sort=${sort}&pageNo=${pageNo}&amount=${amount}`)
+    getMyPopups: async (pageNo = 0, amount = 5) => {
+        return await userInstance.get(`/popups?sort=me&pageNo=${pageNo}&amount=${amount}`)
     },
 }
 

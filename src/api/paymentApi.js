@@ -1,5 +1,6 @@
-import Token from "./token";
 import axios from "axios";
+import Token from "./Common/token";
+import userInstance from "./userBaseApi";
 
 if (Token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
@@ -18,7 +19,7 @@ const PaymentApi = {
      * @author 김유빈
      */
     getBuyer: async () => {
-        return await axios.get(`/api/v1/ad/users`)
+        return await userInstance.get(`/ad/users`)
     },
 
     /**
@@ -28,7 +29,7 @@ const PaymentApi = {
      * @author 김유빈
      */
     confirmTossPay: async (orderId, postId, postType, amount) =>  {
-        return await axios.post(`/api/v1/payments/toss/confirm`, {
+        return await userInstance.post(`/payments/toss/confirm`, {
             orderId: orderId,
             postId: postId,
             postType: postType,
