@@ -44,6 +44,18 @@ const Login = ({businessHomeUrl, adminHomeUrl}) => {
         }
     };
 
+    /**
+     * 엔터 누를 경우 로그인 진행
+     *
+     * @since 2024.03.03
+     * @author 김유빈
+     */
+    const handleEnterKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleLogin();
+        }
+    };
+
     return (
         <div className="login">
             <section>
@@ -63,8 +75,17 @@ const Login = ({businessHomeUrl, adminHomeUrl}) => {
                             <p className="text-center text-gray-text-color-600">
                             </p>
                             <form className="space-y-4 md:space-y-6" action="#">
-                                <InputText type="email"  value={email} onChange={(e) => setEmail(e.target.value)} placeholder="아이디"/>
-                                <InputText type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호"/>
+                                <InputText
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="아이디"/>
+                                <InputText
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    onKeyPress={handleEnterKeyPress}
+                                    placeholder="비밀번호"/>
                                 <Button onClick={handleLogin} text="로그인"/>
                             </form>
                         </div>
