@@ -6,13 +6,11 @@ import React from "react";
  * @since 2024.02.25
  * @author 이상민
  */
-// SidebarItem.js
 const SidebarItem = ({ href, text, onClick, isActive, sideBarColor }) => (
     <li>
         <a
             href={href}
             onClick={(e) => {
-                e.preventDefault();
                 onClick(href);
             }}
             className={`flex items-center p-3 text-gray-900 dark:text-white hover:bg-gray-200 hover:text-black dark:hover:bg-gray-700 group ${isActive ? `${sideBarColor}` : ""}`}
