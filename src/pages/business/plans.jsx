@@ -2,9 +2,9 @@ import ContentBox from "../../components/common/ContentBox/ContentBox";
 import CategoryDropdown from "../../components/business/CategoryDropdown/CategoryDropdown";
 import EntranceStatusDropdown from "../../components/business/EntranceStatusDropdown/EntranceStatusDropdown";
 import MyPlanTable from "../../components/business/MyPlanTable/MyPlanTable";
-import Button from "../../components/common/Button/Button";
 import {useEffect, useState} from "react";
 import MyPlansApi from "../../api/business/plans/myPlansApi";
+import SearchButton from "../../components/common/Button/SearchButton";
 
 /**
  * Plans 페이지 제작
@@ -25,7 +25,6 @@ function Plans() {
         fetchData()
     }, [])
 
-    // todo: 검색 컴포넌트 새로 생성
     return (
         <div className="dashBoard">
             <ContentBox
@@ -34,8 +33,7 @@ function Plans() {
                     <>
                         <CategoryDropdown setCategory={setCategory}/>
                         <EntranceStatusDropdown setEntranceStatus={setEntranceStatus}/>
-                        <Button
-                            text="검색"
+                        <SearchButton
                             onClick={getPlans(category, entranceStatus, page, limit, setTotal, setPlans)}/>
                         <MyPlanTable plans={plans} page={page} limit={limit} total={total} setPage={setPage}/>
                     </>

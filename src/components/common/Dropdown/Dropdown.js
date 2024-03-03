@@ -10,11 +10,11 @@ function Dropdown({buttonId, dropdownId, title, categories, onSelect}) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropdown = () => {
-        setIsOpen(!isOpen);
+        setIsOpen(!isOpen)
     }
     const handleItemSelect = (code) => {
-        console.log(code)
         onSelect(code)
+        setIsOpen(!isOpen)
     }
 
     return (
