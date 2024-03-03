@@ -7,7 +7,7 @@ import 'flowbite/dist/datepicker.turbo.js';
  * @since 2024.02.25
  * @author 김유빈
  */
-function InputDate({title, placeholder}) {
+function InputDate({title, placeholder, onChange}) {
     return (
         <div className="relative mb-6">
             <label htmlFor="default-input"
@@ -17,7 +17,8 @@ function InputDate({title, placeholder}) {
             <input type="date" id="default-input"
                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                    focus:border-blue-500 block w-full p-2.5"
-                   placeholder={placeholder}/>
+                   placeholder={placeholder}
+                   onChange={onChange}/>
         </div>
     )
 }

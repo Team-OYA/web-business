@@ -8,7 +8,7 @@ import DepartmentsApi from "../../../api/business/createPlan/departmentsApi";
  * @since 2024.02.27
  * @author 김유빈
  */
-function FloorDropdown() {
+function FloorDropdown({setCategory, setFloor}) {
     const [floors, setFloors] = useState([])
     useEffect(() => {
         const fetchData = async () => {
@@ -38,7 +38,7 @@ function FloorDropdown() {
     }, []);
     return (
         <>
-            <MultipleDropdown title="팝업스토어 위치 선정" data={floors}/>
+            <MultipleDropdown title="팝업스토어 위치 선정" data={floors} setFirst={setCategory} setSecond={setFloor}/>
         </>
     )
 }

@@ -8,7 +8,7 @@ import DepartmentsApi from "../../../api/business/createPlan/departmentsApi";
  * @since 2024.02.27
  * @author 김유빈
  */
-function DepartmentDropdown() {
+function DepartmentDropdown({setOffice}) {
     const [departments, setDepartments] = useState([])
     useEffect(() => {
         const fetchData = async () => {
@@ -39,7 +39,7 @@ function DepartmentDropdown() {
 
     return (
         <>
-            <MultipleDropdown title="현대백화점 지점 선택" data={departments}/>
+            <MultipleDropdown title="현대백화점 지점 선택" data={departments} setSecond={setOffice}/>
         </>
     )
 }
