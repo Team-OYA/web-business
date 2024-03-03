@@ -10,6 +10,7 @@ import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerCont
 import SelectedAdPost from "../../components/business/SelectedAdPost/SelectedAdPost";
 import PopupApi from "../../api/popupApi";
 import CommunityApi from "../../api/communityApi";
+import FileUpload from "../../components/common/Input/FileUpload";
 
 /**
  * Ad 페이지 제작
@@ -19,39 +20,18 @@ import CommunityApi from "../../api/communityApi";
  */
 const Ad = () => {
     const [price, setPrice] = useState(0)
+    const [postType, setPostType] = useState("")
+    const [mainImage, setMainImage] = useState(<></>)
+    const [mainImageFile, setMainImageFile] = useState(null)
     const [isOpen, setOpen] = useState(false)
     const [posts, setPosts] = useState([])
 
-    const handleAdCategoryChange = async (value) => {
-        if (value === "popup") {
-            setPrice(1_000_000)
-            const response = await PopupApi.getMyPopups(0, 5)
-            const data = response.data.data.popups.map(popup => {
-                const createdDate = popup.pulledDate.split(" ")[0];
-                return {
-                    title: popup.title,
-                    date: createdDate,
-                }
-            })
-            setPosts(data)
-        } else if (value === "community") {
-            setPrice(50_000)
-            const response = await CommunityApi.getMyCommunities(0, 5)
-            const data = response.data.data.communityDetailResponseList.map(community => {
-                return {
-                    title: community.title,
-                    date: community.createdDate,
-                }
-            })
-            setPosts(data)
-        }
-    }
-
+    const handleAdCategoryChange = convertAboutPost(setPrice, setPostType, setMainImage, setPosts)
+    const handleMainImageFileChange = getHandleMainImageFileChange(setMainImageFile)
     const handleClickTossPaymentButton = () => {
         setOpen(true)
     }
 
-    // todo: 메인 광고 이미지 추가
     return (
         <>
             <div className="flex">
@@ -70,6 +50,7 @@ const Ad = () => {
                                     }
                                     onRadioChange={handleAdCategoryChange}/>
                                 <InputText title="광고 금액" value={`${price} 원`} disabled="true"/>
+                                {mainImage}
                             </>
                         }/>
                     <SelectedAdPost posts={posts}/>
@@ -82,7 +63,7 @@ const Ad = () => {
                             <>
                                 <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
                                 { isOpen && (
-                                    <TossPayModal/>
+                                    <TossPayModal postType={postType} price={price} file={mainImageFile}/>
                                 )}
                             </>
                         }/>
@@ -98,6 +79,55 @@ const Ad = () => {
             </div>
         </>
     )
+}
+
+/**
+ * 광고 분류에 따라 데이터 전환
+ *
+ * @since 2024.03.03
+ * @author 김유빈
+ */
+function convertAboutPost(setPrice, setPostType, setMainImage, setPosts) {
+    return async (value) => {
+        let price = 0
+        let data = null
+        let mainImage = <></>
+        if (value === "popup") {
+            price = 1_000_000
+            const response = await PopupApi.getMyPopups(0, 5)
+            data = response.data.data.popups.map(popup => {
+                const createdDate = popup.pulledDate.split(" ")[0];
+                return {
+                    title: popup.title,
+                    date: createdDate,
+                }
+            })
+            mainImage = AdMainImage()
+        } else if (value === "community") {
+            price = 50_000
+            const response = await CommunityApi.getMyCommunities(0, 5)
+            data = response.data.data.communityDetailResponseList.map(community => {
+                return {
+                    title: community.title,
+                    date: community.createdDate,
+                }
+            })
+        }
+        setPrice(price)
+        setPostType(value)
+        setPosts(data)
+        setMainImage(mainImage)
+    };
+}
+
+function AdMainImage() {
+    return <FileUpload title="메인 이미지" onChange={getHandleMainImageFileChange}/>
+}
+
+function getHandleMainImageFileChange(setMainImageFile) {
+    return (event) => {
+        setMainImageFile(event.target.files[0])
+    }
 }
 
 export default Ad;

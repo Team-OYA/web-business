@@ -10,10 +10,9 @@ const customerKey = nanoid()
  * @since 2024.02.29
  * @author 김유빈
  */
-function TossPayModal() {
+function TossPayModal({postType, price, file}) {
     const { data: paymentWidget } = usePaymentWidget(process.env.REACT_APP_TOSS_PAY_CLIENT_KEY, customerKey)
     const paymentMethodsWidgetRef = useRef(null)
-    const [price, setPrice] = useState(50_000)
 
     useEffect(() => {
         if (paymentWidget == null) {
@@ -37,10 +36,15 @@ function TossPayModal() {
     }, [price])
 
     const confirmTossPay = async (orderId) => {
-        await PaymentApi.confirmTossPay(orderId, 175, "popup", price)
+        const data = {
+            orderId: orderId,
+            postId: 175,
+            postType: postType,
+            amount: price
+        }
+        await PaymentApi.confirmTossPay(data, file)
     }
 
-    // todo: 메인광고 이미지 추가
     return (
         <div className="wrapper fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
             <div className="box_section w-1/2">

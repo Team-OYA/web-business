@@ -28,12 +28,16 @@ const PaymentApi = {
      * @since 2024.02.29
      * @author 김유빈
      */
-    confirmTossPay: async (orderId, postId, postType, amount) =>  {
-        return await userInstance.post(`/payments/toss/confirm`, {
-            orderId: orderId,
-            postId: postId,
-            postType: postType,
-            amount: amount
+    confirmTossPay: async (data, file = null) =>  {
+        const formData = new FormData()
+        formData.append("data",  new Blob([JSON.stringify(data)]), {
+            type: "application/json;charset=UTF-8"
+        })
+        formData.append("file", file)
+        return await userInstance.post(`/payments/toss/confirm`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
         })
     },
 };
