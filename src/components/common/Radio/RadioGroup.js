@@ -6,6 +6,10 @@
  * @author 김유빈
  */
 function RadioGroup(props) {
+    const handleRadioChange = (event) => {
+        const value = event.target.value;
+        props.onRadioChange(value);
+    };
     return (
         <>
             <div className="mb-6">
@@ -17,11 +21,16 @@ function RadioGroup(props) {
                     {
                         props.content.map((text, index) => (
                             <div className="flex-auto items-center mb-4">
-                                <input id={`default-radio-${index}`} type="radio" value="" name="default-radio"
-                                       className="w-4 h-4 text-main-color-600 bg-gray-100 border-gray-300 focus:ring-main-color-500 focus:ring-2"/>
+                                <input id={`default-radio-${index}`}
+                                       type="radio"
+                                       value={text.value}
+                                       name="default-radio"
+                                       className="w-4 h-4 text-main-color-600 bg-gray-100 border-gray-300
+                                       focus:ring-main-color-500 focus:ring-2"
+                                       onChange={handleRadioChange}/>
                                 <label htmlFor={`default-radio-${index}`}
                                        className="ms-2 text-sm font-medium text-gray-700">
-                                    {text}
+                                    {text.title}
                                 </label>
                             </div>
                         ))
