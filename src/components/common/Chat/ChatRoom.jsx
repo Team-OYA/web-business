@@ -42,7 +42,7 @@ const ChatRoom = ({role}) => {
             stomp.subscribe(`/topic/messages`, (message) => {
                 const newMessage = JSON.parse(message.body);
 
-                newMessage.checkedMe = newMessage.senderRole === role;
+                newMessage.checkedMe = true;
 
                 // 기존 메시지와 새 메시지를 합쳐서 상태 업데이트
                 setMessages((prevMessages) => [...prevMessages, newMessage]);

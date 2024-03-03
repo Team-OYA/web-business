@@ -11,14 +11,13 @@ import TableRow from "./TableRow";
 const ChatTable = ({ headerTitles, sampleData }) => {
 
     const handleRowClick = (id) => {
+        const currentUrl = window.location.pathname;
+        const newUrl = `${currentUrl}/${id}`;
+        // 팝업으로 새로운 페이지 열기
+        window.open(newUrl, '_blank', 'width=400,height=700,toolbar=no,scrollbars=yes,resizable=yes');
 
         // const currentUrl = window.location.pathname;
-        // const newUrl = `${currentUrl}/${id}`;
-        // // 팝업으로 새로운 페이지 열기
-        // window.open(newUrl, '_blank', 'width=400,height=700,toolbar=no,scrollbars=yes,resizable=yes');
-        //
-        const currentUrl = window.location.pathname;
-        window.location.href = `${currentUrl}/${id}`;
+        // window.location.href = `${currentUrl}/${id}`;
     };
 
     const renderTableBody = (sampleData) => (
