@@ -1,11 +1,4 @@
-import axios from "axios";
-
-import GetTokenFromLocalStorage from "../Common/token";
-
-const Token = GetTokenFromLocalStorage('admin')
-if (Token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
-}
+import adminInstance from "../../adminBaseApi";
 
 /**
  * @since 2024.02.25
@@ -19,7 +12,7 @@ const AdminUserApi = {
      * @author 이상민
      */
     getUsers: async (pageNo = 0, amount = 10) => {
-        return await axios.get(`/api/v1/admin/users?type=user&pageNo=${pageNo}&amount=${amount}`);
+        return await adminInstance.get(`/admin/users?type=user&pageNo=${pageNo}&amount=${amount}`);
     },
     /**
      * 사업체 리스트 불러오기
@@ -28,7 +21,7 @@ const AdminUserApi = {
      * @author 이상민
      */
     getBusiness: async (pageNo = 0, amount = 10) => {
-        return await axios.get(`/api/v1/admin/users?type=business&pageNo=${pageNo}&amount=${amount}`);
+        return await adminInstance.get(`/admin/users?type=business&pageNo=${pageNo}&amount=${amount}`);
     },
 };
 

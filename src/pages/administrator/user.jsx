@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Table from "../../components/common/Table/Table";
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import Pagination from "../../components/common/Pagination/Pagination";
-import AdminUserApi from "../../api/administrator/adminUserApi";
+import AdminUserApi from "../../api/administrator/users/adminUserApi";
 
 /**
  * User 페이지 생성

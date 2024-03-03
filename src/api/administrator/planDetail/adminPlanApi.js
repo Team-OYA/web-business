@@ -1,10 +1,4 @@
-import axios from "axios";
-import GetTokenFromLocalStorage from "../Common/token";
-
-const Token = GetTokenFromLocalStorage('admin')
-if (Token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
-}
+import adminInstance from "../../adminBaseApi";
 
 /**
  * @since 2024.03.01
@@ -18,7 +12,7 @@ const AdminPlanApi = {
      * @author 이상민
      */
     getPlan: async (planId = 0) => {
-        return await axios.get(`/api/v1/plans/${planId}`)
+        return await adminInstance.get(`/plans/${planId}`)
     },
 
     /**
@@ -32,10 +26,9 @@ const AdminPlanApi = {
      */
     postWait: async (planId = 0) => {
         try {
-            const response = await axios.post(`/api/v1/plans/${planId}/wait`, null, {
-                params: { planId }  // 이 부분을 확인하여 서버에서 요구하는 형식에 맞춰 수정
+            return await adminInstance.post(`/plans/${planId}/wait`, null, {
+                params: {planId}  // 이 부분을 확인하여 서버에서 요구하는 형식에 맞춰 수정
             });
-            return response;
         } catch (error) {
             throw error;
         }
@@ -48,7 +41,7 @@ const AdminPlanApi = {
      * @author 이상민
      */
     postApprove: async (planId = 0) => {
-        return await axios.post(`/api/v1/plans/${planId}/approve`)
+        return await adminInstance.post(`/plans/${planId}/approve`)
     },
 
     /**
@@ -58,7 +51,7 @@ const AdminPlanApi = {
      * @author 이상민
      */
     postDeny: async (planId = 0) => {
-        return await axios.post(`/api/v1/plans/${planId}/deny`)
+        return await adminInstance.post(`/plans/${planId}/deny`)
     },
 }
 

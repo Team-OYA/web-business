@@ -23,7 +23,7 @@ function PopupRanking() {
     }, []);
 
     return (
-        <div className="popup-ranking h-fit flex-col px-2 py-4">
+        <div className="popup-ranking h-fit flex-col px-2 py-4text-gray-text-color-700 text-sm">
             {myPopup.length > 0 && (
                 <div className="info flex w-full justify-between bg-gray-100 rounded-lg px-4 py-3 mb-3">
                     <div className='flex'>

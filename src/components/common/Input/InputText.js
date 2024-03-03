@@ -5,7 +5,7 @@
  * @since 2024.02.25
  * @author 김유빈
  */
-function InputText({title, type, placeholder, value, onChange, disabled}) {
+function InputText({title, type, placeholder, value, onChange, disabled, onKeyPress}) {
     return (
         <div className="mb-6">
             <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -17,6 +17,7 @@ function InputText({title, type, placeholder, value, onChange, disabled}) {
                    placeholder={placeholder}
                    value={value}
                    onChange={onChange}
+                   onKeyPress={onKeyPress}
                    disabled={disabled}>
             </input>
         </div>

@@ -19,7 +19,7 @@ const DashBoard = () => {
                 <div className="flex-grow" style={{ flex: "2" }}>
                         <ContentBoxFull title="팝업스토어 현황" content={<PopupCurrent/>}/>
                 </div>
-                <div className="flex-grow"style={{ flex: "1" }}>
+                <div className="flex-grow" style={{ flex: "1" }}>
                     <ContentBoxFull title="팝업스토어 순위" content={<PopupRanking/>}/>
                 </div>
             </div>

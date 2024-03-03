@@ -1,5 +1,6 @@
 import axios from "axios";
-import GetTokenFromLocalStorage from "../Common/token";
+import GetTokenFromLocalStorage from "../../Common/token";
+import adminInstance from "../../adminBaseApi";
 
 const Token = GetTokenFromLocalStorage('admin')
 if (Token) {
@@ -18,7 +19,7 @@ const AdminCategoryApi = {
      * @author 이상민
      */
     getAllPlan: async (category = "", entranceStatus = "",  pageNo = 0, amount = 10) => {
-        return await axios.get(`/api/v1/plans?category=${category}&entranceStatus=${entranceStatus}&pageNo=${pageNo}&amount=${amount}`);
+        return await adminInstance.get(`/plans?category=${category}&entranceStatus=${entranceStatus}&pageNo=${pageNo}&amount=${amount}`);
     },
 };
 
