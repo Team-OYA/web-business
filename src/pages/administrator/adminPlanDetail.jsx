@@ -1,7 +1,7 @@
 import ContentBox from "../../components/common/ContentBox/ContentBox";
 import {useState} from "react";
 import {useParams, useNavigate} from "react-router-dom";
-import AdminPlanApi from "../../api/administrator/adminPlanApi";
+import AdminPlanApi from "../../api/administrator/planDetail/adminPlanApi";
 import AdminPlanDetail from "../../components/Plan/AdminPlanDetail";
 
 /**

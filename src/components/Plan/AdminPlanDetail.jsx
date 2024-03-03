@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import TwoInput from "../common/Input/TwoInput";
 import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
-import AdminPlanApi from "../../api/administrator/adminPlanApi";
+import AdminPlanApi from "../../api/administrator/planDetail/adminPlanApi";
 
 /**
  * PlanDetail 컴포넌트 생성

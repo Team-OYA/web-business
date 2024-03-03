@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
-import CategoryApi from "../../../api/categoryApi";
 import Table from "../../common/Table/Table";
 import Pagination from "../../common/Pagination/Pagination";
-import AdminCategoryApi from "../../../api/administrator/adminCategoryApi";
+import AdminCategoryApi from "../../../api/administrator/plans/adminCategoryApi";
 
 /**
  * MyPlanTable 컴포넌트 제작
