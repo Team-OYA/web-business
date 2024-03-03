@@ -1,10 +1,4 @@
-import GetTokenFromLocalStorage from "./Common/token";
-import axios from "axios";
-
-const Token = GetTokenFromLocalStorage('user')
-if (Token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
-}
+import userInstance from "./userBaseApi";
 
 /**
  * @since 2024.03.01
@@ -19,7 +13,7 @@ const PopupApi = {
      * @author 이상민
      */
     findByPlanId: async (planId = 0) => {
-        return await axios.get(`/api/v1/plans/${planId}/popup`)
+        return await userInstance.get(`/plans/${planId}/popup`)
     },
 
     /**
@@ -32,7 +26,7 @@ const PopupApi = {
         console.log(popupData)
         const formData = new FormData();
         formData.append('data', new Blob([JSON.stringify(popupData)], { type: 'application/json' }));
-        const response = await axios.post(`/api/v1/popups`, formData);
+        const response = await userInstance.post(`/popups`, formData);
         return response.data;
     },
 }

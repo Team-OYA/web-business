@@ -69,12 +69,12 @@ const Plan = () => {
 
             console.log(popupDataToSave)
 
-            // const result = await PopupApi.savePopup(popupDataToSave);
-            // if (result.data.message) {
-            //     alert(result.data.message);
-            // }
-            // const response = await PopupApi.findByPlanId(planId);
-            // setPopupData(response.data.data);
+            const result = await PopupApi.savePopup(popupDataToSave);
+            if (result.data.message) {
+                alert(result.data.message);
+            }
+            const response = await PopupApi.findByPlanId(planId);
+            setPopupData(response.data.data);
         } catch (error) {
             console.error("로그인 오류:", error);
         }
@@ -156,11 +156,7 @@ const PopupExtraDetail = ({popupData}) => {
         <>
             <InputText title="작성일" value={popupData.createdDate}/>
             <TwoInput
-                firstInput={<InputText title="수정 상태" value={popupData.modifiedDate || "신청 전"}/>}
-                secondInput={<InputText title="철회 상태" value={popupData.withdrawalStatus || "신청 전"}/>}
-            />
-            <TwoInput
-                firstInput={<InputText title="광고 금액" value={popupData.amount}/>}
+                firstInput={<InputText title="광고 금액" value={popupData.amount || '신청 전'}/>}
                 secondInput={<InputText title="조회수" value={popupData.popupView}/>}
             />
         </>
