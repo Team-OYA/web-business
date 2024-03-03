@@ -25,6 +25,7 @@ const Ad = () => {
     const [mainImageFile, setMainImageFile] = useState(null)
     const [isOpen, setOpen] = useState(false)
     const [posts, setPosts] = useState([])
+    const [postId, setPostId] = useState(null)
 
     const handleMainImageFileChange = (event) => {
         setMainImageFile(event.target.files[0])
@@ -54,7 +55,7 @@ const Ad = () => {
                                 {mainImage}
                             </>
                         }/>
-                    <SelectedAdPost posts={posts}/>
+                    <SelectedAdPost posts={posts} setPostId={setPostId}/>
                 </div>
                 <div className="flex-auto">
                     <ContentBox
@@ -71,7 +72,7 @@ const Ad = () => {
                             <>
                                 <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
                                 { isOpen && (
-                                    <TossPayModal postType={postType} price={price} file={mainImageFile}/>
+                                    <TossPayModal postId={postId} postType={postType} price={price} file={mainImageFile}/>
                                 )}
                             </>
                         }/>
@@ -98,6 +99,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
             data = response.data.data.popups.map(popup => {
                 const createdDate = popup.pulledDate.split(" ")[0];
                 return {
+                    id: popup.planId,
                     title: popup.title,
                     date: createdDate,
                 }
@@ -108,6 +110,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
             const response = await CommunityApi.getMyCommunities(0, 5)
             data = response.data.data.communityDetailResponseList.map(community => {
                 return {
+                    id: community.communityId,
                     title: community.title,
                     date: community.createdDate,
                 }

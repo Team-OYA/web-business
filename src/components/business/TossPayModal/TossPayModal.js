@@ -10,7 +10,7 @@ const customerKey = nanoid()
  * @since 2024.02.29
  * @author 김유빈
  */
-function TossPayModal({postType, price, file}) {
+function TossPayModal({postId, postType, price, file}) {
     const { data: paymentWidget } = usePaymentWidget(process.env.REACT_APP_TOSS_PAY_CLIENT_KEY, customerKey)
     const paymentMethodsWidgetRef = useRef(null)
 
@@ -38,7 +38,7 @@ function TossPayModal({postType, price, file}) {
     const confirmTossPay = async (orderId) => {
         const data = {
             orderId: orderId,
-            postId: 175,
+            postId: postId,
             postType: postType,
             amount: price
         }

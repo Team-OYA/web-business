@@ -6,12 +6,12 @@ import React from "react";
  * @since 2024.03.03
  * @author 김유빈
  */
-function SelectedAdPost({posts}) {
+function SelectedAdPost({posts, setPostId}) {
     return (
         <>
             <ContentBox
                 title="게시글 선택"
-                content={<CheckedPostTable posts={posts}/>}/>
+                content={<CheckedPostTable posts={posts} setPostId={setPostId}/>}/>
         </>
     )
 }
