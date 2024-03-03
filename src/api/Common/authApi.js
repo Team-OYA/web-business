@@ -1,4 +1,4 @@
-import axios from "axios";
+import userInstance from "../userBaseApi";
 
 /**
  * @since 2024.03.01
@@ -13,7 +13,7 @@ const AuthApi = {
      */
     login: async (email, password) => {
         try {
-            return await axios.post('/api/v1/login', {
+            return await userInstance.post('/login', {
                 email: email,
                 password: password,
             });
