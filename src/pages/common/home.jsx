@@ -22,8 +22,8 @@ const Home = () => {
                                 현대에서 진행하는 팝업스토어를 관리해주는 플랫폼
                             </p>
                             <div className="flex flex-col items-center justify-center md-8">
-                                <OutlineCircleDisabledButton text="사업체 페이지"/>
-                                <OutlineCircleDisabledButton text="관리자 페이지"/>
+                                <OutlineCircleDisabledButton text = "관리자 페이지" herf="/login/admin" info="관리자 페이지에서 유저 관리를 진행해 보세요."/>
+                                <OutlineCircleDisabledButton text = "사업체 페이지" herf="/login/business" info="사업체 페이지에서 사업계획서 및 팝업 관리를 진행해 보세요."/>
                             </div>
                         </div>
                     </div>

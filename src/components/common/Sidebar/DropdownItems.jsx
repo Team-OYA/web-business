@@ -6,7 +6,7 @@ import React, { useState } from "react";
  * @since 2024.02.25
  * @author 이상민
  */
-const DropdownItem = ({ name, itemList }) => {
+const DropdownItem = ({ name, itemList, isActive }) => {
     const [dropDownState, setDropDownState] = useState(false);
     const clickDropDown = () => {
         setDropDownState(!dropDownState);
@@ -15,17 +15,17 @@ const DropdownItem = ({ name, itemList }) => {
         <li>
             <button
                 type="button"
-                className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                className="flex items-center w-full p-3 text-base text-gray-text-color-700 transition duration-75 group hover:bg-light-gray-50 dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example"
                 data-collapse-toggle="dropdown-example"
                 id="dropdownBottomButton"
                 onClick={clickDropDown}
             >
-                <span className="flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">
+                <span className="text-sm flex-1 text-left ms-3 rtl:text-right whitespace-nowrap">
                     {name}
                 </span>
                 <svg
-                    className={`w-3 h-3 ${dropDownState ? 'rotate-180' : ''}`}
+                    className={`w-3 h-3 mr-2 ${dropDownState ? 'rotate-180' : ''}`}
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -43,14 +43,14 @@ const DropdownItem = ({ name, itemList }) => {
 
             <ul
                 id="dropdown-example"
-                className={`transition-all duration-300 ease-in-out ${dropDownState ? 'max-h-40' : 'max-h-0'} overflow-hidden`}
+                className={`text-gray-text-color-700 text-sm transition-all duration-300 ease-in-out ${dropDownState ? 'max-h-40' : 'max-h-0'} overflow-hidden`}
                 aria-labelledby="dropdownBottomButton"
             >
                 {itemList.map((item, index) => (
                     <li key={index}>
                         <a
                             href={item[1]}
-                            className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            className="flex items-center w-full p-3 text-gray-text-color-700 transition duration-75 pl-11 group hover:bg-light-gray-50 dark:text-white dark:hover:bg-gray-700"
                         >
                             {item[0]}
                         </a>

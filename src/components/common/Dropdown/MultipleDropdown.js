@@ -6,15 +6,21 @@ import {useState} from "react";
  * @since 2024.02.25
  * @author 김유빈
  */
-function MultipleDropdown({title, data}) {
+function MultipleDropdown({title, data, setFirst, setSecond}) {
     const [selectedFirstItem, setSelectedFirstItem] = useState(null)
     const [selectedSecondItem, setSelectedSecondItem] = useState(null)
 
-    const handleSelectedFirstItem = (item) => {
+    const handleSelectedFirstItem = (item, code) => {
         setSelectedFirstItem(item)
+        if (setFirst) {
+            setFirst(code)
+        }
     };
     const handleSelectedSecondItem = (item) => {
         setSelectedSecondItem(item)
+        if (setSecond) {
+            setSecond(item)
+        }
     };
 
     return (
@@ -31,7 +37,7 @@ function MultipleDropdown({title, data}) {
                                 <button
                                     className="block px-4 py-2 w-full text-left"
                                     style={{backgroundColor: selectedFirstItem === row.data ? "#F8F8F8" : "white"}}
-                                    onClick={() => handleSelectedFirstItem(row.data)}>
+                                    onClick={() => handleSelectedFirstItem(row.data, row.code)}>
                                     {row.description}
                                 </button>
                             </li>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import Table from "../../components/common/Table/Table";
-import CommunityApi from "../../api/communityApi";
 import Pagination from "../../components/common/Pagination/Pagination";
 import ContentBox from "../../components/common/ContentBox/ContentBox";
+import AdminCommunityApi from "../../api/administrator/adminCommunityApi";
 
 /**
  * Community 페이지 생성
@@ -22,7 +22,7 @@ const Community = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await CommunityApi.getCommunities(page - 1, limit);
+                const response = await AdminCommunityApi.getCommunities(page - 1, limit);
 
                 const mappedData = response.data.data.communityDetailResponseList.map((community, index) => {
                     const communityType =
@@ -31,6 +31,7 @@ const Community = () => {
                     // 페이징 처리를 고려한 순번 계산
                     const sequenceNumber = index + 1 + (page - 1) * limit;
                     return {
+                        pkId: community.communityId || "-",
                         sequenceNumber,
                         categoryDescription: community.categoryDescription ? community.categoryDescription : "-",
                         nickname: community.nickname ? community.nickname : "-",
