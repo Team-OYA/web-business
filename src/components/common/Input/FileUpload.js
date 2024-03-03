@@ -20,7 +20,8 @@ function FileUpload(props) {
                        file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition
                        file:duration-150 file:ease-in-out file:[border-inline-end-width:1px]
                        file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200"
-                       placeholder={props.placeholder}/>
+                       placeholder={props.placeholder}
+                       onChange={props.onChange}/>
             </div>
         </>
     )

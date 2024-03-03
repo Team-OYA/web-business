@@ -37,11 +37,12 @@ const PlanApi = {
      * @since 2024.02.27
      * @author 김유빈
      */
-    save: async (data) => {
+    save: async (data, file = null) => {
         const formData = new FormData()
-        formData.append("data",  new Blob([JSON.stringify(data)], {
+        formData.append("data",  new Blob([JSON.stringify(data)]), {
             type: "application/json"
-        }))
+        })
+        formData.append("file", file)
         return await axios.post(`/api/v1/plans`, formData, {
             "Content-Type": `multipart/form-data`,
         })
