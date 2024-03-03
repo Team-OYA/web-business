@@ -1,6 +1,6 @@
 import axios from "axios";
-import Token from "./Common/token";
-import userInstance from "./userBaseApi";
+import Token from "../../Common/token";
+import userInstance from "../../userBaseApi";
 
 if (Token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
@@ -11,16 +11,6 @@ if (Token) {
  * @author 김유빈
  */
 const PaymentApi = {
-
-    /**
-     * 구매자 정보 조회
-     *
-     * @since 2024.03.02
-     * @author 김유빈
-     */
-    getBuyer: async () => {
-        return await userInstance.get(`/ad/users`)
-    },
 
     /**
      * 토스페이 결제 승인 요청

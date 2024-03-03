@@ -1,17 +1,10 @@
-import GetTokenFromLocalStorage from "./Common/token";
-import axios from "axios";
-import userInstance from "./userBaseApi";
-
-const Token = GetTokenFromLocalStorage('user')
-if (Token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
-}
+import userInstance from "../../userBaseApi";
 
 /**
  * @since 2024.03.03
  * @author 김유빈
  */
-const CommunityApi = {
+const MyCommunityApi = {
 
     /**
      * 나의 커뮤니티 게시글 리스트 조회
@@ -24,4 +17,4 @@ const CommunityApi = {
     },
 }
 
-export default CommunityApi;
+export default MyCommunityApi;

@@ -1,6 +1,5 @@
 import GetTokenFromLocalStorage from "./Common/token";
 import axios from "axios";
-import userInstance from "./userBaseApi";
 
 const Token = GetTokenFromLocalStorage('user')
 if (Token) {
@@ -35,16 +34,6 @@ const PopupApi = {
         formData.append('data', new Blob([JSON.stringify(popupData)], { type: 'application/json' }));
         const response = await axios.post(`/api/v1/popups`, formData);
         return response.data;
-    },
-
-    /**
-     * 나의 팝업스토어 게시글 리스트 조회
-     *
-     * @since 2024.03.03
-     * @author 김유빈
-     */
-    getMyPopups: async (pageNo = 0, amount = 5) => {
-        return await userInstance.get(`/popups?sort=me&pageNo=${pageNo}&amount=${amount}`)
     },
 }
 

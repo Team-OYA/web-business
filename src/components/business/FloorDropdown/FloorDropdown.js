@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import PlanApi from "../../../api/planApi";
 import MultipleDropdown from "../../common/Dropdown/MultipleDropdown";
+import DepartmentsApi from "../../../api/business/createPlan/departmentsApi";
 
 /**
  * FloorDropdown 컴포넌트 제작
@@ -13,7 +13,7 @@ function FloorDropdown() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await PlanApi.getFloors()
+                const response = await DepartmentsApi.getFloors()
                 const data = response.data.data.categories.map(category => {
                     const code = category.code
                     const description = category.description

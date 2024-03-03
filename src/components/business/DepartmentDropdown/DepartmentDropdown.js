@@ -1,6 +1,6 @@
 import MultipleDropdown from "../../common/Dropdown/MultipleDropdown";
 import {useEffect, useState} from "react";
-import PlanApi from "../../../api/planApi";
+import DepartmentsApi from "../../../api/business/createPlan/departmentsApi";
 
 /**
  * DepartmentDropdown 컴포넌트 제작
@@ -13,7 +13,7 @@ function DepartmentDropdown() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await PlanApi.getDepartments()
+                const response = await DepartmentsApi.getDepartments()
                 const data = response.data.data.departments.map(department => {
                     const code = department.code
                     const description = department.description

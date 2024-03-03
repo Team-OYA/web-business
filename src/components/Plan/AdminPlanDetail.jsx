@@ -1,10 +1,7 @@
 import {useEffect, useState} from "react";
-import PlanApi from "../../api/planApi";
 import TwoInput from "../common/Input/TwoInput";
 import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
-import FileUpload from "../common/Input/FileUpload";
-import Button from "../common/Button/Button";
 import AdminPlanApi from "../../api/administrator/adminPlanApi";
 
 /**

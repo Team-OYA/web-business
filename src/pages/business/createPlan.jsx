@@ -6,7 +6,7 @@ import InputText from "../../components/common/Input/InputText";
 import DepartmentDropdown from "../../components/business/DepartmentDropdown/DepartmentDropdown";
 import FloorDropdown from "../../components/business/FloorDropdown/FloorDropdown";
 import Button from "../../components/common/Button/Button";
-import PlanApi from "../../api/planApi";
+import PlanApi from "../../api/business/createPlan/planApi";
 import {useRef, useState} from "react";
 
 /**
@@ -17,7 +17,14 @@ import {useRef, useState} from "react";
  */
 const CreatePlan = () => {
     const [phoneNumber, setPhoneNumber] = useState('1')
+    const [file, setFile] = useState(null)
+
     const phoneNumberRef = useRef('2')
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    }
+
     const handleButtonClick = async () => {
         try {
             if (phoneNumberRef !== null) {
@@ -42,7 +49,8 @@ const CreatePlan = () => {
         } catch (error) {
             console.error("저장 중 에러 발생: ", error);
         }
-    };
+    }
+
     return (
         <div className="createPlan">
             <ContentBox

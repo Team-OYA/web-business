@@ -4,13 +4,12 @@ import RadioGroup from "../../components/common/Radio/RadioGroup";
 import PaymentButton from "../../components/common/Button/PaymentButton";
 import TossImage from "../../assets/icon/toss.png";
 import React, {useState} from "react";
-import Button from "../../components/common/Button/Button";
 import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
 import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerContentBox";
 import SelectedAdPost from "../../components/business/SelectedAdPost/SelectedAdPost";
-import PopupApi from "../../api/popupApi";
-import CommunityApi from "../../api/communityApi";
+import MyCommunityApi from "../../api/business/createAd/myCommunityApi";
 import FileUpload from "../../components/common/Input/FileUpload";
+import MyPopupApi from "../../api/business/createAd/myPopupApi";
 
 /**
  * Ad 페이지 제작
@@ -95,7 +94,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
         let mainImage = <></>
         if (value === "popup") {
             price = 1_000_000
-            const response = await PopupApi.getMyPopups(0, 5)
+            const response = await MyPopupApi.getMyPopups(0, 5)
             data = response.data.data.popups.map(popup => {
                 const createdDate = popup.pulledDate.split(" ")[0];
                 return {
@@ -107,7 +106,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
             mainImage = AdMainImage(onChangeMainImageFile)
         } else if (value === "community") {
             price = 50_000
-            const response = await CommunityApi.getMyCommunities(0, 5)
+            const response = await MyCommunityApi.getMyCommunities(0, 5)
             data = response.data.data.communityDetailResponseList.map(community => {
                 return {
                     id: community.communityId,

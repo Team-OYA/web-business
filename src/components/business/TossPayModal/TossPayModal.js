@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk"
 import { nanoid } from "nanoid"
 import Button from "../../common/Button/Button";
-import PaymentApi from "../../../api/paymentApi";
+import PaymentApi from "../../../api/business/createAd/paymentApi";
 
 const customerKey = nanoid()
 

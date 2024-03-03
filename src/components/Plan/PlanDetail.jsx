@@ -1,10 +1,8 @@
 import {useEffect, useState} from "react";
-import PlanApi from "../../api/planApi";
 import TwoInput from "../common/Input/TwoInput";
 import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
-import FileUpload from "../common/Input/FileUpload";
-import Button from "../common/Button/Button";
+import MyPlanDetailApi from "../../api/business/planDetail/myPlanDetailApi";
 
 /**
  * PlanDetail 컴포넌트 생성
@@ -24,7 +22,7 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
     useEffect(() => {
         const fetchPlanData = async () => {
             try {
-                const response = await PlanApi.getPlan(planId);
+                const response = await MyPlanDetailApi.getPlan(planId);
                 console.log(response);
                 setPlanData(response.data.data);
 
