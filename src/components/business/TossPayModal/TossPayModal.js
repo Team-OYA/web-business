@@ -63,8 +63,8 @@ function TossPayModal({postType, price, file}) {
                                         customerName: "김토스",
                                         customerEmail: "customer123@gmail.com",
                                         customerMobilePhone: "01012341234",
-                                        successUrl: `http://localhost:8084/api/v1/payments/toss/success`,
-                                        failUrl: `http://localhost:8084/api/v1/payments/toss/fail`
+                                        successUrl: `${process.env.REACT_APP_BASE_URL}/payments/toss/success`,
+                                        failUrl: `${process.env.REACT_APP_BASE_URL}/payments/toss/fail`
                                     })
                                 } catch (error) {
                                     // todo: 에러 모달창 추가 (예. 필수 항목 동의 체크)

@@ -26,8 +26,10 @@ const Ad = () => {
     const [isOpen, setOpen] = useState(false)
     const [posts, setPosts] = useState([])
 
-    const handleAdCategoryChange = convertAboutPost(setPrice, setPostType, setMainImage, setPosts)
-    const handleMainImageFileChange = getHandleMainImageFileChange(setMainImageFile)
+    const handleMainImageFileChange = (event) => {
+        setMainImageFile(event.target.files[0])
+    }
+    const handleAdCategoryChange = convertAboutPost(setPrice, setPostType, setMainImage, setPosts, handleMainImageFileChange)
     const handleClickTossPaymentButton = () => {
         setOpen(true)
     }
@@ -49,13 +51,19 @@ const Ad = () => {
                                         ]
                                     }
                                     onRadioChange={handleAdCategoryChange}/>
-                                <InputText title="광고 금액" value={`${price} 원`} disabled="true"/>
                                 {mainImage}
                             </>
                         }/>
                     <SelectedAdPost posts={posts}/>
                 </div>
                 <div className="flex-auto">
+                    <ContentBox
+                        title="최종 결제금액"
+                        content={
+                            <>
+                                <InputText title="총 결제금액" value={`${price} 원`} disabled="true"/>
+                            </>
+                        }/>
                     <BuyerContentBox/>
                     <ContentBox
                         title="결제 방법"
@@ -65,14 +73,6 @@ const Ad = () => {
                                 { isOpen && (
                                     <TossPayModal postType={postType} price={price} file={mainImageFile}/>
                                 )}
-                            </>
-                        }/>
-                    <ContentBox
-                        title="최종 결제금액"
-                        content={
-                            <>
-                                <InputText title="총 결제금액" value={`${price} 원`} disabled="true"/>
-                                <Button text="결제하기"/>
                             </>
                         }/>
                 </div>
@@ -87,7 +87,7 @@ const Ad = () => {
  * @since 2024.03.03
  * @author 김유빈
  */
-function convertAboutPost(setPrice, setPostType, setMainImage, setPosts) {
+function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChangeMainImageFile) {
     return async (value) => {
         let price = 0
         let data = null
@@ -102,7 +102,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts) {
                     date: createdDate,
                 }
             })
-            mainImage = AdMainImage()
+            mainImage = AdMainImage(onChangeMainImageFile)
         } else if (value === "community") {
             price = 50_000
             const response = await CommunityApi.getMyCommunities(0, 5)
@@ -120,14 +120,8 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts) {
     };
 }
 
-function AdMainImage() {
-    return <FileUpload title="메인 이미지" onChange={getHandleMainImageFileChange}/>
-}
-
-function getHandleMainImageFileChange(setMainImageFile) {
-    return (event) => {
-        setMainImageFile(event.target.files[0])
-    }
+function AdMainImage(onChange) {
+    return <FileUpload title="메인 이미지" onChange={onChange}/>
 }
 
 export default Ad;
