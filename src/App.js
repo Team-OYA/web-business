@@ -21,6 +21,8 @@ import BusinessPlanDetail from "./pages/business/plan";
 import AdminPlainDetail from "./pages/administrator/adminPlanDetail";
 import AdminChat from "./pages/administrator/adminChat";
 import Chat from "./pages/business/chat";
+import BusinessChatRoom from "./pages/business/businessChatRoom";
+import AdminChatRoom from "./pages/administrator/adminChatRoom";
 
 /**
  * @since 2024.02.25
