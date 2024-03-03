@@ -8,13 +8,18 @@ import EntranceStatusesApi from "../../../api/business/plans/entranceStatusesApi
  * @since 2024.02.27
  * @author 김유빈
  */
-function EntranceStatusDropdown() {
+function EntranceStatusDropdown({setEntranceStatus}) {
     const [entranceStatuses, setEntranceStatuses] = useState(["전체 조회"])
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await EntranceStatusesApi.getEntranceStatuses()
-                const data = response.data.data.entranceStatus.map(status => status.description)
+                const data = response.data.data.entranceStatus.map(status => {
+                    return {
+                        code: status.name,
+                        description: status.description
+                    }
+                })
                 setEntranceStatuses(data)
             } catch (error) {
                 console.log("사업계획서 진행 단계 데이터를 가져오는 중 오류 발생: ", error)
@@ -23,7 +28,12 @@ function EntranceStatusDropdown() {
         fetchData()
     }, [])
     return (
-        <Dropdown dropdownId="progressButton" buttonId="progresses" title="진행 단계" categories={entranceStatuses}/>
+        <Dropdown
+            dropdownId="progressButton"
+            buttonId="progresses"
+            title="진행 단계"
+            categories={entranceStatuses}
+            onSelect={setEntranceStatus}/>
     )
 }
 

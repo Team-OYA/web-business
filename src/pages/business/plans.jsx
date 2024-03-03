@@ -3,6 +3,8 @@ import CategoryDropdown from "../../components/business/CategoryDropdown/Categor
 import EntranceStatusDropdown from "../../components/business/EntranceStatusDropdown/EntranceStatusDropdown";
 import MyPlanTable from "../../components/business/MyPlanTable/MyPlanTable";
 import Button from "../../components/common/Button/Button";
+import {useEffect, useState} from "react";
+import MyPlansApi from "../../api/business/plans/myPlansApi";
 
 /**
  * Plans 페이지 제작
@@ -11,24 +13,74 @@ import Button from "../../components/common/Button/Button";
  * @author 김유빈
  */
 function Plans() {
-    // todo: 카테고리 변경 시 변경한 상태 저장하여 API 재호출 및 리로드
-    //  - dropdown 에 나타나있는 문구(카테고리) 를 선택한 카테고리 description 으로 변경
+    const [category, setCategory] = useState("")
+    const [entranceStatus, setEntranceStatus] = useState("")
+    const [page, setPage] = useState(0)
+    const [limit, setLimit] = useState(10)
+    const [total, setTotal] = useState(0)
+    const [plans, setPlans] = useState([])
 
-    // todo: 사업계획서 진행 단계 변경 시 변경한 상태 저장하여 API 재호출 및 리로드
-    //  - dropdown 에 나타나있는 문구(진행 단계) 를 선택한 진행 단계 description 으로 변경
+    useEffect(() => {
+        const fetchData = getPlans(category, entranceStatus, page, limit, setTotal, setPlans)
+        fetchData()
+    }, [])
+
+    // todo: 검색 컴포넌트 새로 생성
     return (
         <div className="dashBoard">
             <ContentBox
                 title="나의 사업계획서 목록"
                 content={
                     <>
-                        <CategoryDropdown/>
-                        <EntranceStatusDropdown/>
-                        <MyPlanTable/>
+                        <CategoryDropdown setCategory={setCategory}/>
+                        <EntranceStatusDropdown setEntranceStatus={setEntranceStatus}/>
+                        <Button
+                            text="검색"
+                            onClick={getPlans(category, entranceStatus, page, limit, setTotal, setPlans)}/>
+                        <MyPlanTable plans={plans} page={page} limit={limit} total={total} setPage={setPage}/>
                     </>
                 }/>
         </div>
     )
+}
+
+function getPlans(category, entranceStatus, page, limit, setTotal, setPlans) {
+    return async () => {
+        try {
+            const response = await MyPlansApi.getMyPlans(category, entranceStatus, page, limit)
+            const data = response.data.data.plans.map((plan, index) => {
+                const sequenceNumber = index + 1 + page * limit
+                const {
+                    id,
+                    office,
+                    floor,
+                    openDate,
+                    closeDate,
+                    entranceStatus,
+                    category,
+                    writtenPopup,
+                    createdDate
+                } = plan
+                const officeInfo = `${office} ${floor}`
+                const dateRange = `${openDate} ~ ${closeDate}`
+                const writtenStatus = writtenPopup ? '작성' : '미작성'
+                return {
+                    pkId: id,
+                    id: sequenceNumber,
+                    office: officeInfo,
+                    openDate: dateRange,
+                    entranceStatus,
+                    category,
+                    writtenPopup: writtenStatus,
+                    createdDate
+                }
+            })
+            setTotal(response.data.data.total)
+            setPlans(data.map((plan) => [...Object.values(plan)]),)
+        } catch (error) {
+            console.log("나의 사업계획서 목록 데이터를 가져오는 중 오류 발생: ", error)
+        }
+    };
 }
 
 export default Plans;
