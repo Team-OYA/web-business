@@ -26,7 +26,7 @@ const Sidebar = ({ color, sideBarColor, sideBarList, content, homeUrl }) => {
             <CustomNavibar color={color} homeUrl={homeUrl}/>
             <aside
                 id="sidebar-multi-level-sidebar"
-                className={`fixed top-2 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+                className={`fixed top-2 left-0 z-40 w-60 h-screen pt-10 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
                 aria-label="Sidebar"
             >
                 <div className={`h-full py-4 overflow-y-auto bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}>
@@ -42,7 +42,7 @@ const Sidebar = ({ color, sideBarColor, sideBarList, content, homeUrl }) => {
                     <ul className="pt-2 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                         <li>
                             <a href="/"
-                               className="flex items-center p-3 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+                               className="flex items-center p-3 text-gray-text-color-700 text-sm transition duration-75 rounded-lg hover:bg-light-gray-50 dark:hover:bg-gray-700 dark:text-white group"
                                onClick={() => handleLogout()}>
                                 <span className="ms-3">로그아웃</span>
                             </a>
