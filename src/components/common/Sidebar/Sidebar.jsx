@@ -4,7 +4,7 @@ import CustomNavibar from "../Navibar/CustomNavibar";
 import SidebarItem from "./SidebarItems";
 import DropdownItem from "./DropdownItems";
 
-const Sidebar = ({ color, sideBarColor, sideBarList, content }) => {
+const Sidebar = ({ color, sideBarColor, sideBarList, content, homeUrl }) => {
     const [activeItem, setActiveItem] = useState(null);
 
     const handleItemClick = (item) => {
@@ -23,7 +23,7 @@ const Sidebar = ({ color, sideBarColor, sideBarList, content }) => {
     }
     return (
         <>
-            <CustomNavibar color={color}/>
+            <CustomNavibar color={color} homeUrl={homeUrl}/>
             <aside
                 id="sidebar-multi-level-sidebar"
                 className={`fixed top-2 left-0 z-40 w-64 h-screen pt-10 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}

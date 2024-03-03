@@ -42,40 +42,49 @@ function App() {
         ['사업계획서 관리', '/admin/plan'], ['커뮤니티 관리', '/admin/community'], ['문의 관리', '/admin/chat']
     ];
 
+    const businessHomeUrl = "/dashboard"
+    const adminHomeUrl = "/admin/plan"
+
     return (
         <BrowserRouter>
             <Main>
                 <Routes>
                     <Route path='/' element={<Home/>}/>
-                    <Route path='/login/business' element={<Login />} />
-                    <Route path='/login/admin' element={<Login />} />
+                    <Route path='/login/business' element={<Login businessHomeUrl={businessHomeUrl} adminHomeUrl={adminHomeUrl} />} />
+                    <Route path='/login/admin' element={<Login businessHomeUrl={businessHomeUrl} adminHomeUrl={adminHomeUrl} />} />
                     <Route path='/signup' element={<Signup />} />
 
-                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/dashboard", DashBoard)}
-                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plans", Plans)}
-                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plans/:planId", BusinessPlanDetail)}
-                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plan/create", CreatePlan)}
-                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/ad/create", Ad)}
-                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/chat", Chat)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, businessHomeUrl, "/dashboard", DashBoard)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, businessHomeUrl, "/plans", Plans)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, businessHomeUrl, "/plans/:planId", BusinessPlanDetail)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, businessHomeUrl, "/plan/create", CreatePlan)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, businessHomeUrl, "/ad/create", Ad)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, businessHomeUrl, "/chat", Chat)}
 
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/users', User)}
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/business', Business)}
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan', Plan)}
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan/:planId', AdminPlainDetail)}
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/community', Community)}
-                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/chat', AdminChat)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, adminHomeUrl, '/admin/users', User)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, adminHomeUrl, '/admin/business', Business)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, adminHomeUrl, '/admin/plan', Plan)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, adminHomeUrl, '/admin/plan/:planId', AdminPlainDetail)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, adminHomeUrl, '/admin/community', Community)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, adminHomeUrl, '/admin/chat', AdminChat)}
                 </Routes>
             </Main>
         </BrowserRouter>
     );
 }
 
-const generateRoute = (color, sideBarColor, sideBarList, path, Component) => (
+const generateRoute = (color, sideBarColor, sideBarList, homeUrl, path, Component) => (
     <Route
         key={path}
         path={path}
         element={[
-            <Sidebar key="sidebar" color={color} sideBarColor={sideBarColor} sideBarList={sideBarList} content={<Component />} />
+            <Sidebar
+                key="sidebar"
+                color={color}
+                sideBarColor={sideBarColor}
+                sideBarList={sideBarList}
+                content={<Component />}
+                homeUrl={homeUrl}/>
         ]}
     />
 );

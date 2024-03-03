@@ -12,7 +12,7 @@ import AuthApi from "../../api/Common/authApi";
  * @since 2024.02.25
  * @author 김유빈
  */
-const Login = () => {
+const Login = ({businessHomeUrl, adminHomeUrl}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -34,10 +34,10 @@ const Login = () => {
             const token = response.data.data.accessToken;
             if (location.state?.buttonText === '관리자 페이지') {
                 localStorage.setItem('adminToken', token);
-                navigate('/admin/users');
+                navigate(adminHomeUrl);
             } else if (location.state?.buttonText === '사업체 페이지') {
                 localStorage.setItem('userToken', token);
-                navigate('/dashboard');
+                navigate(businessHomeUrl);
             }
         } catch (error) {
             console.error('로그인 오류:', error);
