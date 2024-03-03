@@ -1,11 +1,4 @@
-import axios from "axios";
-
-import GetTokenFromLocalStorage from "../Common/token";
-
-const Token = GetTokenFromLocalStorage('admin')
-if (Token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
-}
+import adminInstance from "../adminBaseApi";
 
 /**
  * @since 2024.02.25
@@ -22,7 +15,7 @@ const AdminCommunityApi = {
      * @author 이상민
      */
     getCommunities: async (pageNo = 0, amount = 10) => {
-        return await axios.get(`/api/v1/communities?type=all&pageNo=${pageNo}&amount=${amount}`);
+        return await adminInstance.get(`/communities?type=all&pageNo=${pageNo}&amount=${amount}`);
     },
 };
 

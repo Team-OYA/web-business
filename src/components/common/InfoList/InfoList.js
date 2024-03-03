@@ -8,7 +8,7 @@ export default InfoList;
  */
 function InfoList(props) {
     return (
-        <div className="info-list flex w-68">
+        <div className="info-list flex w-68 text-gray-text-color-700 text-sm">
             <div className="image p-4 h-fit bg-gray-text-color-150 rounded-lg ">
                 <img src={props.image} alt="popup-status" />
             </div>

@@ -12,7 +12,7 @@ import AuthApi from "../../api/Common/authApi";
  * @since 2024.02.25
  * @author 김유빈
  */
-const Login = () => {
+const Login = ({businessHomeUrl, adminHomeUrl}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -34,13 +34,25 @@ const Login = () => {
             const token = response.data.data.accessToken;
             if (location.state?.buttonText === '관리자 페이지') {
                 localStorage.setItem('adminToken', token);
-                navigate('/admin/users');
+                navigate(adminHomeUrl);
             } else if (location.state?.buttonText === '사업체 페이지') {
                 localStorage.setItem('userToken', token);
-                navigate('/dashboard');
+                navigate(businessHomeUrl);
             }
         } catch (error) {
             console.error('로그인 오류:', error);
+        }
+    };
+
+    /**
+     * 엔터 누를 경우 로그인 진행
+     *
+     * @since 2024.03.03
+     * @author 김유빈
+     */
+    const handleEnterKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleLogin();
         }
     };
 
@@ -63,8 +75,17 @@ const Login = () => {
                             <p className="text-center text-gray-text-color-600">
                             </p>
                             <form className="space-y-4 md:space-y-6" action="#">
-                                <InputText type="email"  value={email} onChange={(e) => setEmail(e.target.value)} placeholder="아이디"/>
-                                <InputText type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="비밀번호"/>
+                                <InputText
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="아이디"/>
+                                <InputText
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    onKeyPress={handleEnterKeyPress}
+                                    placeholder="비밀번호"/>
                                 <Button onClick={handleLogin} text="로그인"/>
                             </form>
                         </div>
