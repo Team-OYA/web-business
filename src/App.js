@@ -21,6 +21,8 @@ import BusinessPlanDetail from "./pages/business/plan";
 import AdminPlainDetail from "./pages/administrator/adminPlanDetail";
 import AdminChat from "./pages/administrator/adminChat";
 import Chat from "./pages/business/chat";
+import BusinessChatRoom from "./pages/business/businessChatRoom";
+import AdminChatRoom from "./pages/administrator/adminChatRoom";
 
 /**
  * @since 2024.02.25
@@ -57,6 +59,7 @@ function App() {
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/plan/create", CreatePlan)}
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/ad/create", Ad)}
                     {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/chat", Chat)}
+                    {generateRoute(businessColor, businessSideBarColor, businessSideBarList, "/chat/:roomId", BusinessChatRoom)}
 
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/users', User)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/business', Business)}
@@ -64,6 +67,7 @@ function App() {
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/plan/:planId', AdminPlainDetail)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/community', Community)}
                     {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/chat', AdminChat)}
+                    {generateRoute(adminColor, adminSideBarColor, adminSideBarList, '/admin/chat/:roomId', AdminChatRoom)}
                 </Routes>
             </Main>
         </BrowserRouter>

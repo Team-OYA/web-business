@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import GetTokenFromLocalStorage from "../Common/token";
+import adminInstance from "../adminBaseApi";
 
 const Token = GetTokenFromLocalStorage('admin')
 if (Token) {
@@ -19,6 +20,7 @@ const AdminUserApi = {
      * @author 이상민
      */
     getUsers: async (pageNo = 0, amount = 10) => {
+        console.log(Token)
         return await axios.get(`/api/v1/admin/users?type=user&pageNo=${pageNo}&amount=${amount}`);
     },
     /**
@@ -28,6 +30,7 @@ const AdminUserApi = {
      * @author 이상민
      */
     getBusiness: async (pageNo = 0, amount = 10) => {
+        console.log(Token)
         return await axios.get(`/api/v1/admin/users?type=business&pageNo=${pageNo}&amount=${amount}`);
     },
 };
