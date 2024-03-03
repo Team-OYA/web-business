@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk"
 import { nanoid } from "nanoid"
 import Button from "../../common/Button/Button";
-import PaymentApi from "../../../api/paymentApi";
+import PaymentApi from "../../../api/business/createAd/paymentApi";
 
 const customerKey = nanoid()
 
@@ -10,7 +10,7 @@ const customerKey = nanoid()
  * @since 2024.02.29
  * @author 김유빈
  */
-function TossPayModal({postType, price, file}) {
+function TossPayModal({postId, postType, price, file}) {
     const { data: paymentWidget } = usePaymentWidget(process.env.REACT_APP_TOSS_PAY_CLIENT_KEY, customerKey)
     const paymentMethodsWidgetRef = useRef(null)
 
@@ -38,7 +38,7 @@ function TossPayModal({postType, price, file}) {
     const confirmTossPay = async (orderId) => {
         const data = {
             orderId: orderId,
-            postId: 175,
+            postId: postId,
             postType: postType,
             amount: price
         }
@@ -63,8 +63,8 @@ function TossPayModal({postType, price, file}) {
                                         customerName: "김토스",
                                         customerEmail: "customer123@gmail.com",
                                         customerMobilePhone: "01012341234",
-                                        successUrl: `http://localhost:8084/api/v1/payments/toss/success`,
-                                        failUrl: `http://localhost:8084/api/v1/payments/toss/fail`
+                                        successUrl: `${process.env.REACT_APP_BASE_URL}/payments/toss/success`,
+                                        failUrl: `${process.env.REACT_APP_BASE_URL}/payments/toss/fail`
                                     })
                                 } catch (error) {
                                     // todo: 에러 모달창 추가 (예. 필수 항목 동의 체크)

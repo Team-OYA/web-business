@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import CategoryApi from "../../../api/categoryApi";
 import Dropdown from "../../common/Dropdown/Dropdown";
+import EntranceStatusesApi from "../../../api/business/plans/entranceStatusesApi";
 
 /**
  * EntranceStatusDropdown 컴포넌트 제작
@@ -13,7 +13,7 @@ function EntranceStatusDropdown() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await CategoryApi.getEntranceStatuses()
+                const response = await EntranceStatusesApi.getEntranceStatuses()
                 const data = response.data.data.entranceStatus.map(status => status.description)
                 setEntranceStatuses(data)
             } catch (error) {

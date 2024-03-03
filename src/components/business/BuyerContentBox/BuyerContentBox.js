@@ -1,7 +1,7 @@
 import InputText from "../../common/Input/InputText";
 import ContentBox from "../../common/ContentBox/ContentBox";
 import React, {useEffect, useState} from "react";
-import PaymentApi from "../../../api/paymentApi";
+import BuyerApi from "../../../api/business/createAd/buyerApi";
 
 /**
  * BuyerContentBox 컴포넌트 제작
@@ -14,7 +14,7 @@ function BuyerContentBox() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await PaymentApi.getBuyer()
+                const response = await BuyerApi.getBuyer()
                 const data = response.data.data
                 const buyer = {
                     id: data.id,

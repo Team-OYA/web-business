@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import CategoryApi from "../../../api/categoryApi";
 import Table from "../../common/Table/Table";
 import Pagination from "../../common/Pagination/Pagination";
+import MyPlansApi from "../../../api/business/plans/myPlansApi";
 
 /**
  * MyPlanTable 컴포넌트 제작
@@ -19,7 +19,7 @@ function MyPlanTable() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await CategoryApi.getMyPlans("", "", page, limit)
+                const response = await MyPlansApi.getMyPlans("", "", page, limit)
                 const data = response.data.data.plans.map((plan, index) => {
                     const sequenceNumber = index + 1 + page * limit
                     const { id, office, floor, openDate, closeDate, entranceStatus, category, writtenPopup, createdDate } = plan

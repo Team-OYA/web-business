@@ -8,7 +8,7 @@ import {useState} from "react";
  * @since 2024.02.26
  * @author 김유빈
  */
-function CheckedPostTable({posts}) {
+function CheckedPostTable({posts, setPostId}) {
     const [selectedPostIndexes, setSelectedPostIndexes] = useState([]);
     const handleCheckboxChange = (index) => {
         let updatedIndexes = [];
@@ -18,6 +18,7 @@ function CheckedPostTable({posts}) {
             updatedIndexes = [index];
         }
         setSelectedPostIndexes(updatedIndexes);
+        setPostId(index)
     };
 
     return (
@@ -32,8 +33,8 @@ function CheckedPostTable({posts}) {
                                 <td>
                                     <input
                                         type="checkbox"
-                                        checked={selectedPostIndexes.includes(index)}
-                                        onChange={() => handleCheckboxChange(index)}/>
+                                        checked={selectedPostIndexes.includes(row.id)}
+                                        onChange={() => handleCheckboxChange(row.id)}/>
                                 </td>
                                 <td className="px-6 py-4">
                                     {row.title}

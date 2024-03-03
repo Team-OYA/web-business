@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import CategoryApi from "../../../api/categoryApi";
+import CategoryApi from "../../../api/business/plans/categoryApi";
 import Dropdown from "../../common/Dropdown/Dropdown";
 
 /**

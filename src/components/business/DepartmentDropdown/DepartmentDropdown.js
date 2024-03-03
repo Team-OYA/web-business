@@ -1,6 +1,6 @@
 import MultipleDropdown from "../../common/Dropdown/MultipleDropdown";
 import {useEffect, useState} from "react";
-import PlanApi from "../../../api/planApi";
+import DepartmentsApi from "../../../api/business/createPlan/departmentsApi";
 
 /**
  * DepartmentDropdown 컴포넌트 제작
@@ -8,12 +8,12 @@ import PlanApi from "../../../api/planApi";
  * @since 2024.02.27
  * @author 김유빈
  */
-function DepartmentDropdown() {
+function DepartmentDropdown({setOffice}) {
     const [departments, setDepartments] = useState([])
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await PlanApi.getDepartments()
+                const response = await DepartmentsApi.getDepartments()
                 const data = response.data.data.departments.map(department => {
                     const code = department.code
                     const description = department.description
@@ -39,7 +39,7 @@ function DepartmentDropdown() {
 
     return (
         <>
-            <MultipleDropdown title="현대백화점 지점 선택" data={departments}/>
+            <MultipleDropdown title="현대백화점 지점 선택" data={departments} setSecond={setOffice}/>
         </>
     )
 }
