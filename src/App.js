@@ -29,10 +29,10 @@ import Chat from "./pages/business/chat";
 function App() {
 
     const businessColor = "bg-main-color-600 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
-    const businessSideBarColor = "bg-main-color-600 text-white dark:bg-blue-600";
+    const businessSideBarColor = "bg-main-color-600 dark:bg-blue-600";
 
     const adminColor = "bg-main-blue-600 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
-    const adminSideBarColor = "bg-main-blue-600 text-white dark:bg-blue-600";
+    const adminSideBarColor = "bg-main-blue-600 dark:bg-blue-600";
 
     const businessSideBarList = [
         ['대시보드', '/dashboard'], ['나의 사업계획서 목록', '/plans'], ['팝업 스토어 제안', '/plan/create'], ['광고 신청', '/ad/create'], ['1:1 채팅상담', '/chat']
