@@ -9,16 +9,16 @@ module.exports = function (app) {
     app.use(
         "/api/v1",
         createProxyMiddleware({
-            target: "http://localhost:8080",
+            target: "http://15.164.236.13:8080",
             changeOrigin: true,
         })
     );
 
     app.use(
-        "/api/v1",
+        "/ws",
         createProxyMiddleware({
-            target: `${process.env.REACT_APP_BASE_URL}`,
-            changeOrigin: true,
+            target: "http://15.164.236.13:8080",
+            ws: true,  
         })
     );
 };

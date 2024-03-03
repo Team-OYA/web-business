@@ -20,7 +20,7 @@ function AdminPlanTable({ entranceStatuses }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await AdminCategoryApi.getAllPlan("CG000003", "", page, limit)
+                const response = await AdminCategoryApi.getAllPlan("", "", page, limit)
                 const data = response.data.data.plans.map((plan, index) => {
                     const sequenceNumber = index + 1 + page * limit
                     const { id, office, floor, openDate, closeDate, entranceStatus, category, writtenPopup, createdDate } = plan
