@@ -1,6 +1,6 @@
 import React from "react";
 import ChatApi from "../../api/chatApi";
-import ChatPage from "../../components/common/Chat/ChatPage";
+import ChatList from "../../components/common/Chat/ChatList";
 
 /**
  * 채팅 페이지 제작
@@ -10,10 +10,11 @@ import ChatPage from "../../components/common/Chat/ChatPage";
  */
 const Chat = () => {
     return (
-        <ChatPage
-            api={ChatApi}
-            title="1:1 채팅상담 목록"
-        />
+        <ChatList api={ChatApi} url="/chat" role="user"/>
+        // <ChatPage
+        //     api={ChatApi}
+        //     title="1:1 채팅상담 목록"
+        // />
     );
 };
 
