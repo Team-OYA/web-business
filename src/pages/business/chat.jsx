@@ -11,10 +11,6 @@ import ChatList from "../../components/common/Chat/ChatList";
 const Chat = () => {
     return (
         <ChatList api={ChatApi} url="/chat" role="user"/>
-        // <ChatPage
-        //     api={ChatApi}
-        //     title="1:1 채팅상담 목록"
-        // />
     );
 };
 

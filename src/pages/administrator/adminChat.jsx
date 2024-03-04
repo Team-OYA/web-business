@@ -1,7 +1,5 @@
 import React from "react";
 import AdminChatApi from "../../api/administrator/adminChatApi";
-import ChatPage from "../../components/common/Chat/ChatPage";
-import ChatApi from "../../api/chatApi";
 import ChatList from "../../components/common/Chat/ChatList";
 
 /**
@@ -13,11 +11,6 @@ import ChatList from "../../components/common/Chat/ChatList";
 const AdminChat = () => {
     return (
         <ChatList api={AdminChatApi} url="/admin/chat" role="admin"/>
-
-        // <ChatPage
-        //     api={AdminChatApi}
-        //     title="1:1 채팅상담 목록"
-        // />
     );
 };
 

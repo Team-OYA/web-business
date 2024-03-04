@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './ChatApp.css';
-import ChatApi from "../../../api/chatApi";
 
 /**
  * 채팅 리스트 컴포넌트
@@ -39,7 +38,7 @@ const ChatList = ({api, url, role}) => {
         fetchData();
     }, [page, limit]);
 
-    const handleRowClick = (roomId) => {
+    const handleRowClick = (roomId, role) => {
         navigate(`${url}/${roomId}`);
     };
 
@@ -48,7 +47,7 @@ const ChatList = ({api, url, role}) => {
             <div className="content">
                 <h1>대화</h1>
                 {data && data.map((chatRoom, index) => (
-                    <div className="chat-room" key={index} onClick={() => handleRowClick(chatRoom[0])}>
+                    <div className="chat-room" key={index} onClick={() => handleRowClick(chatRoom[0], role)}>
                         <p>{chatRoom[0]} {chatRoom[2]} {chatRoom[3]}{' '}</p>
                         <br/>
                     </div>

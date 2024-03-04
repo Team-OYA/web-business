@@ -13,7 +13,7 @@ import OtherChatMessage from "./OtherChatMessage";
  * @since 2024.03.03
  * @author 이상민
  */
-const ChatRoom = ({role}) => {
+const WebSocketConnect = ({role}) => {
     const [stompClient, setStompClient] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
@@ -134,19 +134,20 @@ const ChatRoom = ({role}) => {
     };
 
     return (
-        <div className="max-w-screen-md mx-auto mt-10 p-4 border border-gray-300 rounded shadow bg-white">
+        <div className="h-dvh">
             <h2 className="text-2xl font-semibold mb-4">{chatRoomDetail.name}</h2>
             <div
                 id="messagesContainer"
                 ref={messagesContainerRef}
-                className="max-h-80 overflow-y-auto mb-4"
+                className="h-[420px] overflow-y-auto mb-4"
             >
                 <h3 className="text-lg font-semibold mb-2">Messages:</h3>
                 <ul>
                     {messages.map((message, index) => (
                         <li key={index}>
                             {message.checkedMe === true ? (
-                                <MeChatMessage nickname={message.senderNickname} time={message.sendingTime} text={message.message} />
+                                <MeChatMessage nickname={message.senderNickname} time={message.sendingTime}
+                                               text={message.message}/>
                             ) : (
                                 <OtherChatMessage
                                     nickname={message.senderNickname}
@@ -160,7 +161,7 @@ const ChatRoom = ({role}) => {
                 </ul>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex bottom-0 items-center gap-2">
                 <input
                     type="text"
                     placeholder="Type your message..."
@@ -179,4 +180,4 @@ const ChatRoom = ({role}) => {
     );
 };
 
-export default ChatRoom;
+export default WebSocketConnect;
