@@ -2,7 +2,9 @@ import ContentBox from "../../components/common/ContentBox/ContentBox";
 import InputText from "../../components/common/Input/InputText";
 import RadioGroup from "../../components/common/Radio/RadioGroup";
 import PaymentButton from "../../components/common/Button/PaymentButton";
-import TossImage from "../../assets/icon/toss.png";
+import TossPayImage from "../../assets/icon/toss_pay.png";
+import KakaoPayImage from "../../assets/icon/kakao_pay.png";
+import NaverPayImage from "../../assets/icon/naver_pay.png";
 import React, {useState} from "react";
 import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
 import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerContentBox";
@@ -68,12 +70,14 @@ const Ad = () => {
                     <ContentBox
                         title="결제 방법"
                         content={
-                            <>
-                                <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
+                            <div className="flex items-center">
+                                <PaymentButton url={TossPayImage} onClick={handleClickTossPaymentButton}/>
+                                <PaymentButton url={KakaoPayImage}/>
+                                <PaymentButton url={NaverPayImage}/>
                                 { isOpen && (
                                     <TossPayModal postId={postId} postType={postType} price={price} file={mainImageFile}/>
                                 )}
-                            </>
+                            </div>
                         }/>
                 </div>
             </div>
