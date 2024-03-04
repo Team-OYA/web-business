@@ -133,15 +133,31 @@ const WebSocketConnect = ({role}) => {
         }
     };
 
+    const handleGoBack = () => {
+        window.history.back(); // Use the window.history object to go back
+    };
+
     return (
         <div className="h-dvh">
-            <h2 className="text-2xl font-semibold mb-4">{chatRoomDetail.name}</h2>
+            <div className="flex items-center">
+                <button className="back-button" onClick={handleGoBack}>
+                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m15 19-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h2 className="text-sm font-semibold bottom:0 flex-grow ml-2">
+                    {chatRoomDetail.name}
+                </h2>
+            </div>
+
             <div
                 id="messagesContainer"
                 ref={messagesContainerRef}
-                className="h-[420px] overflow-y-auto mb-4"
+                className="h-[470px] w-[315px] overflow-y-auto mb-4
+                scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200"
             >
-                <h3 className="text-lg font-semibold mb-2">Messages:</h3>
                 <ul>
                     {messages.map((message, index) => (
                         <li key={index}>
@@ -164,7 +180,7 @@ const WebSocketConnect = ({role}) => {
             <div className="flex bottom-0 items-center gap-2">
                 <input
                     type="text"
-                    placeholder="Type your message..."
+                    placeholder="메시지를 입력해주세요."
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     className="flex-grow border p-2 rounded"

@@ -45,7 +45,7 @@ const ChatList = ({api, url, role}) => {
     return (
         <div className="rounded-rectangle">
             <div className="content">
-                <h1>대화</h1>
+                <h1 style={{fontSize: '24px', fontWeight: 'bold'}}>대화</h1>
                 {data && data.map((chatRoom, index) => (
                     <div className="chat-room" key={index} onClick={() => handleRowClick(chatRoom[0], role)}>
                         <p>{chatRoom[0]} {chatRoom[2]} {chatRoom[3]}{' '}</p>
