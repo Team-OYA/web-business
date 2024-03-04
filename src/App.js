@@ -31,7 +31,7 @@ import AdminChatRoom from "./pages/administrator/adminChatRoom";
 function App() {
 
     const businessColor = "bg-main-color-600 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
-    const businessSideBarColor = "bg-main-color-600 text-white dark:bg-blue-600";
+    const businessSideBarColor = "bg-main-color-600 dark:bg-blue-600";
 
     const adminColor = "bg-main-blue-600 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700";
     const adminSideBarColor = "bg-main-blue-600 dark:bg-blue-600";
@@ -77,12 +77,12 @@ function App() {
     );
 }
 
-const generateRoute = (color, sideBarColor, sideBarList, path, Component) => (
+const generateRoute = (color, sideBarColor, sideBarList, homeUrl, path, Component) => (
     <Route
         key={path}
         path={path}
         element={[
-            <Sidebar key="sidebar" color={color} sideBarColor={sideBarColor} sideBarList={sideBarList} content={<Component />} />
+            <Sidebar key="sidebar" color={color} sideBarColor={sideBarColor} sideBarList={sideBarList} content={<Component />} homeUrl={homeUrl} />
         ]}
     />
 );
