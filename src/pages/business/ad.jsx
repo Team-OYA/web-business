@@ -2,7 +2,9 @@ import ContentBox from "../../components/common/ContentBox/ContentBox";
 import InputText from "../../components/common/Input/InputText";
 import RadioGroup from "../../components/common/Radio/RadioGroup";
 import PaymentButton from "../../components/common/Button/PaymentButton";
-import TossImage from "../../assets/icon/toss.png";
+import TossPayImage from "../../assets/icon/toss_pay.png";
+import KakaoPayImage from "../../assets/icon/kakao_pay.png";
+import NaverPayImage from "../../assets/icon/naver_pay.png";
 import React, {useState} from "react";
 import TossPayModal from "../../components/business/TossPayModal/TossPayModal";
 import BuyerContentBox from "../../components/business/BuyerContentBox/BuyerContentBox";
@@ -10,6 +12,7 @@ import SelectedAdPost from "../../components/business/SelectedAdPost/SelectedAdP
 import MyCommunityApi from "../../api/business/createAd/myCommunityApi";
 import FileUpload from "../../components/common/Input/FileUpload";
 import MyPopupApi from "../../api/business/createAd/myPopupApi";
+import Button from "../../components/common/Button/Button";
 
 /**
  * Ad 페이지 제작
@@ -25,6 +28,7 @@ const Ad = () => {
     const [isOpen, setOpen] = useState(false)
     const [posts, setPosts] = useState([])
     const [postId, setPostId] = useState(null)
+    const [selectedPayment, setSelectedPayment] = useState(null)
 
     const handleMainImageFileChange = (event) => {
         setMainImageFile(event.target.files[0])
@@ -32,6 +36,9 @@ const Ad = () => {
     const handleAdCategoryChange = convertAboutPost(setPrice, setPostType, setMainImage, setPosts, handleMainImageFileChange)
     const handleClickTossPaymentButton = () => {
         setOpen(true)
+    }
+    const handleSelectedPaymentItem = (item) => {
+        setSelectedPayment(item)
     }
 
     return (
@@ -57,22 +64,43 @@ const Ad = () => {
                     <SelectedAdPost posts={posts} setPostId={setPostId}/>
                 </div>
                 <div className="flex-auto">
-                    <ContentBox
-                        title="최종 결제금액"
-                        content={
-                            <>
-                                <InputText title="총 결제금액" value={`${price} 원`} disabled="true"/>
-                            </>
-                        }/>
                     <BuyerContentBox/>
                     <ContentBox
                         title="결제 방법"
                         content={
                             <>
-                                <PaymentButton text="토스페이" url={TossImage} onClick={handleClickTossPaymentButton}/>
-                                { isOpen && (
-                                    <TossPayModal postId={postId} postType={postType} price={price} file={mainImageFile}/>
-                                )}
+                                <div className="flex items-center">
+                                    <PaymentButton
+                                        url={TossPayImage}
+                                        value="toss"
+                                        onClick={handleSelectedPaymentItem}
+                                        selectedItem={selectedPayment}/>
+                                    <PaymentButton
+                                        url={KakaoPayImage}
+                                        value="kakao"
+                                        onClick={handleSelectedPaymentItem}
+                                        selectedItem={selectedPayment}/>
+                                    <PaymentButton
+                                        url={NaverPayImage}
+                                        value="naver"
+                                        onClick={handleSelectedPaymentItem}
+                                        selectedItem={selectedPayment}/>
+                                    {isOpen && (
+                                        <TossPayModal
+                                            postId={postId}
+                                            postType={postType}
+                                            price={price}
+                                            file={mainImageFile}/>
+                                    )}
+                                </div>
+                            </>
+                        }/>
+                    <ContentBox
+                        title="최종 결제금액"
+                        content={
+                            <>
+                                <InputText title="총 결제금액" value={`${formatNumberWithCommas(price)} 원`} disabled="true"/>
+                                <Button text="결제하기" onClick={handleClickTossPaymentButton}/>
                             </>
                         }/>
                 </div>
@@ -124,6 +152,10 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
 
 function AdMainImage(onChange) {
     return <FileUpload title="메인 이미지" onChange={onChange}/>
+}
+
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 export default Ad;
