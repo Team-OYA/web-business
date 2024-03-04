@@ -77,12 +77,16 @@ function App() {
     );
 }
 
+
 const generateRoute = (color, sideBarColor, sideBarList, homeUrl, path, Component) => (
+
     <Route
         key={path}
         path={path}
         element={[
+
             <Sidebar key="sidebar" color={color} sideBarColor={sideBarColor} sideBarList={sideBarList} content={<Component />} homeUrl={homeUrl} />
+
         ]}
     />
 );

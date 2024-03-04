@@ -204,9 +204,9 @@ const PopupExtraDetail = ({popupData}) => {
     return (
         <>
             <InputText title="작성일" value={popupData.createdDate}/>
-
             <TwoInput
                 firstInput={<InputText title="광고 금액" value={popupData.amount || 0}/>}
+
                 secondInput={<InputText title="조회수" value={popupData.popupView}/>}
             />
         </>

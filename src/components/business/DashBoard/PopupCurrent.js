@@ -74,6 +74,7 @@ function PopupCurrent() {
 
     return (
         <div className="popup-current flex justify-between px-6 py-4">
+
             <InfoList image={StatusImage} data={planInfo}/>
             <InfoList image={PopupStoreImage} data={popupInfo}/>
             <InfoList image={PopupCommunityImage} data={communityInfo}/>

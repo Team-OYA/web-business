@@ -13,6 +13,7 @@ function InfoList(props) {
                 <img src={props.image} alt="popup-status" />
             </div>
             <div className="ml-5">
+
                 {props.data.map((data) => (
                     <div key={data.id} className="flex justify-between mb-6">
                         <div className="mr-2 text-sm">{data.title}</div>
