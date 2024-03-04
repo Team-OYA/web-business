@@ -25,7 +25,7 @@ function Dropdown({buttonId, dropdownId, title, categories, onSelect}) {
                     data-dropdown-trigger="hover"
                     className="text-white bg-main-color-600 hover:bg-main-color-800 focus:ring-4 focus:outline-none
                     focus:ring-main-color-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex
-                    items-center mb-6 mr-4"
+                    items-center mr-4"
                     type="button">
                 {title}
                 <svg className={`w-2.5 h-2.5 ms-3 ${isOpen ? 'transform rotate-180' : ''}`}

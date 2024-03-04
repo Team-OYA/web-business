@@ -31,10 +31,12 @@ function Plans() {
                 title="나의 사업계획서 목록"
                 content={
                     <>
-                        <CategoryDropdown setCategory={setCategory}/>
-                        <EntranceStatusDropdown setEntranceStatus={setEntranceStatus}/>
-                        <SearchButton
-                            onClick={getPlans(category, entranceStatus, page, limit, setTotal, setPlans)}/>
+                        <div className="flex justify-end items-center mb-6">
+                            <CategoryDropdown setCategory={setCategory}/>
+                            <EntranceStatusDropdown setEntranceStatus={setEntranceStatus}/>
+                            <SearchButton
+                                onClick={getPlans(category, entranceStatus, page, limit, setTotal, setPlans)}/>
+                        </div>
                         <MyPlanTable plans={plans} page={page} limit={limit} total={total} setPage={setPage}/>
                     </>
                 }/>
