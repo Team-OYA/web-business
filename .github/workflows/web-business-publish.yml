@@ -27,25 +27,25 @@ jobs:
         docker push ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
 
     - name: Deploy
-  uses: appleboy/ssh-action@master
-  with:
-    host: ${{ secrets.HOST }}
-    username: ubuntu
-    key: ${{ secrets.PRIVATE_KEY }}
-    script: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        # Stop and remove the existing container
-        docker stop thepopbusinessweb || true
-        docker rm thepopbusinessweb || true
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.PRIVATE_KEY }}
+        script: |
+            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            # Stop and remove the existing container
+            docker stop thepopbusinessweb || true
+            docker rm thepopbusinessweb || true
 
-        # Remove the existing image
-        docker rmi ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb || true
+            # Remove the existing image
+            docker rmi ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb || true
 
-        # Copy Nginx configuration file
-        scp nginx.conf ubuntu@${{ secrets.HOST }}:/path/to/nginx.conf
+            # Copy Nginx configuration file
+            scp nginx.conf ubuntu@${{ secrets.HOST }}:/path/to/nginx.conf
 
-        # Build, push, pull and run the application container
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb .
-        docker push ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
-        docker pull ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
-        docker run -d -p 80:80 --name thepopbusinessweb ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
+            # Build, push, pull and run the application container
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb .
+            docker push ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
+            docker pull ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
+            docker run -d -p 80:80 --name thepopbusinessweb ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb
