@@ -23,23 +23,20 @@ function PopupRanking() {
     }, []);
 
     return (
-        <div className="popup-ranking h-fit flex-col px-2 py-4text-gray-text-color-700 text-sm">
+        <div className="popup-ranking h-fit flex-col px-2 py-4 text-gray-text-color-700 text-sm">
             {myPopup.length > 0 && (
-                <div className="info flex w-full justify-between bg-gray-100 rounded-lg px-4 py-3 mb-3">
+                <div className="info flex w-full justify-between align-middle bg-gray-100 rounded-lg px-4 py-3 mb-3">
                     <div className='flex'>
                         <div className='rank w-12'>
                             MY
                         </div>
-                        <div className='title'>
+                        <div className='title flex'>
                             {myPopup[0].popupName}
                         </div>
                     </div>
-                    <div className='views flex content'>
-                        <div className='views-count'>
-                            {myPopup[0].popupView}
-                        </div>
+                    <div className='views flex w-12'>
                         <div className='views-unit'>
-                            회
+                        {myPopup[0].popupView} 회
                         </div>
                     </div>
                 </div>

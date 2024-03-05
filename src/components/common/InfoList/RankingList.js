@@ -9,16 +9,16 @@ export default RankingList;
 function RankingList(props) {
     return (
         <div className="popup-ranking flex py-1">
-            <div className="info flex w-full justify-between bg-gray-50 rounded-lg px-4 py-3">
+            <div className="info flex w-full items-center justify-between bg-gray-50 rounded-lg py-3 px-4">
                 <div className='flex'>
-                    <div className='rank w-12 font-bold'>
+                    <div className='rank w-12 font-bold flex'>
                         {props.id}위
                     </div>
-                    <div className='title'>
+                    <div className='title flex'>
                         {props.title}
                     </div>
                 </div>
-                <div className='views flex content'>
+                <div className='views flex pr-6'>
                     {formatNumberWithCommas(props.content)} 회
                 </div>
             </div>
