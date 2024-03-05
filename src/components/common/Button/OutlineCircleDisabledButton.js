@@ -22,14 +22,16 @@ function OutlineCircleDisabledButton({ text, href , info}) {
     };
 
     return (
-        <button type="button"
-                    className="text-white border-2 border-white
-                focus:ring-4 focus:outline-none focus:ring-main-color-300 font-medium text-sm px-8 py-2.5
-                text-center mx-4 mb-2 dark:border-main-color-500 dark:text-main-color-500
-                dark:focus:ring-main-color-800 rounded-full disabled"
-                onClick={handleClick}>
-                {text}
-        </button>
+        <div className="flex flex-row items-center justify-center">
+            <button type="button"
+                        className="text-white border-2 hover:bg-light-gray-1000 border-white whitespace-nowrap
+                    focus:ring-4 focus:outline-none focus:ring-main-color-300 font-medium text-xl px-10 py-4
+                    text-center mx-6 mb-2 dark:border-main-color-500 dark:text-main-color-500
+                    dark:focus:ring-main-color-800 rounded-full disabled"
+                    onClick={handleClick}>
+                    {text}
+            </button>
+        </div>
     )
 }
 
