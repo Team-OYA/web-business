@@ -5,6 +5,7 @@ import PopupCurrent from "../../components/business/DashBoard/PopupCurrent";
 import PopupRanking from "../../components/business/DashBoard/PopupRanking";
 import PopupStatistics from "../../components/business/DashBoard/PopupStatistics";
 import PopupPostList from "../../components/business/DashBoard/PopupPostList";
+import FloatingButton from "../../components/common/FloatingButton/FloatingButton";
 
 /**
  * DashBoard 페이지 제작
@@ -13,6 +14,9 @@ import PopupPostList from "../../components/business/DashBoard/PopupPostList";
  * @author 이승민
  */
 const DashBoard = () => {
+    const handleButtonClick = () => {
+
+    };
     return (
         <div className="createPlan">
             <div className="first-bar h-fit my-6 items-stretch flex gap-8 justify-between mx-4">
@@ -32,6 +36,7 @@ const DashBoard = () => {
                     <ContentBoxFull title="나의 팝업스토어 게시글 목록" content={<PopupPostList/>}/>
                 </div>
             </div>
+            <FloatingButton onClick={handleButtonClick}/>
         </div>
     )
 }

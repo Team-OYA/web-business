@@ -1,6 +1,6 @@
 import React from "react";
 import AdminChatApi from "../../api/administrator/adminChatApi";
-import ChatList from "../../components/common/Chat/ChatList";
+import ChatPage from "../../components/administrator/ChatPage";
 
 /**
  * 채팅 페이지 제작
@@ -10,7 +10,10 @@ import ChatList from "../../components/common/Chat/ChatList";
  */
 const AdminChat = () => {
     return (
-        <ChatList api={AdminChatApi} url="/admin/chat" role="admin"/>
+        <ChatPage
+            api={AdminChatApi}
+            title="1:1 채팅상담 목록"
+        />
     );
 };
 

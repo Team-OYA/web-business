@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import './ChatApp.css';
+import '../../common/Chat/ChatApp.css';
 
 /**
  * 채팅 리스트 컴포넌트
@@ -8,13 +8,15 @@ import './ChatApp.css';
  * @since 2024.03.02
  * @author 이상민
  */
-const ChatList = ({api, url, role}) => {
+const ChatList = ({api, onChatRoomClick, closeModal}) => {
 
     const [data, setData] = useState([]);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
 
-    const navigate = useNavigate();
+    const handleChatRoomClick = (chatRoom) => {
+        onChatRoomClick(chatRoom[0]);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,16 +40,12 @@ const ChatList = ({api, url, role}) => {
         fetchData();
     }, [page, limit]);
 
-    const handleRowClick = (roomId, role) => {
-        navigate(`${url}/${roomId}`);
-    };
-
     return (
         <div className="rounded-rectangle">
             <div className="content">
-                <h1 style={{fontSize: '24px', fontWeight: 'bold'}}>대화</h1>
+                <h1 style={{fontSize: '24px', fontWeight: 'bold' ,  marginBottom:'15px'}}>대화</h1>
                 {data && data.map((chatRoom, index) => (
-                    <div className="chat-room" key={index} onClick={() => handleRowClick(chatRoom[0], role)}>
+                    <div className="chat-room" key={index} onClick={() => handleChatRoomClick(chatRoom)}>
                         <p>{chatRoom[0]} {chatRoom[2]} {chatRoom[3]}{' '}</p>
                         <br/>
                     </div>
@@ -62,7 +60,9 @@ const ChatList = ({api, url, role}) => {
                     </ul>
                 </nav>
             </div>
-            <button className="close-button">닫기</button>
+            <button className="close-button" onClick={closeModal}>
+                닫기
+            </button>
         </div>
     );
 };
