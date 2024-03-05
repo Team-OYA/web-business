@@ -5,7 +5,7 @@ import PopupCurrent from "../../components/business/DashBoard/PopupCurrent";
 import PopupRanking from "../../components/business/DashBoard/PopupRanking";
 import PopupStatistics from "../../components/business/DashBoard/PopupStatistics";
 import PopupPostList from "../../components/business/DashBoard/PopupPostList";
-import FloatingButton from "../../components/common/FloatingButton/FloatingButton";
+import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
 
 /**
  * DashBoard 페이지 제작

@@ -37,7 +37,7 @@ const ChatRoom= ({selectedChatRoom, setSelectedChatRoom}) => {
      * @author 이상민
      */
     useEffect(() => {
-        const socket = new SockJS(`http://localhost:8080/ws`);
+        const socket = new SockJS(`http://15.164.236.13:8080/ws`);
         const stomp = Stomp.over(socket);
         setStompClient(stomp);
         // 고유한 ID 생성

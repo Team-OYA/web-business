@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
-import GetTokenFromLocalStorage from "../../../api/Common/token";
 import SockJS from "sockjs-client";
 import {Stomp} from "@stomp/stompjs";
-import MeChatMessage from "./MeChatMessage";
-import OtherChatMessage from "./OtherChatMessage";
-import AdminChatApi from "../../../api/administrator/adminChatApi";
+import GetTokenFromLocalStorage from "../../api/Common/token";
+import AdminChatApi from "../../api/administrator/adminChatApi";
+import MeChatMessage from "../common/Chat/MeChatMessage";
+import OtherChatMessage from "../common/Chat/OtherChatMessage";
 
 /**
  * 채팅방 컴포넌트
@@ -12,7 +12,7 @@ import AdminChatApi from "../../../api/administrator/adminChatApi";
  * @since 2024.03.02
  * @author 이상민
  */
-const ChatRoomDetail = ({selectedChatRoomId}) => {
+const ChatRoomDetail = ({selectedChatRoomId, setModalIsOpen}) => {
 
     const [stompClient, setStompClient] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -24,6 +24,7 @@ const ChatRoomDetail = ({selectedChatRoomId}) => {
 
     const messagesContainerRef = useRef(null);
     const token = GetTokenFromLocalStorage(role)
+
     const [chatRoomDetail, setChatRoomDetail] = useState([]);
 
     /**
@@ -33,7 +34,7 @@ const ChatRoomDetail = ({selectedChatRoomId}) => {
      * @author 이상민
      */
     useEffect(() => {
-        const socket = new SockJS(`http://localhost:8080/ws`);
+        const socket = new SockJS(`http://15.164.236.13:8080/ws`);
         const stomp = Stomp.over(socket);
         setStompClient(stomp);
         // 고유한 ID 생성
@@ -146,7 +147,7 @@ const ChatRoomDetail = ({selectedChatRoomId}) => {
     };
 
     const handleGoBack = () => {
-        // setSelectedChatRoom(null);
+        setModalIsOpen(false)
     };
 
     return (

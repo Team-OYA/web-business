@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import TableHeader from "../common/Table/TableHeader";
 import TableRow from "../common/Table/TableRow";
-import {useNavigate} from "react-router-dom";
-import ChatRoomDetail from "../common/Chat/ChatRoomDetail";
 import Modal from "react-modal";
+import ChatRoomDetail from "./ChatRoomDetail";
 
 /**
  * Table 컴포넌트 생성
@@ -13,7 +12,6 @@ import Modal from "react-modal";
  */
 const ChatTable = ({ headerTitles, sampleData }) => {
 
-    const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedChatRoomId, setSelectedChatRoomId] = useState(null);
 
@@ -22,10 +20,6 @@ const ChatTable = ({ headerTitles, sampleData }) => {
 
         setSelectedChatRoomId(id);
         setModalIsOpen(true);
-
-        // const role = 'admin';
-        // const currentUrl = window.location.pathname;
-        // navigate(`${currentUrl}/${id}`, { state: { role } });
     };
 
     const renderTableBody = (sampleData) => (
@@ -59,11 +53,14 @@ const ChatTable = ({ headerTitles, sampleData }) => {
                         marginRight: '-50%',
                         transform: 'translate(-50%, -50%)',
                         maxWidth: '80%', // 필요에 따라 최대 너비 조정
+                        padding: 0,
+                        borderRadius: 25,
+                        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
                     },
                 }}
             >
                 {selectedChatRoomId && (
-                    <ChatRoomDetail selectedChatRoomId={selectedChatRoomId} />
+                    <ChatRoomDetail selectedChatRoomId={selectedChatRoomId} setModalIsOpen={setModalIsOpen} />
                 )}
             </Modal>
         </div>
