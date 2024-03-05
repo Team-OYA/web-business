@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
  * @since 2024.02.25
  * @author 김유빈
  */
-function OutlineCircleDisabledButton({ text, herf , info}) {
+function OutlineCircleDisabledButton({ text, href , info}) {
 
     /**
      * useNavigate 컴포넌트로 페이지 이동시 값 전달 추가
@@ -17,18 +17,21 @@ function OutlineCircleDisabledButton({ text, herf , info}) {
      */
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate(herf, { state: { buttonText: text, ...info } });
+        console.log(info);
+        navigate(href, { state: { buttonText: text, ...info } });
     };
 
     return (
-        <button type="button"
-                    className="text-main-color-700 border border-main-color-700
-                focus:ring-4 focus:outline-none focus:ring-main-color-300 font-medium text-sm px-5 py-2.5
-                text-center me-2 mb-2 dark:border-main-color-500 dark:text-main-color-500
-                dark:focus:ring-main-color-800 rounded-full disabled"
-                onClick={handleClick}>
-                {text}
-        </button>
+        <div className="flex flex-row items-center justify-center">
+            <button type="button"
+                        className="text-white border-2 hover:bg-light-gray-1000 border-white whitespace-nowrap
+                    focus:ring-4 focus:outline-none focus:ring-main-color-300 font-medium text-xl px-10 py-4
+                    text-center mx-6 mb-2 dark:border-main-color-500 dark:text-main-color-500
+                    dark:focus:ring-main-color-800 rounded-full disabled"
+                    onClick={handleClick}>
+                    {text}
+            </button>
+        </div>
     )
 }
 

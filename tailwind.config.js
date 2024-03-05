@@ -90,6 +90,7 @@ module.exports = {
           '800': '#464646',
           '900': '#3d3d3d',
           '950': '#292929',
+          '1000': '#8C8C8C80',
         },
         'updated-button-text-color': '#29597A',
         'updated-button-color': '#CFE1EC',
