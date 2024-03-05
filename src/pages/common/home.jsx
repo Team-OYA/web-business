@@ -29,8 +29,8 @@ const Home = () => {
                                 THE POP
                             </h1>
                             <div className="flex flex-row items-center justify-center pt-10 z-50">
-                                <OutlineCircleDisabledButton text="관리자 페이지" href="/login/admin" info="관리자 페이지에서 유저 관리를 진행해 보세요."/>
                                 <OutlineCircleDisabledButton text="사업체 페이지" href="/login/business" info="사업체 페이지에서 사업계획서 및 팝업 관리를 진행해 보세요."/>
+                                <OutlineCircleDisabledButton text="관리자 페이지" href="/login/admin" info="관리자 페이지에서 유저 관리를 진행해 보세요."/>
                             </div>
                         </div>
                     </div>
