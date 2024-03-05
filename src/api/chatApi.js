@@ -1,10 +1,4 @@
-import GetTokenFromLocalStorage from "./Common/token";
-import axios from "axios";
-
-const Token = GetTokenFromLocalStorage('user')
-if (Token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${Token}`
-}
+import userBaseApi from "./userBaseApi";
 
 /**
  * @since 2024.03.52
@@ -18,7 +12,7 @@ const ChatApi = {
      * @author 이상민
      */
     getChatRooms: async (pageNo = 0, amount = 10) => {
-        return await axios.get(`/api/v1/chat/rooms?pageNo=${pageNo}&amount=${amount}`);
+        return await userBaseApi.get(`/chat/rooms?pageNo=${pageNo}&amount=${amount}`);
     },
 
     /**
@@ -28,7 +22,7 @@ const ChatApi = {
      * @author 이상민
      */
     getMessages: async (roomId = 0) => {
-        return await axios.get(`/api/v1/chat/rooms/${roomId}`);
+        return await userBaseApi.get(`/chat/rooms/${roomId}`);
     },
 }
 

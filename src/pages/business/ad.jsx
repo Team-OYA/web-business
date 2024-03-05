@@ -13,6 +13,7 @@ import MyCommunityApi from "../../api/business/createAd/myCommunityApi";
 import FileUpload from "../../components/common/Input/FileUpload";
 import MyPopupApi from "../../api/business/createAd/myPopupApi";
 import Button from "../../components/common/Button/Button";
+import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
 
 /**
  * Ad 페이지 제작
@@ -103,6 +104,7 @@ const Ad = () => {
                                 <Button text="결제하기" onClick={handleClickTossPaymentButton}/>
                             </>
                         }/>
+                    <FloatingButton />
                 </div>
             </div>
         </>

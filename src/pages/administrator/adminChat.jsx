@@ -1,6 +1,6 @@
 import React from "react";
 import AdminChatApi from "../../api/administrator/adminChatApi";
-import ChatPage from "../../components/common/Chat/ChatPage";
+import ChatPage from "../../components/administrator/ChatPage";
 
 /**
  * 채팅 페이지 제작

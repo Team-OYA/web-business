@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ContentBox from "../../common/ContentBox/ContentBox";
-import Pagination from "../../common/Pagination/Pagination";
-import Table from "../Table/Table";
-import ChatTable from "../Table/ChatTable";
+import ContentBox from "../../components/common/ContentBox/ContentBox";
+import Pagination from "../../components/common/Pagination/Pagination";
+import ChatTable from "./ChatTable";
 
 const ChatPage = ({ api, title }) => {
     const [data, setData] = useState(null);
