@@ -22,16 +22,15 @@ const Table = ({ headerTitles, sampleData }) => {
         ))}
         </tbody>
     );
-  
+
     return (
         <div className="relative overflow-x-auto table-container sm:rounded-sm">
-          <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
-              <TableHeader headerTitles = {headerTitles}/>
-            {renderTableBody(sampleData)}
-          </table>
+            <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                <TableHeader headerTitles = {headerTitles}/>
+                {renderTableBody(sampleData)}
+            </table>
         </div>
-      );
-  };
-  
-  export default Table;
-  
+    );
+};
+
+export default Table;
