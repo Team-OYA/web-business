@@ -23,17 +23,16 @@ function MyPostListTable({ posts }) {
                 <>
                     <table className="w-full text-sm text-left text-gray-500">
                         <tbody>
-                            {displayedData.map((post, index) => (
-                                <tr key={index} className="bg-white border-b text-gray-700">
-                                    <td>
-                                        <div className="flex">{index + 1}</div>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex">{post.title}</div>
-                                    </td>
-                                    <td className="py-4 text-right">{post.pulledDate}</td>
-                                </tr>
-                            ))}
+                        {displayedData.map((post, index) => (
+                            <tr key={index} className="bg-white border-b text-gray-700">
+                                <td>
+                                    <div className="flex">{index + 1}</div>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <div className="flex">{post.title}</div>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                     <Pagination total={posts.length} limit={itemsPerPage} page={currentPageIndex} setPage={setPage} />

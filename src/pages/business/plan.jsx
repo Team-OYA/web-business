@@ -14,6 +14,7 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import './planViewer.css';
+import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
 
 /**
  * Plan 페이지 제작
@@ -102,6 +103,7 @@ const Plan = () => {
                             </>
                         }/>
             <ContentBox title="팝업스토어 게시글 부가 정보" content={<PopupExtraDetail popupData={popupData}/>}/>
+            <FloatingButton />
         </div>
     );
 };
