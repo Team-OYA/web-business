@@ -128,7 +128,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
             data = response.data.data.popups.map(popup => {
                 const createdDate = popup.pulledDate.split(" ")[0];
                 return {
-                    id: popup.planId,
+                    id: popup.popupId,
                     title: popup.title,
                     date: createdDate,
                 }
