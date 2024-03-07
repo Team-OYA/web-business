@@ -21,13 +21,13 @@
 
 .floating-button-modal {
     position: fixed;
-    top: calc(64%); /* 버튼 바로 위에 위치하도록 수정 */
+    top: calc(50% - 10px); /* 버튼 바로 위에 위치하도록 수정 */
     right: 20px; /* 화면 오른쪽에 위치하도록 수정 */
     transform: translate(0, -50%);
     overflow: auto;
     outline: none;
     border-radius: 25px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
     background-color: #fff; /* 배경 색상 추가 */
     /* 추가적인 스타일 설정 */
 }

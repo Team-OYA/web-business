@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './FloatingButton.css'; // 스타일 파일을 추가합니다.
+import './FloatingButton.css';
 import Modal from 'react-modal';
 import ChatApi from "../../../api/chatApi";
 import ChatRoom from "../../business/Chat/ChatRoom";
@@ -13,17 +13,14 @@ import ChatList from "../../business/Chat/ChatList";
  */
 const FloatingButton = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    // const [buttonPosition, setButtonPosition] = useState({ top: 0, left: 0 });
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
     const openModal = () => {
         const button = document.querySelector('.floating-button');
         if (button) {
             const rect = button.getBoundingClientRect();
-            // setButtonPosition({ top: rect.bottom + window.scrollY, left: rect.left + window.scrollX });
         }
         setModalIsOpen(true);
-        document.body.style.overflow = 'hidden';
     };
 
     /**
