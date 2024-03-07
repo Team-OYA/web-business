@@ -26,7 +26,7 @@ const AdminPlainDetail = () => {
     const handleWait = async () => {
         console.log(longPlanId);
         try {
-            alert("정말 입정 대기 시키실 건가요?")
+            alert("정말 입점 대기 시키실 건가요?")
             await AdminPlanApi.postWait(longPlanId);
             alert("입정 대기 완료되었습니다.")
             navigate("/admin/plan"); // 페이지 이동
