@@ -7,17 +7,17 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 module.exports = function (app) {
     // API Proxy
     app.use(
-        "/api/v1",
+        `${process.env.REACT_APP_API_PREFIX}`,
         createProxyMiddleware({
-            target: "http://15.164.236.13:8080",
+            target: `${process.env.REACT_APP_BASE_URL}`,
             changeOrigin: true,
         })
     );
 
     app.use(
-        "/ws",
+        `${process.env.REACT_APP_CHAT_API_PREFIX}`,
         createProxyMiddleware({
-            target: "http://15.164.236.13:8080",
+            target: `${process.env.REACT_APP_BASE_URL}`,
             ws: true,  
         })
     );
