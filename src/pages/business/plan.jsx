@@ -15,6 +15,7 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import './planViewer.css';
 import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
+import MyPlanDetailApi from "../../api/business/planDetail/myPlanDetailApi";
 
 /**
  * Plan 페이지 제작
@@ -24,8 +25,8 @@ import FloatingButton from "../../components/business/FloatingButton/FloatingBut
 const Plan = () => {
 
     const { planId } = useParams();
-    const [planDetailStatus, setPlanDetailStatus] = useState('');
 
+    const [planData, setPlanData] = useState(null);
     const [popupTitle, setPopupTitle] = useState("");
     const [popupDescription, setPopupDescription] = useState("");
 
@@ -41,6 +42,37 @@ const Plan = () => {
         account: 0,
         popupView: 0
     });
+
+    /**
+     * PlanDetail 컴포넌트 Plan으로 분리 및 API 연결
+     *
+     * @since 2024.02.29
+     * @author 이상민
+     */
+    useEffect(() => {
+        const fetchPlanData = async () => {
+            try {
+                const response = await MyPlanDetailApi.getPlan(planId);
+                const data = response.data.data;
+                const plan = {
+                    planId: data.planId,
+                    openDate: data.openDate.replaceAll(".", "-"),
+                    entranceStatus: data.entranceStatus ? data.entranceStatus : '',
+                    category: data.category ? data.category : '',
+                    office: data.office ? data.office : '',
+                    floor: data.floor ? data.floor : '',
+                    contactInformation: data.contactInformation ? data.contactInformation : '',
+                    createdDate: data.createdDate ? data.createdDate : '',
+                    businessPlanUrl: data.businessPlanUrl,
+                }
+                console.log(plan)
+                setPlanData(plan);
+            } catch (error) {
+                console.error('Error fetching plan data:', error);
+            }
+        };
+        fetchPlanData();
+    }, [planId]);
 
     /**
      * 사업계획서에 따른 팝업 게시글 정보 보기 api 연결
@@ -91,21 +123,28 @@ const Plan = () => {
     return (
         <div className="plan">
             <ContentBox title="사업계획서 정보"
-                        content={<PlanDetail planId={planId} onChangeStatus={setPlanDetailStatus}/>}/>
-            <ContentBox title="팝업스토어 게시글 정보"
-                        content={
-                            <>
-                                <PopupDetail
-                                    popupData={popupData}
-                                    onTitleChange={setPopupTitle}
-                                    onDescriptionChange={setPopupDescription}
-                                />
-                                {popupData.popupWritten === false && (
-                                    <Button onClick={popupWrite} text="팝업게시글 작성하기"/>
-                                )}
-                            </>
-                        }/>
-            <ContentBox title="팝업스토어 게시글 부가 정보" content={<PopupExtraDetail popupData={popupData}/>}/>
+                        content={<PlanDetail planData={planData}/>}/>
+            {
+                planData && planData.entranceStatus === '입점 승인' && (
+                    <>
+                        <ContentBox title="팝업스토어 게시글 정보"
+                                    content={
+                                        <>
+                                            <PopupDetail
+                                                popupData={popupData}
+                                                onTitleChange={setPopupTitle}
+                                                onDescriptionChange={setPopupDescription}
+                                            />
+                                            {popupData.popupWritten === false && (
+                                                <Button onClick={popupWrite} text="팝업게시글 작성하기"/>
+                                            )}
+                                        </>
+                                    }
+                        />
+                        <ContentBox title="팝업스토어 게시글 부가 정보" content={<PopupExtraDetail popupData={popupData}/>}/>
+                    </>
+                )
+            }
             <FloatingButton />
         </div>
     );

@@ -1,8 +1,6 @@
-import {useEffect, useState} from "react";
 import TwoInput from "../common/Input/TwoInput";
 import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
-import MyPlanDetailApi from "../../api/business/planDetail/myPlanDetailApi";
 
 /**
  * PlanDetail 컴포넌트 생성
@@ -10,47 +8,11 @@ import MyPlanDetailApi from "../../api/business/planDetail/myPlanDetailApi";
  * @since 2024.02.25
  * @author 김유빈
  */
-const PlanDetail = ( {planId, onChangeStatus}) => {
-    /**
-     * PlanDetail 컴포넌트 Plan으로 분리 및 API 연결
-     *
-     * @since 2024.02.29
-     * @author 이상민
-     */
-    const [planData, setPlanData] = useState(null);
-    const [planDetailStatus, setPlanDetailStatus] = useState('');
-    useEffect(() => {
-        const fetchPlanData = async () => {
-            try {
-                const response = await MyPlanDetailApi.getPlan(planId);
-                const data = response.data.data;
-                const plan = {
-                    planId: data.planId,
-                    openDate: data.openDate.replaceAll(".", "-"),
-                    entranceStatus: data.entranceStatus ? data.entranceStatus : '',
-                    category: data.category ? data.category : '',
-                    office: data.office ? data.office : '',
-                    floor: data.floor ? data.floor : '',
-                    contactInformation: data.contactInformation ? data.contactInformation : '',
-                    createdDate: data.createdDate ? data.createdDate : '',
-                    businessPlanUrl: data.businessPlanUrl,
-                }
-                console.log(response);
-                console.log(plan.openDate)
-                setPlanData(plan);
-                setPlanDetailStatus(response.data.data.entranceStatus);
-            } catch (error) {
-                console.error('Error fetching plan data:', error);
-            }
-        };
-        fetchPlanData();
-    }, [planId]);
+const PlanDetail = ({planData}) => {
 
     if (!planData) {
         return <p>Loading...</p>;
     }
-
-    onChangeStatus(planDetailStatus);
 
     /**
      * 파일 다운로드
