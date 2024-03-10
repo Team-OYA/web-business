@@ -78,6 +78,9 @@ const Plan = () => {
             if (result.data.message) {
                 alert(result.data.message);
             }
+            if (result.status === 200) {
+                window.location.href = `/plans/${planId}`
+            }
             const response = await PopupApi.findByPlanId(planId);
             setPopupData(response.data.data);
         } catch (error) {
