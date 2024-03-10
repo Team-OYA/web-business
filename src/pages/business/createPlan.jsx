@@ -48,7 +48,10 @@ const CreatePlan = () => {
                 "contactInformation": phoneNumber,
                 "category": category
             }
-            const response = await PlanApi.save(data, file);
+            const response = await PlanApi.save(data, file)
+            if (response.status === 200) {
+                window.location.href = `/plans/${response.data.data}`
+            }
         } catch (error) {
             console.error("저장 중 에러 발생: ", error);
         }
