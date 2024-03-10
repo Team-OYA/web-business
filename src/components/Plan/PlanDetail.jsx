@@ -23,9 +23,21 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
         const fetchPlanData = async () => {
             try {
                 const response = await MyPlanDetailApi.getPlan(planId);
+                const data = response.data.data;
+                const plan = {
+                    planId: data.planId,
+                    openDate: data.openDate.replaceAll(".", "-"),
+                    entranceStatus: data.entranceStatus ? data.entranceStatus : '',
+                    category: data.category ? data.category : '',
+                    office: data.office ? data.office : '',
+                    floor: data.floor ? data.floor : '',
+                    contactInformation: data.contactInformation ? data.contactInformation : '',
+                    createdDate: data.createdDate ? data.createdDate : '',
+                    businessPlanUrl: data.businessPlanUrl,
+                }
                 console.log(response);
-                setPlanData(response.data.data);
-
+                console.log(plan.openDate)
+                setPlanData(plan);
                 setPlanDetailStatus(response.data.data.entranceStatus);
             } catch (error) {
                 console.error('Error fetching plan data:', error);
@@ -58,16 +70,16 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
     return (
         <>
             <TwoInput
-                firstInput={<InputDate title="오픈 일정" placeholder={planData ? planData.openDate : ''} />}
-                secondInput={<InputText title="진행단계" value={planData ? planData.entranceStatus : ''} />}
+                firstInput={<InputDate title="오픈 일정" value={planData.openDate} />}
+                secondInput={<InputText title="진행단계" value={planData.entranceStatus} />}
             />
             <TwoInput
-                firstInput={<InputText title="오픈 지점" value={`${planData ? planData.office : ''} ${planData ? planData.floor : ''}`} />}
-                secondInput={<InputText title="카테고리" value={planData ? planData.category : ''} />}
+                firstInput={<InputText title="오픈 지점" value={`${planData.office} ${planData.floor}`} />}
+                secondInput={<InputText title="카테고리" value={planData.category} />}
             />
             <TwoInput
-                firstInput={<InputText title="연락처" value={planData ? planData.contactInformation : ''} />}
-                secondInput={<InputText title="작성일" value={planData ? planData.createdDate : ''} />}
+                firstInput={<InputText title="연락처" value={planData.contactInformation} />}
+                secondInput={<InputText title="작성일" value={planData.createdDate} />}
             />
 
             <div className="flex-auto mr-5">
