@@ -123,7 +123,7 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
         let data = null
         let mainImage = <></>
         if (value === "popup") {
-            price = 1_000_000
+            price = 500_000
             const response = await MyPopupApi.getMyPopups(0, 5)
             data = response.data.data.popups.map(popup => {
                 const createdDate = popup.pulledDate.split(" ")[0];
