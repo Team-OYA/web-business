@@ -10,7 +10,7 @@ import GetTokenFromLocalStorage from "./Common/token";
 
 
 const userInstance = axios.create({
-    baseURL: "http://15.164.236.13:8080/api/v1",
+    baseURL: `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_API_PREFIX}`,
 });
 
 userInstance.interceptors.request.use(
