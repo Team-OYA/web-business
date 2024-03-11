@@ -1,7 +1,7 @@
 import userBaseApi from "./userBaseApi";
 
 /**
- * @since 2024.03.52
+ * @since 2024.03.02
  * @author 이상민
  */
 const ChatApi = {

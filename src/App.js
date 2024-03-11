@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import React from "react";
+import './firebase-messaging-sw.js'
 
 import './index.css';
 
@@ -71,7 +72,6 @@ function App() {
 
     );
 }
-
 
 const generateRoute = (color, sideBarColor, sideBarList, homeUrl, path, Component) => (
     <Route

@@ -15,6 +15,7 @@
     "@uiw/react-md-editor": "^4.0.3",
     "axios": "^1.6.7",
     "chart.js": "^4.4.2",
+    "firebase": "^8.10.0",
     "flowbite": "^2.3.0",
     "flowbite-datepicker": "^1.2.6",
     "http-proxy-middleware": "^2.0.6",
@@ -43,7 +44,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:mac": "HTTPS=true SSL_CRT_FILE=./.cert/cert.pem SSL_KEY_FILE=./.cert/key.pem npm run start",
+    "start:windows": "set HTTPS=true&&set SSL_CRT_FILE=localhost.pem&&set SSL_KEY_FILE=localhost-key.pem&&npm run start"
   },
   "eslintConfig": {
     "extends": [
