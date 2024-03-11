@@ -58,7 +58,7 @@ const AdminPlanDetail = ( {planId, onChangeStatus}) => {
     return (
         <>
             <TwoInput
-                firstInput={<InputDate title="오픈 일정" placeholder={planData ? planData.openDate : ''} />}
+                firstInput={<InputDate title="오픈 일정" value={planData ? planData.openDate.replaceAll(".", "-") : ''} />}
                 secondInput={<InputText title="진행단계" value={planData ? planData.entranceStatus : ''} />}
             />
             <TwoInput

@@ -19,7 +19,11 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20.9.0'
-        
+
+    - name: env setting
+      run: |
+        echo "${{ secrets.REACT_ENV_DEVELOPMENT }}" > .env
+
     - name: Docker build and push
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/thepopbusinessweb .

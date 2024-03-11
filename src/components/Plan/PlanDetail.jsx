@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
 import TwoInput from "../common/Input/TwoInput";
 import InputDate from "../common/Input/InputDate";
 import InputText from "../common/Input/InputText";
-import MyPlanDetailApi from "../../api/business/planDetail/myPlanDetailApi";
+import WithdrawPlan from "../../api/business/planDetail/withdrawPlan";
 
 /**
  * PlanDetail 컴포넌트 생성
@@ -10,35 +9,11 @@ import MyPlanDetailApi from "../../api/business/planDetail/myPlanDetailApi";
  * @since 2024.02.25
  * @author 김유빈
  */
-const PlanDetail = ( {planId, onChangeStatus}) => {
-    /**
-     * PlanDetail 컴포넌트 Plan으로 분리 및 API 연결
-     *
-     * @since 2024.02.29
-     * @author 이상민
-     */
-    const [planData, setPlanData] = useState(null);
-    const [planDetailStatus, setPlanDetailStatus] = useState('');
-    useEffect(() => {
-        const fetchPlanData = async () => {
-            try {
-                const response = await MyPlanDetailApi.getPlan(planId);
-                console.log(response);
-                setPlanData(response.data.data);
-
-                setPlanDetailStatus(response.data.data.entranceStatus);
-            } catch (error) {
-                console.error('Error fetching plan data:', error);
-            }
-        };
-        fetchPlanData();
-    }, [planId]);
+const PlanDetail = ({planData}) => {
 
     if (!planData) {
         return <p>Loading...</p>;
     }
-
-    onChangeStatus(planDetailStatus);
 
     /**
      * 파일 다운로드
@@ -55,19 +30,36 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
         document.body.removeChild(link);
     };
 
+    /**
+     * 입점 철회 api 연동
+     *
+     * @since 2024.03.10
+     * @author 김유빈
+     */
+    const handleWithdraw = async () => {
+        try {
+            const response = await WithdrawPlan.withdraw(planData.planId);
+            if (response.status === 200) {
+                window.location.href = `/plans/${planData.planId}`
+            }
+        } catch (error) {
+            console.error('Error approving plan:', error);
+        }
+    };
+
     return (
         <>
             <TwoInput
-                firstInput={<InputDate title="오픈 일정" placeholder={planData ? planData.openDate : ''} />}
-                secondInput={<InputText title="진행단계" value={planData ? planData.entranceStatus : ''} />}
+                firstInput={<InputDate title="오픈 일정" value={planData.openDate} />}
+                secondInput={<InputText title="진행단계" value={planData.entranceStatus} />}
             />
             <TwoInput
-                firstInput={<InputText title="오픈 지점" value={`${planData ? planData.office : ''} ${planData ? planData.floor : ''}`} />}
-                secondInput={<InputText title="카테고리" value={planData ? planData.category : ''} />}
+                firstInput={<InputText title="오픈 지점" value={`${planData.office} ${planData.floor}`} />}
+                secondInput={<InputText title="카테고리" value={planData.category} />}
             />
             <TwoInput
-                firstInput={<InputText title="연락처" value={planData ? planData.contactInformation : ''} />}
-                secondInput={<InputText title="작성일" value={planData ? planData.createdDate : ''} />}
+                firstInput={<InputText title="연락처" value={planData.contactInformation} />}
+                secondInput={<InputText title="작성일" value={planData.createdDate} />}
             />
 
             <div className="flex-auto mr-5">
@@ -80,6 +72,27 @@ const PlanDetail = ( {planId, onChangeStatus}) => {
                 >
                     파일 다운로드
                 </button>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ display: 'flex', marginTop: '20px' }}>
+                    {
+                        planData.entranceStatus === '입점 요청' && (
+                            <button
+                                style={{
+                                    padding: '10px 20px',
+                                    backgroundColor: 'LightSkyBlue',
+                                    color: 'white',
+                                    borderRadius: '5px',
+                                    margin: '0 5px',
+                                    cursor: 'pointer',
+                                }}
+                                onClick={handleWithdraw}
+                                disabled={false}>
+                                입점 철회
+                            </button>
+                        )
+                    }
+                </div>
             </div>
         </>
     )

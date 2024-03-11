@@ -42,7 +42,7 @@ function App() {
     ];
 
     const businessHomeUrl = "/dashboard"
-    const adminHomeUrl = "/admin/plan"
+    const adminHomeUrl = "/admin/business"
 
     return (
         <BrowserRouter>
