@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import RankingList from '../../common/InfoList/RankingList';
 import PopupRankingApi from '../../../api/business/dashBoard/popupRankingApi';
 
+/**
+ * 대시보드 팝업 랭킹
+ *
+ * @since 2024.02.27
+ * @author 이승민
+ */
+
+
 function PopupRanking() {
     const [myPopup, setMyPopup] = useState([]);
     const [popupData, setPopupData] = useState([]);

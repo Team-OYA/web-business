@@ -5,6 +5,14 @@ import UserStatisticsApi from '../../../api/business/dashBoard/userStatisticsApi
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+/**
+ * 대시보드 팝업 통계
+ *
+ * @since 2024.02.28
+ * @author 이승민
+ */
+
+
 const PopupStatistics = () => {
     const [chartData, setChartData] = useState({
         labels: [],
