@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import RankingList from '../../common/InfoList/RankingList';
 import PopupRankingApi from '../../../api/business/dashBoard/popupRankingApi';
 
+
 /**
  * 대시보드 팝업 랭킹
  *
- * @since 2024.02.27
+ * @since 2024.02.28
  * @author 이승민
  */
 
@@ -39,7 +40,7 @@ function PopupRanking() {
                             MY
                         </div>
                         <div className='title flex'>
-                            {myPopup[0].popupName}
+                            {myPopup[0].popupName.length > 30 ? `${myPopup[0].popupName.slice(0, 25)}...` : myPopup[0].popupName}
                         </div>
                     </div>
                     <div className='views flex w-12'>
@@ -50,7 +51,7 @@ function PopupRanking() {
                 </div>
             )}
             {popupData.map(item => (
-                <RankingList key={item.lank} id={item.lank} title={item.popupName} content={item.popupView} />
+                <RankingList key={item.lank} id={item.lank} title={item.popupName.length > 20 ? `${item.popupName.slice(0, 20)}...` : item.popupName} content={item.popupView} />
             ))}
         </div>
       );
