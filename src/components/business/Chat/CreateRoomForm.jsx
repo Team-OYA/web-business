@@ -39,7 +39,7 @@ const CreateRoomForm = ({ onClose }) => {
                       textAlign: 'center',
                       justifyContent: 'center'
                   }}>
-                <label htmlFor="roomName" className="block mb-2 font-medium text-gray-900">방 생성하기</label>
+                <label htmlFor="roomName" className="block mb-2 font-medium text-gray-900">문의사항이 있으신가요? </label>
                 <input
                     type="text"
                     id="roomName"
