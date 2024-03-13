@@ -3,6 +3,7 @@ import { loadPaymentWidget } from "@tosspayments/payment-widget-sdk"
 import { nanoid } from "nanoid"
 import Button from "../../common/Button/Button";
 import PaymentApi from "../../../api/business/createAd/paymentApi";
+import swal from "sweetalert";
 
 const customerKey = nanoid()
 
@@ -35,16 +36,6 @@ function TossPayModal({postId, postType, price, file}) {
         paymentMethodsWidget.updateAmount(price)
     }, [price])
 
-    const confirmTossPay = async (orderId) => {
-        const data = {
-            orderId: orderId,
-            postId: postId,
-            postType: postType,
-            amount: price
-        }
-        await PaymentApi.confirmTossPay(data, file)
-    }
-
     return (
         <div className="wrapper fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
             <div className="box_section w-1/2">
@@ -57,8 +48,13 @@ function TossPayModal({postId, postType, price, file}) {
                                 try {
                                     const orderId = nanoid()
                                     const baseUrl = `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_API_PREFIX}`
-                                    await confirmTossPay(orderId)
-                                    await paymentWidget?.requestPayment({
+                                    await PaymentApi.confirmTossPay({
+                                        orderId: orderId,
+                                        postId: postId,
+                                        postType: postType,
+                                        amount: price
+                                    }, file)
+                                    const response = await paymentWidget?.requestPayment({
                                         orderId: orderId,
                                         orderName: "토스 티셔츠 외 2건",
                                         customerName: "김토스",
@@ -67,9 +63,11 @@ function TossPayModal({postId, postType, price, file}) {
                                         successUrl: `${baseUrl}/payments/toss/success`,
                                         failUrl: `${baseUrl}/payments/toss/fail`
                                     })
+                                    if (response.status === 200) {
+                                        swal("광고 신청 완료", "광고 신청에 성공하였습니다!")
+                                    }
                                 } catch (error) {
-                                    // todo: 에러 모달창 추가 (예. 필수 항목 동의 체크)
-                                    console.error(error)
+                                    swal("결제 실패", error.message, "error")
                                 }
                             }}/>
                 </div>
