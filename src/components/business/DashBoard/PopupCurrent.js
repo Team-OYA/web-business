@@ -5,6 +5,14 @@ import InfoList from '../../common/InfoList/InfoList';
 import PopupCurrentApi from '../../../api/business/dashBoard/popupCurrnetApi';
 import React, { useEffect, useState } from 'react';
 
+
+/**
+ * 대시보드 현재 팝업
+ *
+ * @since 2024.02.28
+ * @author 이승민
+ */
+
 function PopupCurrent() {
     const [communityInfo, setCommunityInfo] = useState([]);
     const [popupInfo, setPopupInfo] = useState([]);
