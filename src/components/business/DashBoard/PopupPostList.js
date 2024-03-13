@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import MyPostListTable from "../../common/Table/MyPostListTable";
 import PopupMyApi from "../../../api/business/dashBoard/popupMyApi";
 
+
+/**
+ * 대시보드 팝업 리스트
+ *
+ * @since 2024.02.27
+ * @author 이승민
+ */
+
 function PopupPostList() {
     const [posts, setPosts] = useState([]);
 
