@@ -1,5 +1,10 @@
 import firebase from "firebase/app";
 
+/**
+ * @since 2024.03.08
+ * @author 이상민
+ */
+
 importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js");
 

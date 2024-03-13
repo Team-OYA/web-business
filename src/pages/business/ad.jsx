@@ -66,36 +66,13 @@ const Ad = () => {
                 </div>
                 <div className="flex-auto">
                     <BuyerContentBox/>
-                    <ContentBox
-                        title="결제 방법"
-                        content={
-                            <>
-                                <div className="flex items-center">
-                                    <PaymentButton
-                                        url={TossPayImage}
-                                        value="toss"
-                                        onClick={handleSelectedPaymentItem}
-                                        selectedItem={selectedPayment}/>
-                                    <PaymentButton
-                                        url={KakaoPayImage}
-                                        value="kakao"
-                                        onClick={handleSelectedPaymentItem}
-                                        selectedItem={selectedPayment}/>
-                                    <PaymentButton
-                                        url={NaverPayImage}
-                                        value="naver"
-                                        onClick={handleSelectedPaymentItem}
-                                        selectedItem={selectedPayment}/>
-                                    {isOpen && (
-                                        <TossPayModal
-                                            postId={postId}
-                                            postType={postType}
-                                            price={price}
-                                            file={mainImageFile}/>
-                                    )}
-                                </div>
-                            </>
-                        }/>
+                    {isOpen && (
+                        <TossPayModal
+                            postId={postId}
+                            postType={postType}
+                            price={price}
+                            file={mainImageFile}/>
+                    )}
                     <ContentBox
                         title="최종 결제금액"
                         content={

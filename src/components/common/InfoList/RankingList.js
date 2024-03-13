@@ -6,6 +6,7 @@ export default RankingList;
  * @since 2024.03.01
  * @author 이승민
  */
+
 function RankingList(props) {
     return (
         <div className="popup-ranking flex py-1">
