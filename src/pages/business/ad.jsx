@@ -14,6 +14,8 @@ import FileUpload from "../../components/common/Input/FileUpload";
 import MyPopupApi from "../../api/business/createAd/myPopupApi";
 import Button from "../../components/common/Button/Button";
 import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
+import {useSearchParams} from "react-router-dom";
+import swal from "sweetalert";
 
 /**
  * Ad 페이지 제작
@@ -30,6 +32,13 @@ const Ad = () => {
     const [posts, setPosts] = useState([])
     const [postId, setPostId] = useState(null)
     const [selectedPayment, setSelectedPayment] = useState(null)
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const planId = searchParams.get("planId")
+    if (planId != null) {
+        swal("광고 신청 완료", "광고 신청에 성공하였습니다!")
+            .then(() => window.location.href = `/plans/${planId}`)
+    }
 
     const handleMainImageFileChange = (event) => {
         setMainImageFile(event.target.files[0])
