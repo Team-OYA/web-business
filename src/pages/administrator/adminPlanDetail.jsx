@@ -26,10 +26,12 @@ const AdminPlainDetail = () => {
     const handleWait = async () => {
         console.log(longPlanId);
         try {
-            alert("정말 입정 대기 시키실 건가요?")
-            await AdminPlanApi.postWait(longPlanId);
+            alert("정말 입점 대기 시키실 건가요?")
+            const response = await AdminPlanApi.postWait(longPlanId);
             alert("입정 대기 완료되었습니다.")
-            navigate("/admin/plan"); // 페이지 이동
+            if (response.status === 200) {
+                window.location.href = `/admin/plan/${longPlanId}`
+            }
         } catch (error) {
             console.error('Error approving plan:', error);
         }
@@ -40,7 +42,9 @@ const AdminPlainDetail = () => {
             alert("정말 입정 승인 시키실 건가요?")
             const response = await AdminPlanApi.postApprove(longPlanId);
             alert('입점이 승인되었습니다.');
-            navigate('/admin/plan'); // 페이지 이동
+            if (response.status === 200) {
+                window.location.href = `/admin/plan/${longPlanId}`
+            }
         } catch (error) {
             console.error('Error approving plan:', error);
         }
@@ -51,7 +55,9 @@ const AdminPlainDetail = () => {
             alert("정말 입정 거절 시키실 건가요?")
             const response = await AdminPlanApi.postDeny(longPlanId);
             alert('입점이 거절되었습니다.');
-            navigate('/admin/plan'); // 페이지 이동
+            if (response.status === 200) {
+                window.location.href = `/admin/plan/${longPlanId}`
+            }
         } catch (error) {
             console.error('Error rejecting plan:', error);
         }

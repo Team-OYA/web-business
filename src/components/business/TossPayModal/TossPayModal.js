@@ -56,6 +56,7 @@ function TossPayModal({postId, postType, price, file}) {
                             onClick={async () => {
                                 try {
                                     const orderId = nanoid()
+                                    const baseUrl = `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_API_PREFIX}`
                                     await confirmTossPay(orderId)
                                     await paymentWidget?.requestPayment({
                                         orderId: orderId,
@@ -63,8 +64,8 @@ function TossPayModal({postId, postType, price, file}) {
                                         customerName: "김토스",
                                         customerEmail: "customer123@gmail.com",
                                         customerMobilePhone: "01012341234",
-                                        successUrl: `${process.env.REACT_APP_BASE_URL}/payments/toss/success`,
-                                        failUrl: `${process.env.REACT_APP_BASE_URL}/payments/toss/fail`
+                                        successUrl: `${baseUrl}/payments/toss/success`,
+                                        failUrl: `${baseUrl}/payments/toss/fail`
                                     })
                                 } catch (error) {
                                     // todo: 에러 모달창 추가 (예. 필수 항목 동의 체크)

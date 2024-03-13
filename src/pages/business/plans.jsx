@@ -2,9 +2,10 @@ import ContentBox from "../../components/common/ContentBox/ContentBox";
 import CategoryDropdown from "../../components/business/CategoryDropdown/CategoryDropdown";
 import EntranceStatusDropdown from "../../components/business/EntranceStatusDropdown/EntranceStatusDropdown";
 import MyPlanTable from "../../components/business/MyPlanTable/MyPlanTable";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import MyPlansApi from "../../api/business/plans/myPlansApi";
 import SearchButton from "../../components/common/Button/SearchButton";
+import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
 
 /**
  * Plans 페이지 제작
@@ -38,6 +39,7 @@ function Plans() {
                                 onClick={getPlans(category, entranceStatus, page, limit, setTotal, setPlans)}/>
                         </div>
                         <MyPlanTable plans={plans} page={page} limit={limit} total={total} setPage={setPage}/>
+                        <FloatingButton />
                     </>
                 }/>
         </div>

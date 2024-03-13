@@ -12,13 +12,13 @@
 .content {
     padding: 20px;
     overflow-y: auto;
+    /*background-color: #f0f0f0;*/
 }
 
 .bottom-nav {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #f0f0f0;
     padding: 10px;
 }
 

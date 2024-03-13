@@ -7,7 +7,8 @@ import DepartmentDropdown from "../../components/business/DepartmentDropdown/Dep
 import FloorDropdown from "../../components/business/FloorDropdown/FloorDropdown";
 import Button from "../../components/common/Button/Button";
 import PlanApi from "../../api/business/createPlan/planApi";
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
+import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
 
 /**
  * CreatePlan 페이지 제작
@@ -47,7 +48,10 @@ const CreatePlan = () => {
                 "contactInformation": phoneNumber,
                 "category": category
             }
-            const response = await PlanApi.save(data, file);
+            const response = await PlanApi.save(data, file)
+            if (response.status === 200) {
+                window.location.href = `/plans/${response.data.data}`
+            }
         } catch (error) {
             console.error("저장 중 에러 발생: ", error);
         }
@@ -86,6 +90,7 @@ const PlanContentBox = ({onOpenDateChange, onCloseDateChange, onPhoneNumberChang
                 secondInput={<InputDate title="마감일" onChange={onCloseDateChange}/>}/>
             <InputText title="연락처" onChange={onPhoneNumberChange}/>
             <FileUpload title="사업계획서" onChange={onFileChange}/>
+            <FloatingButton />
         </div>
     )
 }

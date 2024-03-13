@@ -13,6 +13,7 @@ import MyCommunityApi from "../../api/business/createAd/myCommunityApi";
 import FileUpload from "../../components/common/Input/FileUpload";
 import MyPopupApi from "../../api/business/createAd/myPopupApi";
 import Button from "../../components/common/Button/Button";
+import FloatingButton from "../../components/business/FloatingButton/FloatingButton";
 
 /**
  * Ad 페이지 제작
@@ -103,6 +104,7 @@ const Ad = () => {
                                 <Button text="결제하기" onClick={handleClickTossPaymentButton}/>
                             </>
                         }/>
+                    <FloatingButton />
                 </div>
             </div>
         </>
@@ -121,12 +123,12 @@ function convertAboutPost(setPrice, setPostType, setMainImage, setPosts, onChang
         let data = null
         let mainImage = <></>
         if (value === "popup") {
-            price = 1_000_000
+            price = 500_000
             const response = await MyPopupApi.getMyPopups(0, 5)
             data = response.data.data.popups.map(popup => {
                 const createdDate = popup.pulledDate.split(" ")[0];
                 return {
-                    id: popup.planId,
+                    id: popup.popupId,
                     title: popup.title,
                     date: createdDate,
                 }

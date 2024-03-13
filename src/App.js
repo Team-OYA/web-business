@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import React from "react";
+import './firebase-messaging-sw.js'
 
 import './index.css';
 
@@ -42,7 +43,7 @@ function App() {
     ];
 
     const businessHomeUrl = "/dashboard"
-    const adminHomeUrl = "/admin/plan"
+    const adminHomeUrl = "/admin/business"
 
     return (
         <BrowserRouter>
@@ -71,7 +72,6 @@ function App() {
 
     );
 }
-
 
 const generateRoute = (color, sideBarColor, sideBarList, homeUrl, path, Component) => (
     <Route
