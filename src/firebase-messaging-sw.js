@@ -2,6 +2,10 @@ import firebase from 'firebase/app'
 import 'firebase/messaging'
 import NotificationApi from "./api/Common/notificationApi";
 
+/**
+ * @since 2024.03.08
+ * @author 이상민
+ */
 const firebaseConfig = {
     apiKey: `${process.env.REACT_APP_API_KEY}`,
     authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,

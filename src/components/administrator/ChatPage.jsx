@@ -3,6 +3,10 @@ import ContentBox from "../../components/common/ContentBox/ContentBox";
 import Pagination from "../../components/common/Pagination/Pagination";
 import ChatTable from "./ChatTable";
 
+/**
+ * @since 2024.03.05
+ * @author 이상민
+ */
 const ChatPage = ({ api, title }) => {
     const [data, setData] = useState(null);
     const [limit, setLimit] = useState(10);

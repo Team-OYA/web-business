@@ -6,6 +6,7 @@ export default InfoList;
  * @since 2024.03.01
  * @author 이승민
  */
+
 function InfoList(props) {
     return (
         <div className="info-list flex w-68 text-gray-text-color-700 text-sm">

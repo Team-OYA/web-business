@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../../common/Chat/ChatApp.css';
 import Button from "../../common/Button/Button";
 import FormattedTime from "../../common/Chat/FormattedTime";
+import CreateRoomForm from '../../business/Chat/CreateRoomForm';
 
 /**
  * 채팅 리스트 컴포넌트
@@ -9,7 +10,7 @@ import FormattedTime from "../../common/Chat/FormattedTime";
  * @since 2024.03.02
  * @author 이상민
  */
-const ChatList = ({api, onChatRoomClick, closeModal}) => {
+const ChatList = ({api, onChatRoomClick, onCreateRoomClick, closeModal}) => {
 
     const [data, setData] = useState([]);
     const [limit, setLimit] = useState(10);
@@ -17,6 +18,10 @@ const ChatList = ({api, onChatRoomClick, closeModal}) => {
 
     const handleChatRoomClick = (chatRoom) => {
         onChatRoomClick(chatRoom[0]);
+    };
+
+    const handleCreateRoomButtonClick = () => {
+        onCreateRoomClick(true);
     };
 
     useEffect(() => {
@@ -77,7 +82,8 @@ const ChatList = ({api, onChatRoomClick, closeModal}) => {
                                             d="M1 5h12m0 0L9 1m4 4L9 9"/>
                                     </svg>
                                 </span>
-                            </span>} />
+                            </span>}
+                        onClick={handleCreateRoomButtonClick}/>
             </div>
 
             <button className="close-button" onClick={closeModal}>
