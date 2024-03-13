@@ -24,6 +24,16 @@ const ChatApi = {
     getMessages: async (roomId = 0) => {
         return await userBaseApi.get(`/chat/rooms/${roomId}`);
     },
+
+    /**
+     * 나의 채팅방 생성하기
+     *
+     * @since 2024.03.12
+     * @author 이상민
+     */
+    createChatRoom: async (roomName) => {
+        return await userBaseApi.post(`/chat/room`, { roomName });
+    },
 }
 
 export default ChatApi;

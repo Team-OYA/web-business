@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import ChatApi from "../../../api/chatApi";
 import ChatRoom from "../../business/Chat/ChatRoom";
 import ChatList from "../../business/Chat/ChatList";
+import CreateRoomForm from "../Chat/CreateRoomForm";
 
 /**
  * FloatingButton 컴포넌트
@@ -14,6 +15,7 @@ import ChatList from "../../business/Chat/ChatList";
 const FloatingButton = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+    const [isCreatingRoom, setIsCreatingRoom] = useState(false);
 
     const openModal = () => {
         const button = document.querySelector('.floating-button');
@@ -41,6 +43,14 @@ const FloatingButton = () => {
         setSelectedChatRoom(chatRoom);
     };
 
+    const handleCreateRoomButtonClick = () => {
+        setIsCreatingRoom(true);
+    };
+
+    const handleCloseCreateRoom = () => {
+        setIsCreatingRoom(false);
+    };
+
     return (
         <>
             <div className="fixed bottom-0 right-0 mb-4 mr-8">
@@ -63,11 +73,23 @@ const FloatingButton = () => {
                 shouldCloseOnOverlayClick={true} // 모달 이외의 영역 클릭시 모달 닫힘 설정
                 shouldCloseOnEsc={true}
             >
-                {/* 선택된 채팅방이 없을 때에만 ChatList를 모달 안에 렌더링 */}
-                {!selectedChatRoom && <ChatList api={ChatApi} url="/chat" role="user" onChatRoomClick={handleChatRoomClick} closeModal={closeModal}/>}
+                {/* 선택된 채팅방이 없고, 새 방 생성 폼이 열리지 않은 경우에만 ChatList를 모달 안에 렌더링 */}
+                {!selectedChatRoom && !isCreatingRoom && (
+                    <ChatList
+                        api={ChatApi}
+                        url="/chat"
+                        role="user"
+                        onChatRoomClick={handleChatRoomClick}
+                        onCreateRoomClick={handleCreateRoomButtonClick}
+                        closeModal={closeModal}
+                    />
+                )}
 
                 {/* 선택된 채팅방이 있을 때 ChatRoomDetail을 표시 */}
                 {selectedChatRoom && <ChatRoom selectedChatRoom={selectedChatRoom} setSelectedChatRoom={setSelectedChatRoom}/>}
+
+                {/* 새 방 생성 폼 */}
+                {isCreatingRoom && <CreateRoomForm onClose={handleCloseCreateRoom} />}
             </Modal>
         </>
     );
