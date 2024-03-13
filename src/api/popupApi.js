@@ -23,7 +23,6 @@ const PopupApi = {
      * @author 이상민
      */
     savePopup: async (popupData) => {
-        console.log(popupData)
         const formData = new FormData();
         formData.append('data', new Blob([JSON.stringify(popupData)], { type: 'application/json' }));
         const response = await userInstance.post(`/popups`, formData);
