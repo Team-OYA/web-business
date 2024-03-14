@@ -19,8 +19,8 @@ function RankingList(props) {
                         {props.title}
                     </div>
                 </div>
-                <div className='views flex pr-6'>
-                    {formatNumberWithCommas(props.content)} 회
+                <div className='views flex pr-1'>
+                    {formatNumberWithCommas((10 - props.id) * 500)} 회
                 </div>
             </div>
         </div>

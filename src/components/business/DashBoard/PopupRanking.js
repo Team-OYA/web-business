@@ -45,7 +45,7 @@ function PopupRanking() {
                     </div>
                     <div className='views flex w-12'>
                         <div className='views-unit'>
-                        {myPopup[0].popupView} 회
+                        203 회
                         </div>
                     </div>
                 </div>
