@@ -94,7 +94,7 @@ const PopupStatistics = () => {
 
     return (
         <div className="popup-current flex justify-between px-3 py-4">
-        <Line options={options} data={chartData} />
+        <Line options={options} data={chartData} height={350} width={600}/>
         </div>
     );
 };
